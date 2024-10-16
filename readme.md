@@ -1,4 +1,5 @@
-# SDAM Web App
+# Web Application for the Regional Streamflow Duration Assessment Methods (SDAMs)
+A free, open-access application for the [Regional Streamflow Duration Assessment Methods](https://www.epa.gov/streamflow-duration-assessment). The application runs SDAM region-specific random forest models based on user-entered indicator data to obtain the streamflow duration classification for individual assessment reaches. Users have the option to produce a PDF report, which may be included as documentation of SDAM results.
 
 ### Disclaimer
 

@@ -1,14 +1,25 @@
 {
-  "name": "Open Source Projects",
-  "description": "Contains files for teams to reuse when working in and with EPA Open Source projects.",
-  "name": "MIT",
-  "URL":"https://github.com/USEPA/open-source-projects/blob/master/license.md",
-  "usageType": "openSource",
+  "name": "Web Application for the Regional Streamflow Duration Assessment Methods (SDAMs)",
+  "repositoryURL": "https://github.com/USEPA/SDAM-web-app",
+  "description": "A free, open-access application for the Regional Streamflow Duration Assessment Methods. The application runs SDAM region-specific random forest models based on user-entered indicator data to obtain the streamflow duration classification for individual assessment reaches. Users have the option to produce a PDF report, which may be included as documentation of SDAM results.",
+  "permissions": {
+    "licenses": [
+      {
+        "name": "MIT",
+        "URL": "https://opensource.org/license/MIT"
+      }
+    ],
+    "usageType": "openSource"
+  },
   "tags": [
-    "EPA",
-    "opensource"
+    "SDAM",
+    "R Shiny",
+    "Random Forest",
+    "Streamflow Duration"
   ],
   "contact": {
-    "email": "ibarra.michelle@epa.gov"
-  }
+    "email": "topping.brian@epa.gov",
+    "name": "Brian Topping"
+  },
+  "vcs": "git"
 }
