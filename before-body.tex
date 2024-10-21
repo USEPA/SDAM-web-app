@@ -1,0 +1,28 @@
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+
+%------------------------------------------------
+% Declaring new geometry for the title page only.
+\newgeometry{margin=25.4mm}
+%------------------------------------------------
+
+$if(title)$
+$if(beamer)$
+\frame{\titlepage}
+$else$
+\maketitle
+$endif$
+
+%-----------------------------------------------
+% Ending the declared geometry for the title page
+% and restore the geometry for other pages
+\restoregeometry
+%-----------------------------------------------
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+$endif$

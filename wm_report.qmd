@@ -1,0 +1,1152 @@
+---
+title: \vspace{-2cm} \begin{huge} Streamflow Duration Assessment Methods \end{huge}
+title-block-banner: false
+title-block-banner-color: "#03fcfc"
+subtitle: "SDAM Version 1.1 Release Date: Spring 2024"
+revision: "SDAM revision date: Spring, 2024" 
+date: "Report generated on: `r format(Sys.time(), '%B %d, %Y')`"
+embed-resources: false
+filters: [remove_title.lua]
+mainfont: Roboto
+monofont: Roboto
+format: 
+  pdf:
+    include-in-header:
+      - text: |
+          \usepackage{geometry}
+          \usepackage{xcolor}
+          \usepackage{fancyhdr}
+          \renewcommand{\headrulewidth}{0.0pt}
+          \pagestyle{fancy}
+          \usepackage{lastpage}
+          \usepackage{afterpage}
+          \usepackage{tcolorbox}
+          \definecolor{my-blue}{RGB}{0, 94, 162}
+          \definecolor{darker-blue}{RGB}{22, 46, 81}
+          \newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
+          \rfoot{Page \thepage\ of \pageref{LastPage}}
+          \cfoot{}
+          \lfoot{SDAM Version 1.0 October 2024, Date of site visit: \sitedate}
+    template-partials:
+      - before-body.tex
+params:
+    stream_class: NA
+    region: NA
+    precip: NA
+    drain_area: NA
+    adj_regions: NA
+    a: NA
+    b: NA
+    c: NA
+    d: NA
+    e: NA
+    f: NA
+    g: NA
+    h: NA
+    i: NA
+    j: NA
+    k: NA
+    l: NA
+    m: NA
+    n: NA
+    o: NA
+    p: NA
+    r: NA
+    s: NA
+    t: NA
+    u: NA
+    v: NA
+    w: NA
+    aa: NA
+    ab: NA
+    ac: NA
+    ad: NA
+    ae: NA
+    af: NA
+    ag: NA
+    ah: NA
+    ai: NA
+    aj: NA
+    ak: NA
+    al: NA
+    am: NA
+    an: NA
+    ao: NA
+    ap: NA
+    aq: NA
+    ar: NA
+    as: NA
+    at: NA
+    av: NA
+    ba: NA
+    bb: NA
+    bc: NA
+    bd: NA
+    be: NA
+    bf: NA
+    bg: NA
+    bh: NA
+    bi: NA
+    bl: NA
+    bm: NA
+    bn: NA
+    bo: NA
+    tbl: NA
+    fff: NA
+    notes_supplemental_information: NA
+    f48: NA
+    f48_cap: NA
+    f49: NA
+    f49_cap: NA
+    f50: NA
+    f50_cap: NA
+    f51: NA
+    f51_cap: NA
+    aqua_inv: NA
+    f6: NA
+    f6_cap: NA
+    f7: NA
+    f7_cap: NA
+    f8: NA
+    f8_cap: NA
+    f6_1: NA
+    f6_1cap: NA
+    f7_1: NA
+    f7_1cap: NA
+    f8_1: NA
+    f8_1cap: NA
+    notes_aquainv: NA
+    hydro: NA
+    f24: NA
+    f24_cap: NA
+    f25: NA
+    f25_cap: NA
+    f26: NA
+    f26_cap: NA
+    f27: NA
+    f27_cap: NA
+    f28: NA
+    f28_cap: NA
+    f29: NA
+    f29_cap: NA
+    notes_hydro: NA
+    upland_rooted: NA
+    f45: NA
+    f45_cap: NA
+    f46: NA
+    f46_cap: NA
+    f47: NA
+    f47_cap: NA
+    notes_rooted: NA
+    substrate: NA
+    f12: NA
+    f12_cap: NA
+    f13: NA
+    f13_cap: NA
+    f14: NA
+    f14_cap: NA
+    notes_sub: NA
+    vegetation: NA
+    f15: NA
+    f15_cap: NA
+    f16: NA
+    f16_cap: NA
+    f17: NA
+    f17_cap: NA
+    notes_vegetation: NA
+    slope: NA
+    f21: NA
+    f21_cap: NA
+    f22: NA
+    f22_cap: NA
+    f23: NA
+    f23_cap: NA
+    notes_slope: NA
+    riff: NA
+    f42: NA
+    f42_cap: NA
+    f43: NA
+    f43_cap: NA
+    f44: NA
+    f44_cap: NA
+    notes_riff: NA
+    bankwidth: NA
+    eph_isa: NA
+    map: NA
+    hp1: NA
+    hp2: NA
+    hp3: NA
+    notes_landuse: NA
+    shade: NA
+    notes_shade: NA
+    f55: NA
+    f55_cap: NA
+    f56: NA
+    f56_cap: NA
+    f57: NA
+    f57_cap: NA
+    f58: NA
+    f58_cap: NA
+    f52: NA
+    f52_cap: NA
+    f53: NA
+    f53_cap: NA
+    f54: NA
+    f54_cap: NA
+    notes_mb: NA
+    hydro_check: NA
+    macro_check: NA
+
+    
+  
+---
+
+\newcommand{\sitedate}{`r params$e`}
+\newgeometry{left=20mm, right=20mm, top=10mm, bottom=4mm}
+\thispagestyle{empty}
+\pagecolor{darker-blue}
+\clearpage
+\setcounter{page}{1}
+
+```{r, setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(usmap)
+library(mapview)
+library(leaflet)
+library(sp)
+
+# Removing all code from appearing in the final knit document.
+knitr::opts_chunk$set(echo = FALSE)
+
+# Removing all "#" from appearing in the final knit document.
+knitr::opts_chunk$set(comment = NA)
+
+# Make error messages more descriptive
+options(tinytex.verbose = TRUE)
+
+opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
+```
+
+\vspace{-3cm}
+\begin{tcolorbox}
+    \begin{center}
+        \begin{huge} Streamflow Duration Assessment Methods \end{huge}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+        \begin{Large} SDAM Version 1.0 Release Date: October 2024 \end{Large}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+        \begin{large}\href{https://www.epa.gov/streamflow-duration-assessment}{https://www.epa.gov/streamflow-duration-assessment}\end{large}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+       \begin{large}Visit date: `r params$e`  \end{large}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+        \begin{large} Report generated date: `r format(Sys.time(), '%Y-%m-%d')` \end{large}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+        \begin{large}Project name: `r params$a`\end{large}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+        \begin{large}Site code: `r params$c`\end{large}
+    \end{center}
+    \vspace{2mm}
+    \begin{center}
+        \begin{large}Regional SDAM classification: `r params$stream_class`\end{large}
+    \end{center}
+    
+\end{tcolorbox}
+
+
+::::: {layout="[8,90]"}
+:::{}
+\hspace{2mm}
+:::
+:::{}
+```{r, out.width='100%', out.height='38%', fig.align="center"}
+
+regions <- sf::read_sf("./spatial/regions_noAKHI.shp")
+region_labels <- sf::read_sf("./spatial/regions_labels.shp")
+transformed_data <- usmap_transform(regions)
+states_data <- us_map("states", exclude=c("AK","HI"))
+rmap <- plot_usmap(exclude=c("AK","HI"), color=NA) + 
+    geom_sf(data=transformed_data, 
+            aes(fill=region),
+            color=NA) +
+    scale_fill_manual(values=c('#bf88a0', '#d4c498', '#c4978d', '#c196d4', '#b2d6b5', '#9bafc7')) + 
+     geom_sf(data = states_data,
+          mapping = aes(geometry = geom),
+          color = alpha('black',0.15),
+          linewidth = 0.7,
+          fill = NA) +
+    geom_sf_text(data=region_labels, aes(label=stringr::str_wrap(region,5))) +
+    theme(legend.position='none',
+          plot.margin = margin(t = 0,  # Top margin
+                             r = 0,  # Right margin
+                             b = 0,  # Bottom margin
+                             l = 0)) # Left margin) 
+
+if (params$h != 'Not Provided'){
+  x <- data.frame(lon = params$h, lat = params$g, type = 'Site Location')
+  x2 <- sf::st_as_sf(x,coords=c("lon","lat"), crs=4326)
+  
+  rmap <- rmap +
+      geom_sf(data=x2, color='red',size=3)
+  rmap
+
+} else {
+  rmap
+}
+
+if (params$h != 'Not Provided'){
+  lmap <- leaflet(options=leafletOptions(minZoom=16, maxZoom=16)) %>%
+    addTiles() %>%
+    addCircleMarkers(
+        lng=params$h,
+        lat=params$g,
+        weight=10,
+        opacity=1,
+        fill=TRUE,
+        color='red',
+        fillOpacity=1,
+        fillColor='red',
+        group = "point")
+
+  mapshot(lmap, file="temp.png")
+}
+
+```
+:::
+:::::
+```{r, out.width='100%', out.height='35%', fig.align='center'}
+
+if (params$h != 'Not Provided'){
+    knitr::include_graphics("temp.png")
+}
+```
+
+\restoregeometry
+\clearpage
+\pagecolor{white}
+
+\begin{center}
+\textbf{\underline{\LARGE{General site information}}}
+\end{center}
+
+Project name or number: `r params$a`
+
+Site code or identifier: `r params$c`
+
+SDAM Region: `r params$region`
+
+Adjacent SDAM Regions within 10 miles: `r params$adj_regions`
+
+Assessor(s): `r params$b`
+
+Waterway name: `r params$d`
+
+Visit date: `r params$e`
+
+Current weather conditions: `r params$bm`
+
+Notes on current or recent weather conditions:
+`r params$j`
+
+Location: `r ifelse(params$g != 'Not Provided' | params$h != 'Not Provided', paste0(params$g," N, ", params$h, " E"), paste0('Not provided'))`
+
+Surrounding land use within 100 m: `r params$l`
+
+Notes on land use: `r params$notes_landuse`
+
+Description of reach boundaries: `r params$f`
+
+Assessment reach length (m): `r if (!is.na(params$fff)){params$fff}`
+
+Disturbed or difficult conditions:
+`r params$bn`
+
+Notes on disturbances or difficult site conditions:
+`r params$k`
+
+\vspace{3mm}
+\begin{center}
+\textbf{\underline{\LARGE{Observed hydrology}}}
+\end{center}
+
+Percent of reach with surface flow: `r params$m`
+
+Percent of reach with surface and sub-surface flows: `r params$n`
+
+Number of isolated pools: `r params$o`
+
+Notes on observed hydrology: `r params$r`
+
+\vspace{3mm}
+\begin{center}
+\textbf{\underline{\LARGE{Site photos}}}
+\end{center}
+
+Top of reach looking downstream:
+```{r, out.width = '50%', out.height= '50%', out.extra='angle=0', fig.align='center'}
+if (!length(params$v)==0){ 
+  knitr::include_graphics(params[["v"]])
+}
+```
+
+Middle of reach looking upstream:
+```{r, out.width='50%', fig.align='center'}
+if (!length(params$u)==0){ 
+  knitr::include_graphics(params[["u"]])
+}
+
+```
+
+Middle of reach looking downstream:
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$t)==0){ 
+  knitr::include_graphics(params[["t"]])
+}
+```
+
+Bottom of reach looking upstream:
+```{r, out.width='50%', fig.align='center'}
+if (!length(params$s)==0){ 
+  knitr::include_graphics(params[["s"]])
+}
+
+```
+
+\vspace{3mm}
+\begin{center}
+\textbf{\underline{\LARGE{Site sketch}}}
+\end{center}
+
+```{r, out.width='50%', fig.align='center'}
+if (!length(params$w)==0){ 
+  knitr::include_graphics(params[["w"]])
+}
+
+```
+
+\vfill
+\noindent\rule{16cm}{2pt}\
+\pagebreak
+
+\begin{center}
+\textbf{\underline{\LARGE{Indicators}}}
+\end{center}
+
+\vspace{2mm}
+\textbf{Mean bankfull channel width (m): `r params$bankwidth`}
+
+Notes on mean bankfull channel width: `r params$notes_mb`
+
+
+Mean bankfull channel width photos and descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f52)==0){ 
+  knitr::include_graphics(params[["f52"]])
+}
+
+```
+
+```{r}
+if (!length(params$f52)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f52_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f53)==0){ 
+  knitr::include_graphics(params[["f53"]])
+} 
+
+```
+
+```{r}
+if (!length(params$f53)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f53_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f54)==0){ 
+  knitr::include_graphics(params[["f44"]])
+}
+
+```
+
+```{r}
+if (!length(params$f54)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f54_cap, perl = TRUE)))
+}
+```
+
+\vspace{2mm}
+
+\textbf{Abundance of Ephemeroptera, Plecoptera, and Trichoptera: `r if (!is.null(params$aqua_inv)) {params$aqua_inv}`}
+
+\textbf{Perennial indicator taxa: `r if (!is.null(params$eph_isa)) {params$eph_isa}`}
+
+Aquatic macroinvertebrates in assessment area: `r ifelse(params$macro_check == TRUE, 'Aquatic macroinvertebrates absent', 'Aquatic macroinvertebrates present')`
+
+Notes on aquatic macroinvertebrates:
+
+`r params$notes_aquainv`
+
+
+Macroinvertebrate photos and photo descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f6)==0){ 
+  knitr::include_graphics(params[["f6"]])
+}
+  
+```
+
+
+```{r}
+
+if (!length(params$f6)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f6_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f7)==0){ 
+  knitr::include_graphics(params[["f7"]])
+}
+  
+```
+
+```{r}
+if (!length(params$f7)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f7_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f8)==0){ 
+  knitr::include_graphics(params[["f8"]])
+}
+
+```
+
+```{r}
+if (!length(params$f8)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f8_cap, perl = TRUE)))
+}
+```
+
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f6_1)==0){ 
+  knitr::include_graphics(params[["f6_1"]])
+}
+  
+```
+
+
+```{r}
+
+if (!length(params$f6_1)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f6_1cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f7_1)==0){ 
+  knitr::include_graphics(params[["f7_1"]])
+}
+  
+```
+
+```{r}
+if (!length(params$f7_1)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f7_1cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f8_1)==0){ 
+  knitr::include_graphics(params[["f8_1"]])
+}
+
+```
+
+```{r}
+if (!length(params$f8_1)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f8_1cap, perl = TRUE)))
+}
+```
+
+
+
+\vspace{2mm}
+
+\textbf{Slope: `r if (!is.null(params$slope)){params$slope}`%}
+
+Notes about slope:
+
+`r params$notes_slope`
+
+
+Slope photos and descriptions:
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f21)==0){ 
+    knitr::include_graphics(params[["f21"]])
+}
+
+```
+
+```{r}
+if (!length(params$f21)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f21_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f22)==0){ 
+    knitr::include_graphics(params[["f22"]])
+}
+```
+
+```{r}
+if (!length(params$f22)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f22_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f23)==0){ 
+    knitr::include_graphics(params[["f23"]])
+}
+
+```
+
+```{r}
+if (!length(params$f23)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f23_cap, perl = TRUE)))
+}
+```
+
+
+\vspace{2mm}
+
+\textbf{Shading: `r if (!is.null(params$shade)){params$shade}`%}
+
+Notes about shading: `r params$notes_rooted`
+
+Shading photos and descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f55)==0){ 
+  knitr::include_graphics(params[["f55"]])
+}
+
+```
+
+```{r}
+if (!length(params$f55)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f55_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f56)==0){ 
+  knitr::include_graphics(params[["f56"]])
+} 
+
+```
+
+```{r}
+if (!length(params$f56)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f56_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f57)==0){ 
+  knitr::include_graphics(params[["f57"]])
+}
+
+```
+
+```{r}
+if (!length(params$f57)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f57_cap, perl = TRUE)))
+}
+```
+
+```{r}
+if (!length(params$f56)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f56_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f58)==0){ 
+  knitr::include_graphics(params[["f58"]])
+}
+
+```
+
+```{r}
+if (!length(params$f58)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f58_cap, perl = TRUE)))
+}
+```
+
+
+
+\vspace{2mm}
+
+\textbf{Hydrophytic plants: `r if (!is.null(params$hydro)) {params$hydro}`}
+
+Vegetation in assessment area: `r ifelse(params$hydro_check == TRUE, 'vegetation absent', 'vegetation present')`
+
+Notes about hydrophytic plant species:
+
+`r params$notes_hydro`
+
+
+Hydrophyte photos and photo descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f24)==0){ 
+  knitr::include_graphics(params[["f24"]])
+}
+  
+```
+
+
+```{r}
+
+if (!length(params$f24)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f24_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f25)==0){ 
+  knitr::include_graphics(params[["f25"]])
+}
+  
+```
+
+```{r}
+if (!length(params$f25)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f25_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f26)==0){ 
+  knitr::include_graphics(params[["f26"]])
+}
+
+```
+
+```{r}
+if (!length(params$f26)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f26_cap, perl = TRUE)))
+}
+```
+
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f27)==0){ 
+  knitr::include_graphics(params[["f27"]])
+}
+  
+```
+
+
+```{r}
+
+if (!length(params$f27)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f27_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f28)==0){ 
+  knitr::include_graphics(params[["f28"]])
+}
+  
+```
+
+```{r}
+if (!length(params$f28)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f28_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f29)==0){ 
+  knitr::include_graphics(params[["f29"]])
+}
+
+```
+
+```{r}
+if (!length(params$f29)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f29_cap, perl = TRUE)))
+}
+```
+
+\vspace{2mm}
+
+\textbf{Prevalence of upland rooted plants in streambed: `r if (!is.null(params$upland_rooted)){params$upland_rooted}`}
+
+
+Notes about upland rooted plants:
+
+`r params$notes_rooted`
+
+
+Upland rooted plants photos and descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f45)==0){ 
+  knitr::include_graphics(params[["f45"]])
+}
+
+```
+
+```{r}
+if (!length(params$f45)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f45_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f46)==0){ 
+  knitr::include_graphics(params[["f46"]])
+} 
+
+```
+
+```{r}
+if (!length(params$f46)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f46_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f47)==0){ 
+  knitr::include_graphics(params[["f47"]])
+}
+
+```
+
+```{r}
+if (!length(params$f47)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f47_cap, perl = TRUE)))
+}
+```
+
+\vspace{2mm}
+
+\textbf{Differences in vegetation: `r if (!is.null(params$veg)){params$veg}`}
+
+
+Notes about differences in vegetation:
+
+`r params$notes_vegetation`
+
+
+Vegetation difference photos and descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f15)==0){ 
+  knitr::include_graphics(params[["f15"]])
+}
+
+```
+
+```{r}
+if (!length(params$f15)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f15_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f16)==0){ 
+  knitr::include_graphics(params[["f16"]])
+} 
+
+```
+
+```{r}
+if (!length(params$f16)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f16_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f17)==0){ 
+  knitr::include_graphics(params[["f17"]])
+}
+
+```
+
+```{r}
+if (!length(params$f17)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f17_cap, perl = TRUE)))
+}
+```
+
+\vspace{2mm}
+
+\textbf{Riffle-pool sequence: `r if (!is.null(params$riff)){params$riff}`}
+
+
+Notes about riffle-pool sequence:
+
+`r params$notes_riff`
+
+
+Riffle-pool photos and descriptions:
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f42)==0){ 
+  knitr::include_graphics(params[["f42"]])
+}
+
+```
+
+```{r}
+if (!length(params$f42)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f42_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f43)==0){ 
+  knitr::include_graphics(params[["f43"]])
+} 
+
+```
+
+```{r}
+if (!length(params$f43)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f43_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f44)==0){ 
+  knitr::include_graphics(params[["f44"]])
+}
+
+```
+
+```{r}
+if (!length(params$f44)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f44_cap, perl = TRUE)))
+}
+```
+
+
+
+\vspace{2mm}
+
+\textbf{Particle size or stream substrate sorting : `r if (!is.null(params$substrate)){params$substrate}`}
+
+
+Notes about particle size or sorting:
+
+`r params$notes_sub`
+
+Substrate photos and descriptions: 
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f12)==0){ 
+  knitr::include_graphics(params[["f12"]])
+}
+
+```
+
+```{r}
+if (!length(params$f12)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f12_cap, perl = TRUE)))
+}
+```
+
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f13)==0){ 
+  knitr::include_graphics(params[["f13"]])
+}
+```
+
+```{r}
+if (!length(params$f13)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f13_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f14)==0){ 
+  knitr::include_graphics(params[["f14"]])
+}
+
+```
+
+```{r}
+if (!length(params$f14)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f14_cap, perl = TRUE)))
+}
+```
+
+
+
+\vfill
+\noindent\rule{16cm}{2pt}\
+\pagebreak
+
+\begin{center}
+\textbf{\underline{\LARGE{Supplemental information}}}
+\end{center}
+
+
+Additional notes about the assessment:
+
+`r params$notes_supplemental_information`
+
+Supplemental information photos and descriptions:
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f48)==0){ 
+    knitr::include_graphics(params[["f48"]])
+}
+
+```
+
+```{r}
+if (!length(params$f48)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f48_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f49)==0){ 
+    knitr::include_graphics(params[["f49"]])
+}
+```
+
+```{r}
+if (!length(params$f49)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f49_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f50)==0){ 
+    knitr::include_graphics(params[["f50"]])
+}
+
+```
+
+```{r}
+if (!length(params$f50)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f50_cap, perl = TRUE)))
+}
+```
+
+```{r, out.width='50%', fig.align='center'}
+
+if (!length(params$f51)==0){ 
+    knitr::include_graphics(params[["f51"]])
+}
+
+```
+
+```{r}
+if (!length(params$f51)==0){ 
+  cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f51_cap, perl = TRUE)))
+}
+```
+
+
+
+\noindent\rule{16cm}{2.5pt}\
+\begin{tcolorbox}[colframe=darker-blue,
+  colback=my-blue,
+  width=16cm,
+  squeezed title*={\Huge{\underline{\textcolor{white}{`r params$region` Regional SDAM classification}}}}]
+  \begin{center}
+    \Huge{\textcolor{white}{`r params$stream_class`}}
+  \end{center}
+\end{tcolorbox}
+
+\noindent\rule{16cm}{2.5pt}
+
+\vspace{2cm}
+\begin{center}
+  \href{https://www.epa.gov/streamflow-duration-assessment/supporting-materials}{\textcolor{cyan}{\textbf{\underline{\Huge{SDAM resources}}}}}
+\end{center}
+ 
+\vfill
+\noindent\rule{16cm}{3pt}\
+\begin{center}
+\textbf{\LARGE{End of Report}}
+\end{center}
+
