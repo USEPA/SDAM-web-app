@@ -19,7 +19,7 @@ The steps below outline the process of setting up the web app on a Windows compu
 * Background Steps: If R and RStudio are not installed on the computer, please follow these steps:
 	* [Download R](https://www.r-project.org/) and install.
 	* [Download RStudio](https://posit.co/) and install. R should be installed before RStudio.
-* Step 1: [Click here](FUTURE GITHUB LINK WITH ZIP FILE) to download the code files and the data files listed in the Code section.
+* Step 1: [Click here](https://github.com/USEPA/SDAM-web-app/archive/refs/heads/main.zip) to download the code files and the data files listed in the Code section.
 * Step 2: Extract the downloaded file into a new project folder on your local machine.
 * Step 3: Open RStudio -> File -> New Project... -> Existing Directory -> Navigate to your project folder from Step 2 and select the actual folder as your directory.
 * Step 4: File -> Open File... -> app.R
