@@ -26,7 +26,7 @@ format:
           \newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
           \rfoot{Page \thepage\ of \pageref{LastPage}}
           \cfoot{}
-          \lfoot{SDAM Version 1.0 October 2024, Date of site visit: \sitedate}
+          \lfoot{SDAM Version 2.0 October 2024, Date of site visit: \sitedate}
     template-partials:
       - before-body.tex
 params:
@@ -222,7 +222,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
     \end{center}
     \vspace{2mm}
     \begin{center}
-        \begin{Large} SDAM Version 1.0 Release Date: October 2024 \end{Large}
+        \begin{Large} SDAM Version 2.0 Release Date: October 2024 \end{Large}
     \end{center}
     \vspace{2mm}
     \begin{center}
@@ -425,9 +425,9 @@ if (!length(params$w)==0){
 
 ```
 
-\vfill
+
 \noindent\rule{16cm}{2pt}\
-\pagebreak
+
 
 \begin{center}
 \textbf{\underline{\LARGE{Indicators}}}
@@ -806,7 +806,9 @@ if (!length(params$f47)==0){
 
 \vspace{2mm}
 
-\textbf{Algal cover: `r if (!is.null(params$algal)){params$algal}`}
+\textbf{Algal cover: `r ifelse(params$algal=='Not Detected', 'Not Detected', paste0(params$algal, '\\%'))`}
+
+Check here if algae exclusively appears to have been deposited from an upstream source, and no local growth is evident: `r ifelse(params$algal_cb == 'TRUE', 'Checked', 'Not checked')`
 
 Notes about algal cover:
 
@@ -971,9 +973,9 @@ if (!length(params$f44)==0){
 
 
 
-\vfill
+
 \noindent\rule{16cm}{2pt}\
-\pagebreak
+
 
 \begin{center}
 \textbf{\underline{\LARGE{Supplemental information}}}

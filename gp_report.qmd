@@ -26,7 +26,7 @@ format:
           \newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
           \rfoot{Page \thepage\ of \pageref{LastPage}}
           \cfoot{}
-          \lfoot{SDAM Version 1.0 October 2024, Date of site visit: \sitedate}
+          \lfoot{SDAM Version 2.0 October 2024, Date of site visit: \sitedate}
     template-partials:
       - before-body.tex
 params:
@@ -219,7 +219,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
     \end{center}
     \vspace{2mm}
     \begin{center}
-        \begin{Large} SDAM Version 1.0 Release Date: October 2024 \end{Large}
+        \begin{Large} SDAM Version 2.0 Release Date: October 2024 \end{Large}
     \end{center}
     \vspace{2mm}
     \begin{center}
@@ -422,9 +422,9 @@ if (!length(params$w)==0){
 
 ```
 
-\vfill
+
 \noindent\rule{16cm}{2pt}\
-\pagebreak
+
 
 \begin{center}
 \textbf{\underline{\LARGE{Indicators}}}
@@ -864,7 +864,7 @@ if (!length(params$f44)==0){
 
 \vspace{2mm}
 
-\textbf{Particle size or stream substrate sorting : `r if (!is.null(params$substrate)){params$substrate}`}
+\textbf{Particle size or stream substrate sorting: `r if (!is.null(params$substrate)){params$substrate}`}
 
 
 Notes about particle size or sorting:
@@ -969,9 +969,9 @@ if (!length(params$f20)==0){
 ```
 
 
-\vfill
+
 \noindent\rule{16cm}{2pt}\
-\pagebreak
+
 
 \begin{center}
 \textbf{\underline{\LARGE{Supplemental information}}}

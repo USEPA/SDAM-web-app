@@ -573,7 +573,7 @@ ui <- fluidPage(
             "Web application for the Regional Streamflow Duration Assessment Methods (SDAMs)"
             )
         ),
-        h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">1.0</a> Release date: October 2024 </p>")),
+        h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">2.0</a> Release date: October 2024 </p>")),
     ),
     "SDAMs"
     ),
@@ -1648,8 +1648,8 @@ server <- function(input, output, session){
         }
     })
 
-    observeEvent(alt_regions_str(), {
-      print(alt_regions_str())
+    observeEvent(input$user_algal_cb, {
+      print(input$user_algal_cb)
     })
     
 
@@ -1949,10 +1949,10 @@ server <- function(input, output, session){
                                 algal_cb = input$user_algal_cb,
                                 algal = case_when(
                                   input$user_algal_cover == 0 ~ "Not Detected",
-                                  input$user_algal_cover == 1 ~ "<2%",
-                                  input$user_algal_cover == 2 ~ "2-10%",
-                                  input$user_algal_cover == 3 ~ "10-40%",
-                                  input$user_algal_cover == 4 ~ ">40%"
+                                  input$user_algal_cover == 1 ~ "<2",
+                                  input$user_algal_cover == 2 ~ "2-10",
+                                  input$user_algal_cover == 3 ~ "10-40",
+                                  input$user_algal_cover == 4 ~ ">40"
                                 ),
                                 f36 = fig36(),
                                 f36_cap = input$algal1_cap,
@@ -2115,7 +2115,7 @@ server <- function(input, output, session){
                                 substrate = case_when(
                                   input$user_substrate == 0 ~ "0 (Weak)",
                                   input$user_substrate == 0.75 ~ "0.5",
-                                  input$user_substrate == 1.5 ~ "1 (Moderate)",
+                                  input$user_substrate == 1.5 ~ "1.5 (Moderate)",
                                   input$user_substrate == 2.25 ~ "2.25",
                                   input$user_substrate == 3 ~ "3 (Strong)"
                                 ),

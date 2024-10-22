@@ -152,7 +152,7 @@ gp_panel <- function(){
                 c(
                   "0 (Weak)" = 0,
                   "0.75" = 0.75,
-                  "1.5 (Moderate)" = 1,
+                  "1.5 (Moderate)" = 1.5,
                   "2.25" = 2.25,
                   "3 (Strong)" = 3
                 ),
