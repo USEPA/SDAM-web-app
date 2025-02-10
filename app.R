@@ -1609,8 +1609,8 @@ server <- function(input, output, session){
     })
     
     observeEvent(input$subflow, {
-        if(!is.na(input$subflow)){
-            if (input$subflow < input$surfflow ){
+        if(!is.na(req(input$subflow))){
+            if (req(input$subflow) < req(input$surfflow)){
                 showModal(
                     modalDialog(
                         "Percent of reach with surface and subsurface flow must be greater than or equal to % of reach with surface flow",
@@ -1653,14 +1653,14 @@ server <- function(input, output, session){
     })
     
 
-    file.copy("./www/eph.jpg",
-                tempdir(), overwrite = TRUE)
-    file.copy("./www/per.jpg",
-                tempdir(), overwrite = TRUE)
-    file.copy("./www/int.jpg",
-                tempdir(), overwrite = TRUE)
+    # file.copy("./www/eph.jpg",
+    #             tempdir(), overwrite = TRUE)
+    # file.copy("./www/per.jpg",
+    #             tempdir(), overwrite = TRUE)
+    # file.copy("./www/int.jpg",
+    #             tempdir(), overwrite = TRUE)
 
-    test_pic <- file.path(tempdir(), "eph.jpg")
+    # test_pic <- file.path(tempdir(), "eph.jpg")
   
     # Report Tab--------------------------------------------------------------
       
