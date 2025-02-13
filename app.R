@@ -573,7 +573,7 @@ ui <- fluidPage(
             "Web application for the Regional Streamflow Duration Assessment Methods (SDAMs)"
             )
         ),
-        h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">2.0</a> Release date: October 2024 </p>")),
+        h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">2.0.1</a> Release date: February 2025 </p>")),
     ),
     "SDAMs"
     ),
@@ -1607,7 +1607,7 @@ server <- function(input, output, session){
             }
         }
     })
-    
+
     observeEvent(input$subflow, {
         if(!is.na(req(input$subflow))){
             if (req(input$subflow) < req(input$surfflow)){
@@ -1659,7 +1659,7 @@ server <- function(input, output, session){
     #             tempdir(), overwrite = TRUE)
     # file.copy("./www/int.jpg",
     #             tempdir(), overwrite = TRUE)
-
+    # 
     # test_pic <- file.path(tempdir(), "eph.jpg")
   
     # Report Tab--------------------------------------------------------------

@@ -2,8 +2,8 @@
 title: \vspace{-2cm} \begin{huge} Streamflow Duration Assessment Methods \end{huge}
 title-block-banner: false
 title-block-banner-color: "#03fcfc"
-subtitle: "SDAM Version 1.1 Release Date: Spring 2024"
-revision: "SDAM revision date: Spring, 2024" 
+subtitle: "SDAM Version 2.0.1 Release Date: February 2025"
+revision: "SDAM revision date: February, 2025" 
 date: "Report generated on: `r format(Sys.time(), '%B %d, %Y')`"
 embed-resources: false
 filters: [remove_title.lua]
@@ -26,7 +26,7 @@ format:
           \newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
           \rfoot{Page \thepage\ of \pageref{LastPage}}
           \cfoot{}
-          \lfoot{SDAM Version 2.0 October 2024, Date of site visit: \sitedate}
+          \lfoot{SDAM Version 2.0.1 February 2025, Date of site visit: \sitedate}
     template-partials:
       - before-body.tex
 params:
@@ -222,7 +222,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
     \end{center}
     \vspace{2mm}
     \begin{center}
-        \begin{Large} SDAM Version 2.0 Release Date: October 2024 \end{Large}
+        \begin{Large} SDAM Version 2.0.1 Release Date: February 2025 \end{Large}
     \end{center}
     \vspace{2mm}
     \begin{center}
