@@ -135,3 +135,104 @@ wm_df <- function(
 
         df_input
 }  
+
+ne_df <- function(
+    user_lat = 0,
+    user_lon = 0,
+    #   user_total_abundance = NA,
+    user_bank_mean = NA,
+    user_er = NA,
+    user_bmi = NA,
+    user_slope = NA,
+    user_shading = NA,
+    user_drainage = NA,
+    user_elev = NA
+    
+){
+    # only calculate elevation if not manually provided by the user
+    if (is.na(user_elev)){
+        user_elev <- ws_elev(user_lon, user_lat)
+    } else {
+        # convert user elevation from ft to m for model feature
+        user_elev <- user_elev * 0.3048
+    }
+
+        df_input <- tibble(
+                        lat = as.numeric(user_lat), 
+                        lon = as.numeric(user_lon),
+                        BankWidthMean = as.numeric(user_bank_mean),
+                        BMI_score_alt4 = as.numeric(user_bmi),
+                        fp_entrenchmentratio_mean = as.numeric(user_er),
+                        PctShading = as.numeric(user_shading),
+                        Slope = as.numeric(user_slope),
+                        Elev_m = as.numeric(user_elev),
+                        DRNAREA_mi2 = as.numeric(user_drainage)
+                )
+
+        df_input <- df_input %>% 
+            mutate(
+                BankWidthMean_10_bin = case_when(BankWidthMean<10~0, T~1), 
+                Slope_10_bin= case_when(Slope <10 ~0, T~1), 
+                fp_entrenchmentratio_mean_1.5_2_bin= case_when(
+                    fp_entrenchmentratio_mean<1.5~0, 
+                    (fp_entrenchmentratio_mean >=1.5)&(fp_entrenchmentratio_mean <=2)~1, 
+                    T ~2)
+            ) 
+
+        df_input
+}  
+
+
+se_df <- function(
+    user_lat = 0,
+    user_lon = 0,
+    #   user_total_abundance = NA,
+    user_bank_mean = NA,
+    user_bmi = NA,
+    user_total_abundance = NA,
+    user_shading = NA,
+    user_upland_rooted = NA,
+    user_substrate = NA,
+    user_roots = NA,
+    user_drainage = NA,
+    user_elev = NA,
+    user_precip = NA
+    
+){
+    # only calculate elevation and precip if not manually provided by the user
+    if (is.na(user_elev)){
+        user_elev <- ws_elev(user_lon, user_lat)
+        user_precip <- prism_fetch(user_lon, user_lat)
+    } else {
+        # convert user elevation from ft to m for model feature
+        user_elev <- user_elev * 0.3048
+    }
+
+    df_input <- tibble(
+                    lat = as.numeric(user_lat), 
+                    lon = as.numeric(user_lon),
+                    BankWidthMean = as.numeric(user_bank_mean),
+                    BMI_score_alt4 = as.numeric(user_bmi),
+                    # TotalAbundance = as.numeric(user_total_abundance),
+                    UplandRootedPlants_score = as.numeric(user_upland_rooted),
+                    FibrousRootedPlants_score = as.numeric(user_roots),
+                    PctShading = as.numeric(user_shading),
+                    SubstrateSorting_score = as.numeric(user_substrate),
+                    Elev_m = as.numeric(user_elev),
+                    DRNAREA_mi2 = as.numeric(user_drainage),
+                    ppt.567 = as.numeric(user_precip)
+            )
+
+    df_input <- df_input %>% 
+        mutate(
+            # binning handled in input question
+            # TotalAbundance_0_3_40_bin= case_when(
+            #     TotalAbundance == 0 ~0, 
+            #     ((TotalAbundance > 0) & (TotalAbundance<3) ~1), 
+            #     ((TotalAbundance >=3) & (TotalAbundance <= 40) ~ 2),
+            #     TotalAbundance> 40 ~ 3)
+            TotalAbundance_0_3_40_bin = as.numeric(user_total_abundance)
+        ) 
+
+    df_input
+}  

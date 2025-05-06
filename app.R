@@ -1,6 +1,6 @@
-source('./global/global.R')
+source("./global/global.R")
 
-print(paste0('phantom: ', webshot:::find_phantom()))
+print(paste0("phantom: ", webshot:::find_phantom()))
 
 ui <- fluidPage(
     tags$style(
@@ -47,7 +47,7 @@ ui <- fluidPage(
                 font-size: 110%;
                 font-weight: bold;
                 border-style: outset;
-                
+
                 box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 1px 1px 0 rgba(0,0,0,0.19);
                 transition-duration: 0.1s;
             }
@@ -65,7 +65,7 @@ ui <- fluidPage(
                 font-size: 110%;
                 font-weight: bold;
                 border-style: outset;
-                
+
                 box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 1px 1px 0 rgba(0,0,0,0.19);
                 transition-duration: 0.1s;
             }
@@ -90,7 +90,7 @@ ui <- fluidPage(
                 font-size: 110%;
                 font-weight: bold;
                 border-style: outset;
-                
+
                 box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 1px 1px 0 rgba(0,0,0,0.19);
                 transition-duration: 0.1s;
             }
@@ -108,7 +108,7 @@ ui <- fluidPage(
                 font-size: 110%;
                 font-weight: bold;
                 border-style: outset;
-                
+
                 box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 1px 1px 0 rgba(0,0,0,0.19);
                 transition-duration: 0.1s;
             }
@@ -125,11 +125,11 @@ ui <- fluidPage(
             .header-color{
             background-color: #E3F0F6;
             }
-            
+
             .panel-default > .panel-heading{
             background-color: #D9EDF7;
             }
-            
+
             header .epa-search>.form-text {
                 height: 28px !important;
                 width: 215px !important;
@@ -142,26 +142,26 @@ ui <- fluidPage(
             .panel-default .panel-heading {
                 background-color: #dbf2ff;
                 color: #0071bc;
-            } 
-            
+            }
+
             .panel-default .ng-binding {
                 font-size:14px;
             }
-            
+
             .panel-default .panel-body {
                 padding-top: 3px;
                 padding-bottom: 6px;
                 padding-right: 0;
-            } 
-            
+            }
+
             .panel-default .panel-body li {
                 padding-bottom: 5px;
             }
-            
+
             a {
                 cursor: pointer !important;
             }
-            
+
             header .login-search-button {
                 background-image:  url("https://www.epa.gov/themes/epa_theme/images/search.svg"), linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
                 background-color: #1a4480;
@@ -171,58 +171,58 @@ ui <- fluidPage(
                 width: 44px;
                 height: 28px;
             }
-            
+
             header .site-logo{
                 display: block !important;
                 height: 22px;
                 float: right;
             }
-            
-            
+
+
             .spacer{
                 height: 50px;
             }
-            
+
             .bg-light-gray{
                 background-color: #ececec;
             }
-            
+
             #mainDiv {
                 transition: margin-right .5s;
             }
             .site-logo-svg-main{
                 fill: #fff;
             }
-            
+
             .login-header {
                 background-color: #005ea2;
                 padding: 1em 0;
                 display: flex;
             }
-            
+
             .login-header-inner{
                 max-width: 60em;
                 margin: 0 auto;
                 padding: 0 1em;
                 flex-grow: 1;
             }
-            
+
             .flex-growbox{
                 flex-grow: 1;
             }
-            
+
             .login-site-slogan{
                 font-size: .8em;
                 color: #fff;
                 font-family: Arial, sans-serif;
                 line-height: 1;
             }
-            
+
             header .region-header{
                 display: flex;
                 justify-content: right;
             }
-            
+
             header .epa-search-form{
                 display: flex;
                 height: 28px;
@@ -263,14 +263,12 @@ ui <- fluidPage(
               top: 50%;
             }
 
-           
-            '
-        )
+
+            ')
     ),
-    
-  tags$head(
-    HTML(
-        '
+    tags$head(
+        HTML(
+            '
         <!-- Google Tag Manager -->
         <script>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -282,16 +280,16 @@ ui <- fluidPage(
         })(window, document, "script", "dataLayer", "GTM-L8ZB");</script>
         <!-- End Google Tag Manager -->
         '
-    ),
-    tags$meta(charset="utf-8"),
-    tags$meta(`http-equiv`="ImageToolbar", content="false"),
-    tags$meta(`httpequiv`="cleartype", content="on"),
-    tags$meta(name="HandheldFriendly", content="true"),
-    tags$link(rel="shortcut icon", type="image/vnd.microsoft.icon", href="https://www.epa.gov/sites/all/themes/epa/favicon.ico"),
-    tags$meta(name="MobileOptimized", content="width"),
-    tags$meta(name="viewport", content="width=device-width"),
-    HTML(
-          '<!--googleon: all-->
+        ),
+        tags$meta(charset = "utf-8"),
+        tags$meta(`http-equiv` = "ImageToolbar", content = "false"),
+        tags$meta(`httpequiv` = "cleartype", content = "on"),
+        tags$meta(name = "HandheldFriendly", content = "true"),
+        tags$link(rel = "shortcut icon", type = "image/vnd.microsoft.icon", href = "https://www.epa.gov/sites/all/themes/epa/favicon.ico"),
+        tags$meta(name = "MobileOptimized", content = "width"),
+        tags$meta(name = "viewport", content = "width=device-width"),
+        HTML(
+            '<!--googleon: all-->
           <meta name="DC.description" content=""/>
           <meta name="DC.title" content=""/>
           <!--googleoff: snippet-->
@@ -309,67 +307,67 @@ ui <- fluidPage(
           <title>SDAMs</title>
           <!--googleoff: all-->
           '
-    ),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css"),
-    tags$meta(name="keywords", content=""),
-    tags$link(rel="canonical", href=""),
-    tags$link(rel="shortlink", href=""),
-    tags$meta(property="og:site_name", content="US EPA"),
-    tags$link(rel = "stylesheet", type = "text/css", href = "css/uswds.css"),
-    tags$link(rel = "stylesheet", type = "text/css", href = "https://cdnjs.cloudflare.com/ajax/libs/uswds/3.0.0-beta.3/css/uswds.min.css", integrity="sha512-ZKvR1/R8Sgyx96aq5htbFKX84hN+zNXN73sG1dEHQTASpNA8Pc53vTbPsEKTXTZn9J4G7R5Il012VNsDEReqCA==", crossorigin="anonymous", referrerpolicy="no-referrer"),
-    tags$meta(property="og:url", content="https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
-    tags$link(rel="canonical", href="https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
-    tags$link(rel="shortlink", href="https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
-    tags$meta(property="og:url", content="https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
-    tags$meta(property="og:image", content="https://www.epa.gov/sites/all/themes/epa/img/epa-standard-og.jpg"),
-    tags$meta(property="og:image:width", content="1200"),
-    tags$meta(property="og:image:height", content="630"),
-    tags$meta(property="og:image:alt", content="U.S. Environmental Protection Agency"),
-    tags$meta(name="twitter:card", content="summary_large_image"),
-    tags$meta(name="twitter:image:alt", content="U.S. Environmental Protection Agency"),
-    tags$meta(name="twitter:image:height", content="600"),
-    tags$meta(name="twitter:image:width", content="1200"),
-    tags$meta(name="twitter:image", content="https://www.epa.gov/sites/all/themes/epa/img/epa-standard-twitter.jpg"),
-    tags$meta(name="MobileOptimized", content="width"),
-    tags$meta(name="HandheldFriendly", content="true"),
-    tags$meta(name="viewport", content="width=device-width, initial-scale=1.0"),
-    tags$meta(`http-equiv`="x-ua-compatible", content="ie=edge"),
-    tags$script(src = "js/pattern-lab-head-script.js"),
-    tags$title('SDAMs | US EPA'),
-    tags$link(rel="icon", type="image/x-icon", href="https://www.epa.gov/themes/epa_theme/images/favicon.ico"),
-    tags$meta(name="msapplication-TileColor", content="#FFFFFF"),
-    tags$meta(name="msapplication-TileImage", content="https://www.epa.gov/themes/epa_theme/images/favicon-144.png"),
-    tags$meta(name="application-name", content=""),
-    tags$meta(name="msapplication-config", content="https://www.epa.gov/themes/epa_theme/images/ieconfig.xml"),
-    tags$link(rel="apple-touch-icon-precomposed", sizes="196x196", href="https://www.epa.gov/themes/epa_theme/images/favicon-196.png"),
-    tags$link(rel="apple-touch-icon-precomposed", sizes="152x152", href="https://www.epa.gov/themes/epa_theme/images/favicon-152.png"),
-    tags$link(rel="apple-touch-icon-precomposed", sizes="144x144", href="https://www.epa.gov/themes/epa_theme/images/favicon-144.png"),
-    tags$link(rel="apple-touch-icon-precomposed", sizes="120x120", href="https://www.epa.gov/themes/epa_theme/images/favicon-120.png"),
-    tags$link(rel="apple-touch-icon-precomposed", sizes="114x114", href="https://www.epa.gov/themes/epa_theme/images/favicon-114.png"),
-    tags$link(rel="apple-touch-icon-precomposed", sizes="72x72", href="https://www.epa.gov/themes/epa_theme/images/favicon-72.png"),
-    tags$link(rel="apple-touch-icon-precomposed", href="https://www.epa.gov/themes/epa_theme/images/favicon-180.png"),
-    tags$link(rel="icon", href="https://www.epa.gov/themes/epa_theme/images/favicon-32.png", sizes="32x32"),
-    tags$link(rel="preload", href="https://www.epa.gov/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-regular-webfont.woff2", as="font", crossorigin="anonymous"),
-    tags$link(rel="preload", href="https://www.epa.gov/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-bold-webfont.woff2", as="font", crossorigin="anonymous"),
-    tags$link(rel="preload", href="https://www.epa.gov/themes/epa_theme/fonts/merriweather/Latin-Merriweather-Bold.woff2", as="font", crossorigin="anonymous"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/ajax-progress.module.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/autocomplete-loading.module.css?r6lsex" ),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/js.module.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/sticky-header.module.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/system-status-counter.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/system-status-report-counters.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/system-status-report-general-info.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/tabledrag.module.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/tablesort.module.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/core/themes/stable/css/system/components/tree-child.module.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/themes/epa_theme/css/styles.css?r6lsex"),
-    tags$link(rel="stylesheet", media="all", href="https://www.epa.gov/themes/epa_theme/css-lib/colorbox.min.css?r6lsex"),
-    tags$script(src = 'https://cdnjs.cloudflare.com/ajax/libs/uswds/3.0.0-beta.3/js/uswds-init.min.js'),
+        ),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/sites/all/libraries/standalone/css/core/style.css"),
+        tags$meta(name = "keywords", content = ""),
+        tags$link(rel = "canonical", href = ""),
+        tags$link(rel = "shortlink", href = ""),
+        tags$meta(property = "og:site_name", content = "US EPA"),
+        tags$link(rel = "stylesheet", type = "text/css", href = "css/uswds.css"),
+        tags$link(rel = "stylesheet", type = "text/css", href = "https://cdnjs.cloudflare.com/ajax/libs/uswds/3.0.0-beta.3/css/uswds.min.css", integrity = "sha512-ZKvR1/R8Sgyx96aq5htbFKX84hN+zNXN73sG1dEHQTASpNA8Pc53vTbPsEKTXTZn9J4G7R5Il012VNsDEReqCA==", crossorigin = "anonymous", referrerpolicy = "no-referrer"),
+        tags$meta(property = "og:url", content = "https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
+        tags$link(rel = "canonical", href = "https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
+        tags$link(rel = "shortlink", href = "https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
+        tags$meta(property = "og:url", content = "https://www.epa.gov/themes/epa_theme/pattern-lab/.markup-only.html"),
+        tags$meta(property = "og:image", content = "https://www.epa.gov/sites/all/themes/epa/img/epa-standard-og.jpg"),
+        tags$meta(property = "og:image:width", content = "1200"),
+        tags$meta(property = "og:image:height", content = "630"),
+        tags$meta(property = "og:image:alt", content = "U.S. Environmental Protection Agency"),
+        tags$meta(name = "twitter:card", content = "summary_large_image"),
+        tags$meta(name = "twitter:image:alt", content = "U.S. Environmental Protection Agency"),
+        tags$meta(name = "twitter:image:height", content = "600"),
+        tags$meta(name = "twitter:image:width", content = "1200"),
+        tags$meta(name = "twitter:image", content = "https://www.epa.gov/sites/all/themes/epa/img/epa-standard-twitter.jpg"),
+        tags$meta(name = "MobileOptimized", content = "width"),
+        tags$meta(name = "HandheldFriendly", content = "true"),
+        tags$meta(name = "viewport", content = "width=device-width, initial-scale=1.0"),
+        tags$meta(`http-equiv` = "x-ua-compatible", content = "ie=edge"),
+        tags$script(src = "js/pattern-lab-head-script.js"),
+        tags$title("SDAMs | US EPA"),
+        tags$link(rel = "icon", type = "image/x-icon", href = "https://www.epa.gov/themes/epa_theme/images/favicon.ico"),
+        tags$meta(name = "msapplication-TileColor", content = "#FFFFFF"),
+        tags$meta(name = "msapplication-TileImage", content = "https://www.epa.gov/themes/epa_theme/images/favicon-144.png"),
+        tags$meta(name = "application-name", content = ""),
+        tags$meta(name = "msapplication-config", content = "https://www.epa.gov/themes/epa_theme/images/ieconfig.xml"),
+        tags$link(rel = "apple-touch-icon-precomposed", sizes = "196x196", href = "https://www.epa.gov/themes/epa_theme/images/favicon-196.png"),
+        tags$link(rel = "apple-touch-icon-precomposed", sizes = "152x152", href = "https://www.epa.gov/themes/epa_theme/images/favicon-152.png"),
+        tags$link(rel = "apple-touch-icon-precomposed", sizes = "144x144", href = "https://www.epa.gov/themes/epa_theme/images/favicon-144.png"),
+        tags$link(rel = "apple-touch-icon-precomposed", sizes = "120x120", href = "https://www.epa.gov/themes/epa_theme/images/favicon-120.png"),
+        tags$link(rel = "apple-touch-icon-precomposed", sizes = "114x114", href = "https://www.epa.gov/themes/epa_theme/images/favicon-114.png"),
+        tags$link(rel = "apple-touch-icon-precomposed", sizes = "72x72", href = "https://www.epa.gov/themes/epa_theme/images/favicon-72.png"),
+        tags$link(rel = "apple-touch-icon-precomposed", href = "https://www.epa.gov/themes/epa_theme/images/favicon-180.png"),
+        tags$link(rel = "icon", href = "https://www.epa.gov/themes/epa_theme/images/favicon-32.png", sizes = "32x32"),
+        tags$link(rel = "preload", href = "https://www.epa.gov/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-regular-webfont.woff2", as = "font", crossorigin = "anonymous"),
+        tags$link(rel = "preload", href = "https://www.epa.gov/themes/epa_theme/fonts/source-sans-pro/sourcesanspro-bold-webfont.woff2", as = "font", crossorigin = "anonymous"),
+        tags$link(rel = "preload", href = "https://www.epa.gov/themes/epa_theme/fonts/merriweather/Latin-Merriweather-Bold.woff2", as = "font", crossorigin = "anonymous"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/ajax-progress.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/autocomplete-loading.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/js.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/sticky-header.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/system-status-counter.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/system-status-report-counters.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/system-status-report-general-info.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/tabledrag.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/tablesort.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/core/themes/stable/css/system/components/tree-child.module.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/themes/epa_theme/css/styles.css?r6lsex"),
+        tags$link(rel = "stylesheet", media = "all", href = "https://www.epa.gov/themes/epa_theme/css-lib/colorbox.min.css?r6lsex"),
+        tags$script(src = "https://cdnjs.cloudflare.com/ajax/libs/uswds/3.0.0-beta.3/js/uswds-init.min.js"),
 
-    #fix container-fluid that boostrap RShiny uses
-    tags$style(
-        HTML(
-            '.container-fluid {
+        # fix container-fluid that boostrap RShiny uses
+        tags$style(
+            HTML(
+                ".container-fluid {
                 padding-right: 0;
                 padding-left: 0;
                 margin-right: 0;
@@ -378,21 +376,21 @@ ui <- fluidPage(
             .tab-content {
                 margin-right: 30px;
                 margin-left: 30px;
-            }'
-        )
+            }"
+            )
         )
     ), # end head
 
-  tags$body(
-			class="path-themes not-front has-wide-template", id="top",
-			tags$script(
-						src = 'https://cdnjs.cloudflare.com/ajax/libs/uswds/3.0.0-beta.3/js/uswds.min.js'
-					   )
-  ),
-  
-  # Site Header
-  HTML(
-    '<!-- Google Tag Manager -->
+    tags$body(
+        class = "path-themes not-front has-wide-template", id = "top",
+        tags$script(
+            src = "https://cdnjs.cloudflare.com/ajax/libs/uswds/3.0.0-beta.3/js/uswds.min.js"
+        )
+    ),
+
+    # Site Header
+    HTML(
+        '<!-- Google Tag Manager -->
         <noscript>
             <iframe src="//www.googletagmanager.com/ns.html?id=GTM-L8ZB" height="0" width="0"
                     style="display:none;visibility:hidden"></iframe>
@@ -545,11 +543,11 @@ ui <- fluidPage(
         </div>
     <main id="main" class="main" role="main" tabindex="-1">
     '
-  ),
-  
-  # Individual Page Header
-  HTML(
-    '<div class="l-page  has-footer">
+    ),
+
+    # Individual Page Header
+    HTML(
+        '<div class="l-page  has-footer">
       <div class="l-constrain">
         <div class="l-page__header">
           <div class="l-page__header-first">
@@ -560,226 +558,223 @@ ui <- fluidPage(
           </div>
         </div>
         <article class="article">'
-  ),
-  
-  
+    ),
+
+
     # UI---------------------------------------------------------------------------------------------
-	titlePanel(
-    div(
-        class="jumbotron",
-        style='margin-top:-20px; margin-bottom:10px; padding-top:5px; padding-bottom:0px;',
-        h2(
-            HTML(
-            "Web application for the Regional Streamflow Duration Assessment Methods (SDAMs)"
-            )
+    titlePanel(
+        div(
+            class = "jumbotron",
+            style = "margin-top:-20px; margin-bottom:10px; padding-top:5px; padding-bottom:0px;",
+            h2(
+                HTML(
+                    "Web application for the Regional Streamflow Duration Assessment Methods (SDAMs)"
+                )
+            ),
+            h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">3.0.0</a> Release date: June 2025 </p>")),
         ),
-        h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">2.0.1</a> Release date: February 2025 </p>")),
+        "SDAMs"
     ),
-    "SDAMs"
-    ),
-    
     fluidRow(
-      div(
-        style={'padding-left:30px'},
-     
-                  column(
-                      10,
+        div(
+            style = {
+                "padding-left:30px"
+            },
+            column(
+                10,
 
 
-                          # Overview -----------------------------------------------------
+                # Overview -----------------------------------------------------
 
-                              br(),
-                              fluidRow(
-                                column(1),
-                                column(10,
-                           
-                                  HTML(
-                                    '<div class="alert alert-danger" role="alert" 
+                br(),
+                fluidRow(
+                    column(1),
+                    column(
+                        10,
+                        HTML(
+                            '<div class="alert alert-danger" role="alert"
                                       style="background-color:#005ea2; margin-top:-50px; padding-top:0px; padding-bottom:0px;">
                                       <h3 style=padding-top:2%;>
                                         <a href=\"https://www.epa.gov/streamflow-duration-assessment/supporting-materials\" style="color:#ffffff;">
                                         Supporting SDAM materials including user manuals, field assessment forms, training videos and more </a>
                                       </h3>
-                                    </div>'                                      
-                                  ),
-
-                                  HTML(
-                                    '<div class="alert alert-danger" role="alert" style="color:#000000; text-align:center;">
+                                    </div>'
+                        ),
+                        HTML(
+                            '<div class="alert alert-danger" role="alert" style="color:#000000; text-align:center;">
                                       <b>This web application is an analysis tool; it does not store data. After 60 minutes, the tool will timeout and all data will have to be re-entered. </b>
                                     </div>'
-                                  ),
-                                  
-                                  HTML(
-                                    '<h3 style="margin-top:5px; margin-bottom:-5px">
-                                      <span class="badge badge-primary" 
+                        ),
+                        HTML(
+                            '<h3 style="margin-top:5px; margin-bottom:-5px">
+                                      <span class="badge badge-primary"
                                         style="font-size:1.3rem;
                                                 background-color:#1a4480;
                                                 margin-right:8px;">Step 1
                                       </span>
                                       Method for documenting reach location
                                     </h3>'
-                                  ),
-
-                                  div(
-                                    style = 'background-color: white;
+                        ),
+                        div(
+                            style = "background-color: white;
                                               width: 100%;
                                               border: 1px solid black;
                                               padding: 10px;
-                                              margin: 0px;',
-          
-                                    # coordinates----
-                                    fluidRow(
-                                      column(1),
-                                      column(10,
-                                        HTML("<b><i>Method for assessing reach location</b></i>"),
-                                        selectInput(
-                                          "vol_region",
-                                          label = NULL,
-                                          choices = c(
+                                              margin: 0px;",
+
+                            # coordinates----
+                            fluidRow(
+                                column(1),
+                                column(
+                                    10,
+                                    HTML("<b><i>Method for assessing reach location</b></i>"),
+                                    selectInput(
+                                        "vol_region",
+                                        label = NULL,
+                                        choices = c(
                                             "Enter coordinates",
                                             "Select region",
                                             "Select location on map"
-                                          ),
-                                          selected = "No",
-                                          width = '80%'
-                                        )
-                                      )
-                                    ),
-                                    fluidRow(
-                                        column(1),
-                                        column(10,
-                                              HTML('<hr style="color: black; height: 1px; background-color: black;">')
-                                              )
-                                    ),
-                                    
-                                    conditionalPanel(
-                                        
-                                      condition = "input.vol_region == 'Enter coordinates'",
-                                      fluidRow(
-                                          column(1),
-                                          column(
-                                              7,
-                                              div(style="margin-bottom:5px;",
-                                                HTML('<b><i>Enter coordinates in decimal degrees to determine if the site is in a SDAM study area </i></b>')),
-                                              div(id = "placeholder"),
-                                              div(id = "coords",
-                                                fluidRow(
-                                                    column(4,
-                                                          numericInput("lat", 
-                                                          label = NULL, 
-                                                          value = 40)),
-                                                    column(12, h5("Latitude"))
+                                        ),
+                                        selected = "No",
+                                        width = "80%"
+                                    )
+                                )
+                            ),
+                            fluidRow(
+                                column(1),
+                                column(
+                                    10,
+                                    HTML('<hr style="color: black; height: 1px; background-color: black;">')
+                                )
+                            ),
+                            conditionalPanel(
+                                condition = "input.vol_region == 'Enter coordinates'",
+                                fluidRow(
+                                    column(1),
+                                    column(
+                                        7,
+                                        div(
+                                            style = "margin-bottom:5px;",
+                                            HTML("<b><i>Enter coordinates in decimal degrees to determine if the site is in a SDAM study area </i></b>")
+                                        ),
+                                        div(id = "placeholder"),
+                                        div(
+                                            id = "coords",
+                                            fluidRow(
+                                                column(
+                                                    4,
+                                                    numericInput("lat",
+                                                        label = NULL,
+                                                        value = 40
+                                                    )
                                                 ),
-                                                fluidRow(
-                                                    column(4,numericInput("lon", 
-                                                    label = NULL, 
-                                                    value = -98)),
-                                                    column(12, h5("Longitude"))
-                                                ),
-                                                fluidRow(
-                                                    column(4,
-                                                            br(),
-                                                            div(actionButton("reg_button", 
-                                                                            label=div("Assess reach location")
-                                                                            ) 
-                                                              ),
-                                                            br(), br(),
-          
-                                                          )
+                                                column(12, h5("Latitude"))
+                                            ),
+                                            fluidRow(
+                                                column(4, numericInput("lon",
+                                                    label = NULL,
+                                                    value = -98
+                                                )),
+                                                column(12, h5("Longitude"))
+                                            ),
+                                            fluidRow(
+                                                column(
+                                                    4,
+                                                    br(),
+                                                    div(actionButton("reg_button",
+                                                        label = div("Assess reach location")
+                                                    )),
+                                                    br(), br(),
                                                 )
-                                              )
-                                          ),
-                                          column(
-                                              4,
-                                              conditionalPanel(
-                                                  condition = "input.reg_button != 0",
-                                                  
-                                                  uiOutput(outputId = "reg_class") %>%
-                                                  tagAppendAttributes(class = 'border-my-text')
-                                              )
-                                          )
-                                      )
+                                            )
+                                        )
                                     ),
-                                    
-                                    ## select region via dropdown menu----
-                                    conditionalPanel(
-                                      condition = "input.vol_region == 'Select region'",
-                                      fluidRow(
-                                        column(1),
-                                        column(10,
-                                          HTML("<b><i>Select SDAM Region if not entering coordinates</b></i>"),
-                                          selectInput(
+                                    column(
+                                        4,
+                                        conditionalPanel(
+                                            condition = "input.reg_button != 0",
+                                            uiOutput(outputId = "reg_class") %>%
+                                                tagAppendAttributes(class = "border-my-text")
+                                        )
+                                    )
+                                )
+                            ),
+
+                            ## select region via dropdown menu----
+                            conditionalPanel(
+                                condition = "input.vol_region == 'Select region'",
+                                fluidRow(
+                                    column(1),
+                                    column(
+                                        10,
+                                        HTML("<b><i>Select SDAM Region if not entering coordinates</b></i>"),
+                                        selectInput(
                                             "user_region",
                                             label = NULL,
                                             c(
                                                 "No region selected" = "No Region",
-                                                "Arid West" = "Arid West",  
-                                                "East" = "East",
+                                                "Arid West" = "Arid West",
+                                                "Northeast" = "Northeast",
+                                                "Southeast" = "Southeast",
                                                 "Great Plains" = "Great Plains",
                                                 "Pacific Northwest" = "Pacific Northwest",
                                                 "Western Mountains" = "Western Mountains"
                                             )
-                                          )
                                         )
-                                      )
-                                    ),
-                                    
-                                    ## leaflet map----
-                                    conditionalPanel(
-                                        condition = "input.vol_region == 'Select location on map'",
-                                        fluidRow(
-                                            column(2),
-                                            column(8,
-                                                leafletOutput("map", height ='600px'),
-                                                br(),
-                                                br()
-                                            )
-                                        )
-                                    ),
-                                  ),
-                                  
-                                  fluidRow(
-                                      column(1),
-                                      column(10,
-                                              br(),
-                                              div(
-                                                style = 'margin: auto;
-                                                        text-align: center;',
-                                                actionButton("indicator_button", 
-                                                              label=div("Enter Model Data")
-                                                              ) 
-                                                  ),
-                                              br(),
-                                              br(),
-                                                  
-                                            )
-                                        ),
+                                    )
+                                )
+                            ),
+
+                            ## leaflet map----
+                            conditionalPanel(
+                                condition = "input.vol_region == 'Select location on map'",
+                                fluidRow(
+                                    column(2),
+                                    column(
+                                        8,
+                                        leafletOutput("map", height = "600px"),
+                                        br(),
+                                        br()
+                                    )
+                                )
+                            ),
+                        ),
+                        fluidRow(
+                            column(1),
+                            column(
+                                10,
+                                br(),
+                                div(
+                                    style = "margin: auto;
+                                                        text-align: center;",
+                                    actionButton("indicator_button",
+                                        label = div("Enter Model Data")
+                                    )
                                 ),
-                                
-                              ),
-                              
-                              # Region UI Split-----
-                              
-                              conditionalPanel(
-                                condition = "input.indicator_button != 0",
-                                uiOutput("regionPanel") 
-                              ),
+                                br(),
+                                br(),
+                            )
+                        ),
+                    ),
+                ),
 
-                              uiOutput("reportPanel"),
-                                
-                              
-                             
-                      
-                  )
+                # Region UI Split-----
 
-      ) # end div  
+                conditionalPanel(
+                    condition = "input.indicator_button != 0",
+                    uiOutput("regionPanel")
+                ),
+                uiOutput("reportPanel"),
+            )
+        ) # end div
     ),
 
-  
 
-  # Individual Page Footer
-  HTML(
-    '</article>
+
+    # Individual Page Footer
+    HTML(
+        '</article>
     </div>
     <div class="l-page__footer">
       <div class="l-constrain">
@@ -792,11 +787,11 @@ ui <- fluidPage(
   </a>
 
   '
-  ),
+    ),
 
-	# Site Footer
-	HTML(
-	  '</main>
+    # Site Footer
+    HTML(
+        '</main>
       <footer class="main-footer clearfix" role="contentinfo">
             <div class="main-footer__inner">
                 <div class="region-footer">
@@ -891,21 +886,20 @@ ui <- fluidPage(
           </svg>
         </a>
     '
-	)
+    )
 ) # END fluidPage
 
 # Server Code-----
-server <- function(input, output, session){
-
+server <- function(input, output, session) {
     # increase file upload size to 30MB
-    options(shiny.maxRequestSize=30*1024^2)
+    options(shiny.maxRequestSize = 30 * 1024^2)
 
     # region -----
 
-    region_class <- eventReactive(c(input$reg_button, input$map_click,input$vol_region, input$user_region),{
-        if(!is.null(map_coords()) && input$vol_region == 'Select location on map'){
+    region_class <- eventReactive(c(input$reg_button, input$map_click, input$vol_region, input$user_region), {
+        if (!is.null(map_coords()) && input$vol_region == "Select location on map") {
             x <- point_region(map_coords()[1], map_coords()[2])
-        } else if (input$vol_region == 'Select region' && input$user_region != 'No Region'){
+        } else if (input$vol_region == "Select region" && input$user_region != "No Region") {
             x <- input$user_region
         } else {
             x <- point_region(user_lat = input$lat, user_lon = input$lon)
@@ -915,308 +909,322 @@ server <- function(input, output, session){
 
     # store adjacent regions for report
     alt_regions_str <- reactive({
-      if(!is.null(map_coords()) && input$vol_region == 'Select location on map'){
+        if (!is.null(map_coords()) && input$vol_region == "Select location on map") {
             alt_regions <- region_checker(map_coords()[1], map_coords()[2])
-            alt_regions <- alt_regions[alt_regions != 'East']
-            alt_regions_str <- str_c(alt_regions, collapse=', ')
-
-        } else if (input$vol_region != 'Select region' && input$vol_region != 'Select location on map'){
+            alt_regions <- alt_regions[alt_regions != "East"]
+            alt_regions_str <- str_c(alt_regions, collapse = ", ")
+        } else if (input$vol_region != "Select region" && input$vol_region != "Select location on map") {
             alt_regions <- region_checker(input$lat, input$lon)
-            alt_regions <- alt_regions[alt_regions != 'East']
-            alt_regions_str <- str_c(alt_regions, collapse=', ')
-
-        } else if (input$vol_region == 'Select region'){
-          alt_regions_str <- 'Unknown'
-
+            alt_regions <- alt_regions[alt_regions != "East"]
+            alt_regions_str <- str_c(alt_regions, collapse = ", ")
+        } else if (input$vol_region == "Select region") {
+            alt_regions_str <- "Unknown"
         } else {
-          alt_regions_str <- 'None'
+            alt_regions_str <- "None"
         }
-        
+
         alt_regions_str
     })
 
 
     # Alert user if their site is located within a 10-mile distance of another region(s)
-    observeEvent(c(input$reg_button, input$map_click,input$vol_region, input$user_region),{
-      if(!is.null(map_coords()) && input$vol_region == 'Select location on map'){
+    observeEvent(c(input$reg_button, input$map_click, input$vol_region, input$user_region), {
+        if (!is.null(map_coords()) && input$vol_region == "Select location on map") {
             alt_regions <- region_checker(map_coords()[1], map_coords()[2])
-            alt_regions <- alt_regions[alt_regions != 'East']
-            alt_regions_str <- str_c(alt_regions, collapse=', ')
-            if (length(alt_regions) > 0){
+            alt_regions <- alt_regions[alt_regions != "East"]
+            alt_regions_str <- str_c(alt_regions, collapse = ", ")
+            if (length(alt_regions) > 0) {
                 show_alert(
                     title = "",
                     text = tagList(
-                            tags$p(
-                                    HTML(paste0("This site is located within 10 miles of another SDAM region:",
-                                                "<br><br>",
-                                                "<b>", alt_regions_str, "</b>"
-                                            )
-                                        )
-                                )
-                            ),
+                        tags$p(
+                            HTML(paste0(
+                                "This site is located within 10 miles of another SDAM region:",
+                                "<br><br>",
+                                "<b>", alt_regions_str, "</b>"
+                            ))
+                        )
+                    ),
                     type = "info"
                 )
-
             }
-        } else if (input$vol_region != 'Select region' && input$vol_region != 'Select location on map'){
+        } else if (input$vol_region != "Select region" && input$vol_region != "Select location on map") {
             alt_regions <- region_checker(input$lat, input$lon)
-            alt_regions <- alt_regions[alt_regions != 'East']
-            alt_regions_str <- str_c(alt_regions, collapse=', ')
-            if (length(alt_regions) > 0){
+            alt_regions <- alt_regions[alt_regions != "East"]
+            alt_regions_str <- str_c(alt_regions, collapse = ", ")
+            if (length(alt_regions) > 0) {
                 show_alert(
                     title = "Location Warning!",
                     text = tagList(
-                            tags$p(
-                                    HTML(paste0("This site is located within 10 miles of another SDAM region.  <br>Please consider using one of the following SDAMs:",
-                                                "<br><br>",
-                                                "<b>", alt_regions_str, "</b>"
-                                            )
-                                        )
-                                    )
-                                ),
+                        tags$p(
+                            HTML(paste0(
+                                "This site is located within 10 miles of another SDAM region.  <br>Please consider using one of the following SDAMs:",
+                                "<br><br>",
+                                "<b>", alt_regions_str, "</b>"
+                            ))
+                        )
+                    ),
                     type = "info"
                 )
-
             }
         } else {
-          alt_regions_str <- 'No Regions Within 10 Miles'
+            alt_regions_str <- "No Regions Within 10 Miles"
         }
-
     })
-    
-      
+
+
     output$regionSelection <- renderText({
-      region_class()$region
+        region_class()$region
     })
 
     # Render UI Panels ------
 
     ### region panel-----
     output$regionPanel <- renderUI({
-
-      if (is.atomic(region_class())){
-
-        if (region_class() == 'East'){
-            show_alert(
+        if (is.atomic(region_class())) {
+            if (region_class() == "Northeast") {
+                show_alert(
                     title = "",
-                    text = tagList(
-                            tags$p(HTML(paste0("This site is located in the East Beta SDAM study area. ",
-                                            "Please visit the <a href=\"https://ecosystemplanningrestoration.shinyapps.io/beta_sdam_nese/\">East Beta SDAM application</a>  for the Northeast and Southeast."
-                                            )
-                                        )
+                    text = 
+                        tagList(
+                            # tags$p(
+                                HTML(
+                                    paste0(
+                                        "This site is located in the Northeast SDAM study area. In order to run the Northeast SDAM model, you must either:<br><br>",
+                                        "<ul style='list-style-type:square;text-align:left;'>",
+                                            "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
+                                        # "OR",
+                                            "<li>Select by region and directly enter your site’s:</li>",
+                                                "<ul>",
+                                                    "<li>Mean watershed elevation from StreamCat</li>",
+                                                    "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
+                                                "</ul>",
+                                        "</ul>"
                                     )
                                 ),
-                            type = "default"
-            )
-
-        } else  if (region_class() == 'Great Plains' ){
-          gp_panel()
-        } else  if (region_class() == 'Western Mountains' ){
-          wm_panel()
-        } else  if (region_class() == 'Arid West' ){
-          aw_panel()
-        } else  if (region_class() == 'Pacific Northwest' ){
-          pnw_panel()
-        }
-
-      } else if (!is.atomic(region_class())){
-
-        if (region_class()$region == 'East'){
-          show_alert(
-                title = "",
-                text = tagList(
-                        tags$p(HTML(paste0("This site is located in the East Beta SDAM study area. ",
-                                        "Please visit the <a href=\"https://ecosystemplanningrestoration.shinyapps.io/beta_sdam_nese/\">East Beta SDAM application</a>  for the Northeast and Southeast."
-                                        )
+                            # )
+                        ),
+                    type = "default"
+                )
+                ne_panel()
+            } else if (region_class() == 'Southeast') {
+                show_alert(
+                    title = "",
+                    text = 
+                        tagList(
+                            # tags$p(
+                                HTML(
+                                    paste0(
+                                        "This site is located in the Southeast SDAM study area. In order to run the Southeast SDAM model, you must either:<br><br>",
+                                        "<ul style='list-style-type:square;text-align:left;'>",
+                                            "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
+                                        # "OR",
+                                            "<li>Select by region and directly enter your site’s:</li>",
+                                                "<ul>",
+                                                    "<li>Mean watershed elevation from StreamCat</li>",
+                                                    "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
+                                                "</ul>",
+                                        "</ul>"
                                     )
-                                )
-                            ),
-                        type = "default"
-                        )
-
-        } else  if (region_class()$region == 'Great Plains' ){
-          gp_panel()
-        } else  if (region_class()$region == 'Western Mountains' ){
-          wm_panel()
-        } else  if (region_class()$region == 'Arid West' ){
-          aw_panel()
-        } else  if (region_class()$region == 'Pacific Northwest' ){
-          pnw_panel()
+                                ),
+                            # )
+                        ),
+                    type = "default"
+                )
+                se_panel()
+            } else if (region_class() == "Great Plains") {
+                gp_panel()
+            } else if (region_class() == "Western Mountains") {
+                wm_panel()
+            } else if (region_class() == "Arid West") {
+                aw_panel()
+            } else if (region_class() == "Pacific Northwest") {
+                pnw_panel()
+            }
+        } else if (!is.atomic(region_class())) {
+            # if (region_class()$region == "East") {
+            #     show_alert(
+            #         title = "",
+            #         text = tagList(
+            #             tags$p(HTML(paste0(
+            #                 "This site is located in the East Beta SDAM study area. ",
+            #                 "Please visit the <a href=\"https://ecosystemplanningrestoration.shinyapps.io/beta_sdam_nese/\">East Beta SDAM application</a>  for the Northeast and Southeast."
+            #             )))
+            #         ),
+            #         type = "default"
+            #     )
+            if (region_class()$region == "Northeast"){
+                ne_panel()
+            } else if (region_class()$region == "Southeast"){
+                se_panel()
+            } else if (region_class()$region == "Great Plains") {
+                gp_panel()
+            } else if (region_class()$region == "Western Mountains") {
+                wm_panel()
+            } else if (region_class()$region == "Arid West") {
+                aw_panel()
+            } else if (region_class()$region == "Pacific Northwest") {
+                pnw_panel()
+            }
+        } else {
+            return(NULL)
         }
-      } else return(NULL)
     })
-    
+
     ### report panel--------
     output$reportPanel <- renderUI({
-        if (is.atomic(region_class())){
-
-          if(region_class() == 'Great Plains' & input$runmodel != 0){
-            gp_report()
-          } else if (region_class() == 'Western Mountains' & input$runmodel != 0){
-            wm_report()
-          } else if (region_class() == 'Arid West' & input$runmodel != 0){
-            aw_report()
-          } else if (region_class() == 'Pacific Northwest' & input$runmodel != 0){
-            pnw_report()
-          }
-
-        } else if (!is.atomic(region_class())){
-
-          if(region_class()$region == 'Great Plains' & input$runmodel != 0){
-            gp_report()
-          } else if (region_class()$region == 'Western Mountains' & input$runmodel != 0){
-            wm_report()
-          } else if (region_class()$region == 'Arid West' & input$runmodel != 0){
-            aw_report()
-          } else if (region_class()$region == 'Pacific Northwest' & input$runmodel != 0){
-            pnw_report()
-          }
-
-        }
-        
-      })
-
-      ### additional information panel--------
-    output$addInfoPanel <- renderUI({
-        if (is.atomic(region_class())){
-
-          if(region_class() == 'Great Plains'){
-            gp_info(region_class())
-          } else if (region_class() == 'Western Mountains'){
-            wm_info(region_class())
-          } else if (region_class() == 'Arid West'){
-            aw_info(region_class())
-          } else if (region_class() == 'Pacific Northwest'){
-            pnw_info(region_class())
-          }
-
-        } else if (!is.atomic(region_class())){
-
-          if(region_class()$region == 'Great Plains'){
-            gp_info(region_class()$region)
-          } else if (region_class()$region == 'Western Mountains'){
-            wm_info(region_class()$region)
-          } else if (region_class()$region == 'Arid West'){
-            aw_info(region_class()$region)
-          } else if (region_class()$region == 'Pacific Northwest'){
-            pnw_info(region_class()$region)
-          }
-
-        }
-        
-      })
-
-
-  # If site out of SDAM study areas, return warning message from global function
-  final_sdams <- list('Great Plains', 'Arid West', 'Western Mountains', 'Pacific Northwest')
-  observeEvent(c(input$reg_button, region_class()),{
-      
-      if (is.atomic(region_class())){
-          output$reg_class <- renderUI ({
-              h2(HTML(paste0("<b>SDAM Region: <br>", region_class(), "</b>")))
-          })
-      } else if (!is.atomic(region_class())){
-   
-        if (is.na(region_class()$region)){
-          
-          show_alert(
-            title = "",
-            text = tagList(
-              tags$p(HTML(paste0("The location of your site is outside of any SDAM region.",
-                                 " Please check your latitude and longitude coordinates to ensure they are entered in the correct format (decimal degrees and WGS84 datum).<br>")
-              )
-              )
-            ),
-            type = "default"
-          )
-          
-        } else {
-          
-            if (!(region_class()$region %in% final_sdams) && !is.na(region_class()$region)){
-
-                if (region_class()$URL != 'development' && region_class()$URL != 'planning'){
-                    show_alert(
-                        title = "",
-                        text = tagList(
-                            tags$p(HTML(paste0("This site is outside of the Final SDAM study areas.  The site is located in the ",
-                                               '<a href=\"', region_class()$URL, '">',
-                                               region_class()$region), ' SDAM.</a>')
-                            )
-                        ),
-                        type = "default"
-                    )
-                } else {
-                    show_alert(
-                        title = "",
-                        text = tagList(
-                            tags$p(HTML(paste0(region_class()$region, ' - A Regional SDAM has not been developed for ', region_class()$region, '.  ',
-                                                'A literature review for ', region_class()$region, ' has been completed.')
-                                # paste0("This site is located outside of the Final SDAM study areas.  The site is located in the <b>",
-                                #                region_class()$region, "</b> SDAM region.  The ",
-                                #                region_class()$region, " is in the <b>",
-                                #                region_class()$URL, "</b> stage.")
-                                               )
-                            )
-                        ),
-                        type = "default"
-                    )
-                }
-  
-            } else {
-                output$reg_class <- renderUI ({
-                    if(!is.na(region_class()$region)){
-                        if(region_class()$region == 'Northeast' || region_class()$region == 'Southeast'){
-                            h2(HTML(paste0("<b>Eastern Region: <br>", region_class()$region, "</b>")))
-                        } else {
-                            h2(HTML(paste0("<b>SDAM Region: <br>", region_class()$region, "</b>")))
-                        }
-                    }
-                })
+        if (is.atomic(region_class())) {
+            if (region_class() == "Great Plains" & input$runmodel != 0) {
+                gp_report()
+            } else if (region_class() == "Western Mountains" & input$runmodel != 0) {
+                wm_report()
+            } else if (region_class() == "Arid West" & input$runmodel != 0) {
+                aw_report()
+            } else if (region_class() == "Pacific Northwest" & input$runmodel != 0) {
+                pnw_report()
+            } else if (region_class() == "Northeast" & input$runmodel != 0) {
+                ne_report()
+            } else if (region_class() == "Southeast" & input$runmodel != 0) {
+                se_report()
+            }
+        } else if (!is.atomic(region_class())) {
+            req(region_class()$region)
+            req(input$runmodel)
+            if (region_class()$region == "Great Plains" & input$runmodel != 0) {
+                gp_report()
+            } else if (region_class()$region == "Western Mountains" & input$runmodel != 0) {
+                wm_report()
+            } else if (region_class()$region == "Arid West" & input$runmodel != 0) {
+                aw_report()
+            } else if (region_class()$region == "Pacific Northwest" & input$runmodel != 0) {
+                pnw_report()
+            } else if (region_class()$region == "Northeast" & input$runmodel != 0) {
+                ne_report()
+            } else if (region_class()$region == "Southeast" & input$runmodel != 0) {
+                se_report()
             }
         }
-      }
-  })
+    })
+
+
+    # If site out of SDAM study areas, return warning message from global function
+    final_sdams <- list("Great Plains", "Arid West", "Western Mountains", "Pacific Northwest", "Southeast", "Northeast")
+    observeEvent(c(input$reg_button, region_class()), {
+        if (is.atomic(region_class())) {
+            output$reg_class <- renderUI({
+                h2(HTML(paste0("<b>SDAM Region: <br>", region_class(), "</b>")))
+            })
+        } else if (!is.atomic(region_class())) {
+            if (is.na(region_class()$region)) {
+                show_alert(
+                    title = "",
+                    text = tagList(
+                        tags$p(HTML(paste0(
+                            "The location of your site is outside of any SDAM region.",
+                            " Please check your latitude and longitude coordinates to ensure they are entered in the correct format (decimal degrees and WGS84 datum).<br>"
+                        )))
+                    ),
+                    type = "default"
+                )
+            } else {
+                if (!(region_class()$region %in% final_sdams) && !is.na(region_class()$region)) {
+                    if (region_class()$URL != "development" && region_class()$URL != "planning") {
+                        show_alert(
+                            title = "",
+                            text = tagList(
+                                tags$p(HTML(paste0(
+                                    "This site is outside of the Final SDAM study areas.  The site is located in the ",
+                                    '<a href=\"', region_class()$URL, '">',
+                                    region_class()$region
+                                ), " SDAM.</a>"))
+                            ),
+                            type = "default"
+                        )
+                    } else {
+                        show_alert(
+                            title = "",
+                            text = tagList(
+                                tags$p(HTML(
+                                    paste0(
+                                        region_class()$region, " - A Regional SDAM has not been developed for ", region_class()$region, ".  ",
+                                        "A literature review for ", region_class()$region, " has been completed."
+                                    )
+                                    # paste0("This site is located outside of the Final SDAM study areas.  The site is located in the <b>",
+                                    #                region_class()$region, "</b> SDAM region.  The ",
+                                    #                region_class()$region, " is in the <b>",
+                                    #                region_class()$URL, "</b> stage.")
+                                ))
+                            ),
+                            type = "default"
+                        )
+                    }
+                } else {
+                    output$reg_class <- renderUI({
+                        if (!is.na(region_class()$region)) {
+                            if (region_class()$region == "Northeast" || region_class()$region == "Southeast") {
+                                h2(HTML(paste0("<b>Eastern Region: <br>", region_class()$region, "</b>")))
+                            } else {
+                                h2(HTML(paste0("<b>SDAM Region: <br>", region_class()$region, "</b>")))
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    })
 
     # leaflet map render-----
     output$map <- renderLeaflet({
         factPal <- colorFactor(
-          pal = rainbow(9), 
-          levels = regions_leaflet$SDAM)
+            pal = rainbow(9),
+            levels = regions_leaflet$SDAM
+        )
         leaflet(regions_leaflet) %>%
-            addPolygons(stroke = TRUE,
-                        weight=2,
-                        fillOpacity = 0.3,
-                        smoothFactor = 2,
-                        color='black',
-                        fillColor = ~factPal(regions_leaflet$SDAM),
-                        group = "SDAM Regions") %>%
-            setView(lng = -100.5,
-                    lat = 35.5,
-                    zoom = 5) %>%
+            addPolygons(
+                stroke = TRUE,
+                weight = 2,
+                fillOpacity = 0.3,
+                # smoothFactor = 10,
+                color = "black",
+                fillColor = ~ factPal(regions_leaflet$SDAM),
+                group = "SDAM Regions"
+            ) %>%
+            setView(
+                lng = -100.5,
+                lat = 35.5,
+                zoom = 5
+            ) %>%
             addLegend("bottomright",
-                      title = HTML("<b><u>SDAM Regions</u></b>"),
-                      pal = factPal,
-                      values = regions_leaflet$SDAM,
-                      group = "SDAM Regions") %>%
-
-            addProviderTiles(providers$Esri.NatGeoWorldMap,
-                             group = 'NatGeo World (Default)') %>%
+                title = HTML("<b><u>SDAM Regions</u></b>"),
+                pal = factPal,
+                values = regions_leaflet$SDAM,
+                group = "SDAM Regions"
+            ) %>%
+            # addProviderTiles(providers$Esri.NatGeoWorldMap,
+            #     group = "NatGeo World (Default)"
+            # ) %>%
+            addProviderTiles(
+                providers$USGS.USTopo,
+                group="USGS National Map") %>%
             addProviderTiles(providers$Esri.WorldImagery,
-                             group = 'Imagery') %>%
+                group = "Imagery"
+            ) %>%
             addLayersControl(
-                baseGroups=c("NatGeo World (Default)", "Imagery"),
+                baseGroups = c("NatGeo World (Default)", "Imagery"),
                 overlayGroups = "SDAM Regions",
-                options = layersControlOptions(collapsed = FALSE)) %>%
+                options = layersControlOptions(collapsed = FALSE)
+            ) %>%
             leafem::addMouseCoordinates() %>%
             addFullscreenControl()
     })
-  
-    # coordinates 
+
+    # coordinates
     map_coords <- reactive({
-        click = input$map_click
-        if(is.null(click))
+        click <- input$map_click
+        if (is.null(click)) {
             return()
-        coords = c(round(click$lat,4), round(click$lng,4))
+        }
+        coords <- c(round(click$lat, 4), round(click$lng, 4))
         updateNumericInput(
             session,
             "lat",
@@ -1229,46 +1237,233 @@ server <- function(input, output, session){
         )
         coords
     })
-    
+
     # lat/long----
-    latitude <- eventReactive(c(input$map_click,input$lat, input$lon),{
-        if(is.null(map_coords())){
+    latitude <- eventReactive(c(input$map_click, input$lat, input$lon), {
+        if (is.null(map_coords())) {
             latitude <- input$lat
-        } else if (!is.null(map_coords())){
+        } else if (!is.null(map_coords())) {
             latitude <- map_coords()[1]
         }
         latitude
     })
-    longitude <- eventReactive(c(input$map_click,input$lat, input$lon),{
-        if(is.null(map_coords())){
+    longitude <- eventReactive(c(input$map_click, input$lat, input$lon), {
+        if (is.null(map_coords())) {
             longitude <- input$lon
-        } else if (!is.null(map_coords())){
+        } else if (!is.null(map_coords())) {
             longitude <- map_coords()[2]
         }
         longitude
     })
 
-
+ 
     # map popup----
     observe({
-        click = input$map_click
-        if(is.null(click))
+        click <- input$map_click
+        if (is.null(click)) {
             return()
-        
-        region <- if (is.atomic(region_class())){
-              paste0(region_class(), ' SDAM Region')
-            } else {
-              paste0(region_class()$region, ' SDAM Region')
-            }
-        
-        text<-HTML(paste("<b><u>", region, "</u></b><br>",
-            "Latitude: ", round(click$lat, 4), ", Longtitude: ", round(click$lng, 4)))
-        text2<-paste("You've selected point ", text)
-        map_proxy = leafletProxy("map") %>%
+        }
+
+        region <- if (is.atomic(region_class())) {
+            paste0(region_class(), " SDAM Region")
+        } else {
+            paste0(region_class()$region, " SDAM Region")
+        }
+
+        text <- HTML(paste(
+            "<b><u>", region, "</u></b><br>",
+            "Latitude: ", round(click$lat, 4), ", Longtitude: ", round(click$lng, 4)
+        ))
+        text2 <- paste("You've selected point ", text)
+        map_proxy <- leafletProxy("map") %>%
             clearPopups() %>%
             addPopups(round(click$lng, 4), round(click$lat, 4), text)
-
     })
+
+    # precipitation----
+    precip <- eventReactive(input$runmodel, {
+        prism_fetch(longitude(), latitude())
+    })
+
+    # observeEvent(c(input$reg_button, region_class()), {
+        
+    #     if ((is.atomic(region_class())) && (region_class() == "Northeast" | region_class() == "Southeast")) {
+    #             div(
+    #                 fluidRow(
+    #                     column(
+    #                         12,
+    #                         HTML("<b><i>i.	Mean watershed elevation from StreamCat</b></i>"),
+    #                         numericInputIcon("user_manual_elevation",
+    #                             label = NULL,
+    #                             min = 0.0000000000001,
+    #                             max = Inf,
+    #                             value = NA,
+    #                             step = 0.1,
+    #                             width = '300px',
+    #                             icon = icon("hashtag")
+    #                         )
+    #                         # if (region_class() == 'Southeast'){
+    #                         #     HTML("<b><i>ii.	Average monthly precipitation for May, June, and July in millimeters from PRISM</b></i>"),
+    #                         #     numericInputIcon("user_manual_precip",
+    #                         #         label = NULL,
+    #                         #         min = 0.0000000000001,
+    #                         #         max = Inf,
+    #                         #         value = NA,
+    #                         #         step = 0.01,
+    #                         #         width = '300px',
+    #                         #         icon = icon("hashtag")
+    #                         #     )
+
+    #                         # }
+    #                     )
+    #                 )
+    #             ) %>% tagAppendAttributes(class = 'question_box'),
+    #             br()
+    #     }
+
+    # })
+
+    # output$manual_inputs <- renderUI({
+    #     if ((is.atomic(region_class())) && (region_class() == "Northeast")) {
+    #         # HTML("<b><i>i.	Mean watershed elevation from StreamCat</b></i>"),
+    #         # numericInputIcon("user_manual_elevation",
+    #         #     label = NULL,
+    #         #     min = 0.0000000000001,
+    #         #     max = Inf,
+    #         #     value = NA,
+    #         #     step = 0.1,
+    #         #     width = '300px',
+    #         #     icon = icon("hashtag")
+    #         # )
+    #     } else if ((is.atomic(region_class())) && (region_class() == "Southeast")) {
+    #         HTML("<b><i>Mean watershed elevation (ft) from StreamCat</b></i>")
+    #         numericInputIcon("user_manual_elevation",
+    #             label = NULL,
+    #             min = 0.0000000000001,
+    #             max = Inf,
+    #             value = NA,
+    #             step = 0.1,
+    #             width = '300px',
+    #             icon = icon("hashtag")
+    #         )
+    #         HTML("<b><i>Average monthly precipitation for May, June, and July in millimeters from PRISM</b></i>")
+    #         numericInputIcon("user_manual_precip",
+    #             label = NULL,
+    #             min = 0.0000000000001,
+    #             max = Inf,
+    #             value = NA,
+    #             step = 0.01,
+    #             width = '300px',
+    #             icon = icon("hashtag")
+    #         )   
+    #     } 
+
+    # })
+
+
+    # ws elevation----
+    elevation <- eventReactive(input$runmodel, {
+        ws_elev(longitude(), latitude(), unit='ft')
+    })
+
+    # nese output ----
+    # output$region_str <- renderText({
+    #     if (is.atomic(region_class())) {
+    #         return(print("no coords"))
+    #     } else if (!is.atomic(region_class())) {
+    #         return(print(region_class()$region))
+    #     } 
+    # })  
+
+    # var <- eventReactive(c(input$runmodel), {
+    var <- reactive({
+            if (is.atomic(region_class())) {
+                paste0(region_class())
+            } else if (!is.atomic(region_class())) {
+                paste0(region_class()$region)
+
+            }
+        })
+
+    output$region_str <- renderText({
+        var()
+    })
+
+    var2 <- reactive({
+            if (is.atomic(region_class())) {
+                paste0('manual')
+            } else if (!is.atomic(region_class())) {
+                paste0('calculated')
+
+            }
+        })
+
+    output$region_choice <- renderText({
+        var2()
+    })
+
+    outputOptions(output, "region_str", suspendWhenHidden=FALSE)
+    outputOptions(output, "region_choice", suspendWhenHidden=FALSE)
+
+
+    output$nese <- renderUI({
+        if (!is.atomic(region_class()) && (region_class()$region == "Northeast" || region_class()$region == "Southeast")) {
+            # if in the Northeast or Southeast
+            req(input$runmodel)
+            if (input$runmodel != 0) {
+                if (region_class()$region == 'Northeast'){
+                    h3(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", elevation(), " ]</b>")))
+                } else if (region_class()$region == 'Southeast'){
+                    h3(
+                        HTML(
+                            paste0(
+                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", elevation(), " ]</b>"))),
+                                h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", precip(), " ]</b>")))
+                            )
+                        )
+                    )
+                }
+                
+            } else {
+                return(NULL)
+            }
+        } else if (is.atomic(region_class()) && (region_class() == "Northeast" || region_class() == "Southeast")) {
+            # if in the Northeast or Southeast
+            req(input$runmodel)
+            if (input$runmodel != 0) {
+                if (region_class() == 'Northeast'){
+                    h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", input$user_manual_elevation, " ]</b>")))
+                } else if (region_class() == 'Southeast'){
+                    h3(
+                        HTML(
+                            paste0(
+                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", input$user_manual_elevation, " ]</b>"))),
+                                h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", input$user_manual_precip, " ]</b>")))
+                            )
+                        )
+                    )
+                }
+            } else {
+                return(NULL)
+            }
+        } else {
+            return(NULL)
+        }
+    })
+
+    # output$nese <- renderUI({
+    #     if (is.atomic(region_class()) && (region_class() == "Northeast" || region_class() == "Southeast")) {
+    #         # if in the Northeast or Southeast
+    #         req(input$runmodel)
+    #         if (input$runmodel != 0) {
+    #             h3(HTML(paste0("<b>Precipitation: ", precip(), " mm</b>")))
+    #         } else {
+    #             return(NULL)
+    #         }
+    #     } else {
+    #         return(NULL)
+    #     }
+    # })
 
     # percent shade calculation -----
     # dynamic UI output for length 1:12 for densiometer recordings
@@ -1280,284 +1475,370 @@ server <- function(input, output, session){
             }
         )
     })
-    
+
     # dynamic UI list of inputs for densiometer recordings
     densi_list <- eventReactive(input$select, {
         lapply(
             X = 1:input$select,
             FUN = function(i) {
-                input = paste0('densi', i)
+                input <- paste0("densi", i)
             }
         )
     })
-    
+
     # Densiometer input names for use in report possibly
     densi_inputs <- reactive({
         list_names <- c()
-        for(x in 1:length(densi_list())){
+        for (x in 1:length(densi_list())) {
             list_names[[x]] <- paste(densi_list()[x])
         }
         return(list_names)
     })
-    
+
     # Densiometer input values
     densi_values <- reactive({
         list_values <- c()
-        for(x in 1:length(densi_list())){
+        for (x in 1:length(densi_list())) {
             list_values[[x]] <- input[[paste(densi_list()[[x]])]]
         }
         return(list_values)
     })
-    
+
     # calculated shade percentage
-    densi_shade_perc <- eventReactive(densi_values(),{
-        round((Reduce("+", densi_values()) / (input$select* 17))*100,2)
+    densi_shade_perc <- eventReactive(densi_values(), {
+        round((Reduce("+", densi_values()) / (input$select * 17)) * 100, 2)
     })
-    densi_shade_dec <- eventReactive(densi_values(),{
-        round((Reduce("+", densi_values()) / (input$select* 17)),2)
+    densi_shade_dec <- eventReactive(densi_values(), {
+        round((Reduce("+", densi_values()) / (input$select * 17)), 2)
     })
-    
+
     # Show user calculated percent value
-    output$text <- renderUI ({
-        
+    output$text <- renderUI({
         h3(HTML(paste0("<b>Percent Shade: ", densi_shade_perc(), "%")))
-        
     })
-    
+
     # Bankfull width calculation----
-    
+
     # dynamic UI output for length 1:3 for bankfull width recordings
     output$bankUI <- renderUI({
         lapply(
             X = 1:input$select_bank,
             FUN = function(i) {
-                numericInput(inputId = paste0("bank", i),
-                             label = paste0("bankfull measurement ", i), 
-                             value = NULL)
+                numericInput(
+                    inputId = paste0("bank", i),
+                    label = paste0("bankfull width measurement ", i),
+                    value = NULL
+                )
             }
         )
     })
-    
+
     # dynamic UI list of inputs for bankfull width recordings
     bank_list <- eventReactive(input$select_bank, {
         lapply(
             X = 1:input$select_bank,
             FUN = function(i) {
-                input = paste0('bank', i)
+                input <- paste0("bank", i)
             }
         )
     })
-    
+
     # BFW input names to be possibly used in report
     bank_inputs <- reactive({
         list_names <- c()
-        for(x in 1:length(bank_list())){
+        for (x in 1:length(bank_list())) {
             list_names[[x]] <- paste(bank_list()[x])
         }
         return(list_names)
     })
-    
+
     # BFW input values
     bank_values <- reactive({
         list_values <- c()
-        for(x in 1:length(bank_list())){
+        for (x in 1:length(bank_list())) {
             list_values[[x]] <- input[[paste(bank_list()[[x]])]]
         }
         return(list_values)
     })
-    
+
     # BFW percentage
-    bank_mean <- eventReactive(bank_values(),{
+    bank_mean <- eventReactive(bank_values(), {
         (Reduce("+", bank_values()) / (input$select_bank))
     })
-    
+
     # Show user calculated BFW
-    output$bank_text <- renderUI ({
-        h3(HTML(paste0("<b>Mean bankfull width (m): ", round(bank_mean(),1), "</b>")))
-        
+    output$bank_text <- renderUI({
+        h3(HTML(paste0("<b>Mean bankfull width (m): ", round(bank_mean(), 1), "</b>")))
     })
-    
+
     # model df ----
     df <- eventReactive(input$runmodel, {
-      
-      if (is.atomic(region_class())){
-        
-        if (region_class() == 'Great Plains' ){
-          gp_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_total_abundance = input$user_total_abundance,
-            user_hydrophyte = input$user_hydrophyte,
-            user_upland_rooted = input$user_upland_rooted,
-            user_diff_veg = input$user_diff_veg,
-            user_sediment_plants = input$user_sediment_plants,
-            user_substrate = input$user_substrate,
-            user_riff_pool = input$user_riff_pool,
-            user_bank_mean = bank_mean()
-          )
-        } else  if (region_class() == 'Western Mountains' ){
-          wm_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_total_abundance = input$user_total_abundance,
-            user_hydrophyte = input$user_hydrophyte,
-            user_substrate = input$user_substrate,
-            user_eph_isa = input$user_eph_isa,
-            user_PctShade = input$user_shade,
-            user_upland_rooted = input$user_upland_rooted,
-            user_diff_veg = input$user_diff_veg,
-            user_slope = input$user_slope,
-            user_riff_pool = input$user_riff_pool,
-            user_bank_mean = bank_mean()
-          )
-        } else  if (region_class() == 'Arid West' ){
-          aw_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_hydrophyte = input$user_hydrophyte,
-            user_eph_isa = input$user_eph_isa,
-            user_upland_rooted = input$user_upland_rooted,
-            user_diff_veg = input$user_diff_veg,
-            user_algal_cover = input$user_algal_cover,
-            user_slope = input$user_slope,
-            user_riff_pool = input$user_riff_pool,
-            user_bank_mean = bank_mean()
-          )
-        } else  if (region_class() == 'Pacific Northwest' ){
-          pnw_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_aquatic_presence = input$user_aquatic_presence,
-            user_ephemeroptera = input$user_ephemeroptera,
-            user_per_taxa = input$user_per_taxa,
-            user_plants = input$user_plants,
-            user_slope = input$user_slope,
-            user_fish = input$user_fish,
-            user_amphibians = input$user_amphibians
-          )
+        if (is.atomic(region_class())) {
+            if (region_class() == "Great Plains") {
+                gp_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_total_abundance = input$user_total_abundance,
+                    user_hydrophyte = input$user_hydrophyte,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_diff_veg = input$user_diff_veg,
+                    user_sediment_plants = input$user_sediment_plants,
+                    user_substrate = input$user_substrate,
+                    user_riff_pool = input$user_riff_pool,
+                    user_bank_mean = bank_mean()
+                )
+            } else if (region_class() == "Western Mountains") {
+                wm_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_total_abundance = input$user_total_abundance,
+                    user_hydrophyte = input$user_hydrophyte,
+                    user_substrate = input$user_substrate,
+                    user_eph_isa = input$user_eph_isa,
+                    user_PctShade = input$user_shade,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_diff_veg = input$user_diff_veg,
+                    user_slope = input$user_slope,
+                    user_riff_pool = input$user_riff_pool,
+                    user_bank_mean = bank_mean()
+                )
+            } else if (region_class() == "Arid West") {
+                aw_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_hydrophyte = input$user_hydrophyte,
+                    user_eph_isa = input$user_eph_isa,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_diff_veg = input$user_diff_veg,
+                    user_algal_cover = input$user_algal_cover,
+                    user_slope = input$user_slope,
+                    user_riff_pool = input$user_riff_pool,
+                    user_bank_mean = bank_mean()
+                )
+            } else if (region_class() == "Pacific Northwest") {
+                pnw_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_aquatic_presence = input$user_aquatic_presence,
+                    user_ephemeroptera = input$user_ephemeroptera,
+                    user_per_taxa = input$user_per_taxa,
+                    user_plants = input$user_plants,
+                    user_slope = input$user_slope,
+                    user_fish = input$user_fish,
+                    user_amphibians = input$user_amphibians
+                )
+            } else if (region_class() == 'Northeast'){
+                ne_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_bank_mean = bank_mean(),
+                    user_er = input$user_er,
+                    user_bmi = input$user_bmi,
+                    user_slope = input$user_slope,
+                    user_shading = input$user_shade,
+                    user_drainage = input$user_drainage,
+                    user_elev = input$user_manual_elevation # for Northeast only, if using manual inputs
+                )
+            } else if (region_class() == 'Southeast'){
+                se_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_bank_mean = bank_mean(),
+                    user_bmi = input$user_bmi,
+                    user_total_abundance = input$user_total_abundance,
+                    user_shading = input$user_shade,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_substrate = input$user_substrate,
+                    user_roots = input$user_roots,
+                    user_drainage = input$user_drainage,
+                    user_elev = input$user_manual_elevation, # for Southeast only, if using manual inputs
+                    user_precip = input$user_manual_precip # for Southeast only, if using manual inputs
+                )
+            }
+        } else if (!is.atomic(region_class())) {
+            if (region_class()$region == "Great Plains") {
+                gp_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_total_abundance = input$user_total_abundance,
+                    user_hydrophyte = input$user_hydrophyte,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_diff_veg = input$user_diff_veg,
+                    user_sediment_plants = input$user_sediment_plants,
+                    user_substrate = input$user_substrate,
+                    user_riff_pool = input$user_riff_pool,
+                    user_bank_mean = bank_mean()
+                )
+            } else if (region_class()$region == "Western Mountains") {
+                wm_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_total_abundance = input$user_total_abundance,
+                    user_hydrophyte = input$user_hydrophyte,
+                    user_substrate = input$user_substrate,
+                    user_eph_isa = input$user_eph_isa,
+                    user_PctShade = input$user_shade,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_diff_veg = input$user_diff_veg,
+                    user_slope = input$user_slope,
+                    user_riff_pool = input$user_riff_pool,
+                    user_bank_mean = bank_mean()
+                )
+            } else if (region_class()$region == "Arid West") {
+                aw_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_hydrophyte = input$user_hydrophyte,
+                    user_eph_isa = input$user_eph_isa,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_diff_veg = input$user_diff_veg,
+                    user_algal_cover = input$user_algal_cover,
+                    user_slope = input$user_slope,
+                    user_riff_pool = input$user_riff_pool,
+                    user_bank_mean = bank_mean()
+                )
+            } else if (region_class()$region == "Pacific Northwest") {
+                pnw_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_aquatic_presence = input$user_aquatic_presence,
+                    user_ephemeroptera = input$user_ephemeroptera,
+                    user_per_taxa = input$user_per_taxa,
+                    user_plants = input$user_plants,
+                    user_slope = input$user_slope,
+                    user_fish = input$user_fish,
+                    user_amphibians = input$user_amphibians
+                )
+            } else if (region_class()$region == "Northeast") {
+                ne_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_bank_mean = bank_mean(),
+                    user_er = input$user_er,
+                    user_bmi = input$user_bmi,
+                    user_slope = input$user_slope,
+                    user_shading = input$user_shade,
+                    user_drainage = input$user_drainage
+                    
+                )
+            } else if (region_class()$region == "Southeast") {
+                se_df(
+                    user_lat = input$lat,
+                    user_lon = input$lon,
+                    user_bank_mean = bank_mean(),
+                    user_bmi = input$user_bmi,
+                    user_total_abundance = input$user_total_abundance,
+                    user_shading = input$user_shade,
+                    user_upland_rooted = input$user_upland_rooted,
+                    user_substrate = input$user_substrate,
+                    user_roots = input$user_roots,
+                    user_drainage = input$user_drainage
+                )
+                # se_df(
+                #     user_lat = 32,
+                #     user_lon = -82,
+                #     user_bank_mean = 5,
+                #     user_bmi = 0,
+                #     user_total_abundance = 1,
+                #     user_shading = 22,
+                #     user_upland_rooted = 2,
+                #     user_substrate = 2,
+                #     user_roots = 1,
+                #     user_drainage = 22
+                # )
+            }
+        } else {
+            return(NULL)
         }
-
-      } else if (!is.atomic(region_class())){
-
-        if (region_class()$region == 'Great Plains' ){
-          gp_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_total_abundance = input$user_total_abundance,
-            user_hydrophyte = input$user_hydrophyte,
-            user_upland_rooted = input$user_upland_rooted,
-            user_diff_veg = input$user_diff_veg,
-            user_sediment_plants = input$user_sediment_plants,
-            user_substrate = input$user_substrate,
-            user_riff_pool = input$user_riff_pool,
-            user_bank_mean = bank_mean()
-          )
-        } else  if (region_class()$region == 'Western Mountains' ){
-          wm_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_total_abundance = input$user_total_abundance,
-            user_hydrophyte = input$user_hydrophyte,
-            user_substrate = input$user_substrate,
-            user_eph_isa = input$user_eph_isa,
-            user_PctShade = input$user_shade,
-            user_upland_rooted = input$user_upland_rooted,
-            user_diff_veg = input$user_diff_veg,
-            user_slope = input$user_slope,
-            user_riff_pool = input$user_riff_pool,
-            user_bank_mean = bank_mean()
-          )
-        } else  if (region_class()$region == 'Arid West' ){
-          aw_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_hydrophyte = input$user_hydrophyte,
-            user_eph_isa = input$user_eph_isa,
-            user_upland_rooted = input$user_upland_rooted,
-            user_diff_veg = input$user_diff_veg,
-            user_algal_cover = input$user_algal_cover,
-            user_slope = input$user_slope,
-            user_riff_pool = input$user_riff_pool,
-            user_bank_mean = bank_mean()
-          )
-        } else  if (region_class()$region == 'Pacific Northwest' ){
-          pnw_df(
-            user_lat = input$lat,
-            user_lon = input$lon,
-            user_aquatic_presence = input$user_aquatic_presence,
-            user_ephemeroptera = input$user_ephemeroptera,
-            user_per_taxa = input$user_per_taxa,
-            user_plants = input$user_plants,
-            user_slope = input$user_slope,
-            user_fish = input$user_fish,
-            user_amphibians = input$user_amphibians
-          )
-        }
-      } else return(NULL)
     })
-    
+
     # run rf model and output stream classification----
     classification <- eventReactive(input$runmodel, {
-
-      if (is.atomic(region_class())){
-        set.seed(1111)
-        toupper(run_sdam(df(), region_class()))
-
-      } else if (!is.atomic(region_class())){
-        set.seed(1111)
-        toupper(run_sdam(df(), region_class()$region))
-      }
-      
+        if (is.atomic(region_class())) {
+            set.seed(1111)
+            toupper(run_sdam(df(), region_class()))
+        } else if (!is.atomic(region_class())) {
+            set.seed(1111)
+            toupper(run_sdam(df(), region_class()$region))
+        }
     })
 
     # format site visit date
     visit_date <- eventReactive(input$date, {
-      as.character(input$date)
-      # print(format(input$date, '%Y-%m-%d'))
+        as.character(input$date)
+        # print(format(input$date, '%Y-%m-%d'))
     })
 
-    observeEvent(input$runmodel, {
-        check_list <- list()
-        for (t in names(df())){
-            if(length(df()[[t]]) == 0){
-                cv <- 'NULL'
-                # print('something')
-                check_list <- append(check_list, cv)
-            }
-        }
-
-        if ('NULL' %in% check_list) {
-            print('Null found in check list')
-            show_alert(
-                title = "",
-                text = tagList(
-                        tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")
-                                    )
-                                )
-                            ),
-                        type = "default"
-                        )
-        }
-        
-      
-   
-    })
+    # observe({
+    #     print(req(input$lat))
+    #     print(req(input$lon))
+    #     # print(req(bank_mean()))
+    #     print(req(input$user_er))
+    #     print(req(input$user_bmi))
+    #     print(req(input$user_slope))
+    #     print(req(input$user_shading))
+    #     print(req(input$user_drainage))
+    # })
 
 
 
     # output classification to ui
-    output$class_out <- renderUI ({
-      h2(HTML(paste0("<b>", "This reach is classified as:<br>", classification(), "</b>")))
+    output$class_out <- renderUI({
+        h2(HTML(paste0("<b>", "This reach is classified as:<br>", classification(), "</b>")))
     })
 
-    # conditional checks for user inputs
+    # data checks----
+    # Ensure that the user has filled in all required inputs before running the model
+    observeEvent(input$runmodel, {
+        print(df())
+        check_list <- list()
+        for (t in names(df())) {
+            if (length(df()[[t]]) == 0) {
+                cv <- "NULL"
+                # print(df()[[t]])
+                check_list <- append(check_list, cv)
+            }
+        }
+
+        if ("NULL" %in% check_list) {
+            print("Null found in check list")
+            show_alert(
+                title = "",
+                text = tagList(
+                    tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                ),
+                type = "default"
+            )
+        }
+    })
+
+    # Ensure numeric inputs are within range for the model
+    observeEvent(input$user_er, {
+        if (!is.na(input$user_er)) {
+            if ((input$user_er < 1) | (input$user_er > 2.5)) {
+                showModal(
+                    modalDialog(
+                        "number must be 1-2.5 (<1 or >2.5 not allowed)",
+                        footer = modalButton("OK"),
+                        easyClose = FALSE
+                    )
+                )
+                updateNumericInput(
+                    session,
+                    "user_er",
+                    value = 1
+                )
+            }
+        }
+    })
+
     observeEvent(input$user_slope, {
-        if (!is.na(input$user_slope)){
-            if ((input$user_slope  < 0) | (input$user_slope  > 200) ){
+        if (!is.na(input$user_slope)) {
+            if ((input$user_slope < 0) | (input$user_slope > 200)) {
                 showModal(
                     modalDialog(
                         "Percent slope must be between 0 and 200",
-                        footer= modalButton("OK"),
+                        footer = modalButton("OK"),
                         easyClose = FALSE
                     )
                 )
@@ -1570,13 +1851,14 @@ server <- function(input, output, session){
         }
     })
 
+
     observeEvent(input$surfflow, {
-        if (!is.na(input$surfflow)){
-            if ((input$surfflow  < 0) | (input$surfflow  > 100) ){
+        if (!is.na(input$surfflow)) {
+            if ((input$surfflow < 0) | (input$surfflow > 100)) {
                 showModal(
                     modalDialog(
                         "Percent of reach with surface flow must be between 0 and 100 (inclusive)",
-                        footer= modalButton("OK"),
+                        footer = modalButton("OK"),
                         easyClose = FALSE
                     )
                 )
@@ -1588,14 +1870,14 @@ server <- function(input, output, session){
             }
         }
     })
-    
+
     observeEvent(input$subflow, {
-        if (!is.na(input$subflow)){
-            if (input$subflow < 0 | input$subflow > 100){
+        if (!is.na(input$subflow)) {
+            if (input$subflow < 0 | input$subflow > 100) {
                 showModal(
                     modalDialog(
                         "Percent of reach with surface and subsurface flow must be between 0 and 100 (inclusive)",
-                        footer= modalButton("OK"),
+                        footer = modalButton("OK"),
                         easyclose = FALSE
                     )
                 )
@@ -1609,12 +1891,12 @@ server <- function(input, output, session){
     })
 
     observeEvent(input$subflow, {
-        if(!is.na(req(input$subflow))){
-            if (req(input$subflow) < req(input$surfflow)){
+        if (!is.na(req(input$subflow))) {
+            if (req(input$subflow) < req(input$surfflow)) {
                 showModal(
                     modalDialog(
                         "Percent of reach with surface and subsurface flow must be greater than or equal to % of reach with surface flow",
-                        footer= modalButton("OK"),
+                        footer = modalButton("OK"),
                         easyclose = FALSE
                     )
                 )
@@ -1626,15 +1908,15 @@ server <- function(input, output, session){
             }
         }
     })
-    
+
     observeEvent(input$pool, {
-        if (!is.na(input$surfflow)){
-            if (input$surfflow == 100){
-                if ((input$pool != 0) | (!is.null(input$pool))  ) {
+        if (!is.na(input$surfflow)) {
+            if (input$surfflow == 100) {
+                if ((input$pool != 0) | (!is.null(input$pool))) {
                     showModal(
                         modalDialog(
                             "Number of isolated pools must be zero or blank if % of reach with surface flow is 100",
-                            footer= modalButton("OK"),
+                            footer = modalButton("OK"),
                             easyclose = FALSE
                         )
                     )
@@ -1648,885 +1930,1295 @@ server <- function(input, output, session){
         }
     })
 
-    observeEvent(input$user_algal_cb, {
-      print(input$user_algal_cb)
-    })
-    
 
-    # file.copy("./www/eph.jpg",
-    #             tempdir(), overwrite = TRUE)
-    # file.copy("./www/per.jpg",
-    #             tempdir(), overwrite = TRUE)
-    # file.copy("./www/int.jpg",
-    #             tempdir(), overwrite = TRUE)
-    # 
-    # test_pic <- file.path(tempdir(), "eph.jpg")
-  
+
+
     # Report Tab--------------------------------------------------------------
-      
-      # Site photos----
-      fig1 <- reactive({gsub("\\\\", "/", input$blu$datapath)})
-      fig2 <- reactive({gsub("\\\\", "/", input$mld$datapath)})
-      fig3 <- reactive({gsub("\\\\", "/", input$mlu$datapath)})
-      fig4 <- reactive({gsub("\\\\", "/", input$tld$datapath)})
-      fig5 <- reactive({gsub("\\\\", "/", input$sketch$datapath)})
 
-      #Invertebrate photos
-      fig6 <- reactive({gsub("\\\\", "/", input$inv1$datapath)})
-      fig7 <- reactive({gsub("\\\\", "/", input$inv2$datapath)})
-      fig8 <- reactive({gsub("\\\\", "/", input$inv3$datapath)})
-      # retroactively added photos; naming convention broken
-      fig6_1 <- reactive({gsub("\\\\", "/", input$inv4$datapath)})
-      fig7_1 <- reactive({gsub("\\\\", "/", input$inv5$datapath)})
-      fig8_1 <- reactive({gsub("\\\\", "/", input$inv6$datapath)})
+    # Site photos----
+    fig1 <- reactive({
+        gsub("\\\\", "/", input$blu$datapath)
+    })
+    fig2 <- reactive({
+        gsub("\\\\", "/", input$mld$datapath)
+    })
+    fig3 <- reactive({
+        gsub("\\\\", "/", input$mlu$datapath)
+    })
+    fig4 <- reactive({
+        gsub("\\\\", "/", input$tld$datapath)
+    })
+    fig5 <- reactive({
+        gsub("\\\\", "/", input$sketch$datapath)
+    })
 
-      # Substrate photos
-      fig12 <- reactive({gsub("\\\\", "/", input$sub1$datapath)})
-      fig13 <- reactive({gsub("\\\\", "/", input$sub2$datapath)})
-      fig14 <- reactive({gsub("\\\\", "/", input$sub3$datapath)})
+    # Invertebrate photos
+    fig6 <- reactive({
+        gsub("\\\\", "/", input$inv1$datapath)
+    })
+    fig7 <- reactive({
+        gsub("\\\\", "/", input$inv2$datapath)
+    })
+    fig8 <- reactive({
+        gsub("\\\\", "/", input$inv3$datapath)
+    })
+    # retroactively added photos; naming convention broken
+    fig6_1 <- reactive({
+        gsub("\\\\", "/", input$inv4$datapath)
+    })
+    fig7_1 <- reactive({
+        gsub("\\\\", "/", input$inv5$datapath)
+    })
+    fig8_1 <- reactive({
+        gsub("\\\\", "/", input$inv6$datapath)
+    })
 
-      # Differences in vegetation photos
-      fig15 <- reactive({gsub("\\\\", "/", input$veg1$datapath)})
-      fig16 <- reactive({gsub("\\\\", "/", input$veg2$datapath)})
-      fig17 <- reactive({gsub("\\\\", "/", input$veg3$datapath)})
+    # Substrate photos
+    fig12 <- reactive({
+        gsub("\\\\", "/", input$sub1$datapath)
+    })
+    fig13 <- reactive({
+        gsub("\\\\", "/", input$sub2$datapath)
+    })
+    fig14 <- reactive({
+        gsub("\\\\", "/", input$sub3$datapath)
+    })
 
-      # Sediment on Plants photos
-      fig18 <- reactive({gsub("\\\\", "/", input$sed1$datapath)})
-      fig19 <- reactive({gsub("\\\\", "/", input$sed2$datapath)})
-      fig20 <- reactive({gsub("\\\\", "/", input$sed3$datapath)})
+    # Differences in vegetation photos
+    fig15 <- reactive({
+        gsub("\\\\", "/", input$veg1$datapath)
+    })
+    fig16 <- reactive({
+        gsub("\\\\", "/", input$veg2$datapath)
+    })
+    fig17 <- reactive({
+        gsub("\\\\", "/", input$veg3$datapath)
+    })
 
-      # Slope photos
-      fig21 <- reactive({gsub("\\\\", "/", input$slope1$datapath)})
-      fig22 <- reactive({gsub("\\\\", "/", input$slope2$datapath)})
-      fig23 <- reactive({gsub("\\\\", "/", input$slope3$datapath)})
+    # Sediment on Plants photos
+    fig18 <- reactive({
+        gsub("\\\\", "/", input$sed1$datapath)
+    })
+    fig19 <- reactive({
+        gsub("\\\\", "/", input$sed2$datapath)
+    })
+    fig20 <- reactive({
+        gsub("\\\\", "/", input$sed3$datapath)
+    })
 
-      # Hydrophyte photos
-      fig24 <- reactive({gsub("\\\\", "/", input$hydro1$datapath)})
-      fig25 <- reactive({gsub("\\\\", "/", input$hydro2$datapath)})
-      fig26 <- reactive({gsub("\\\\", "/", input$hydro3$datapath)})
-      fig27 <- reactive({gsub("\\\\", "/", input$hydro4$datapath)})
-      fig28 <- reactive({gsub("\\\\", "/", input$hydro5$datapath)})
-      fig29 <- reactive({gsub("\\\\", "/", input$hydro6$datapath)})
-      
-      # Fish photos
-      fig30 <- reactive({gsub("\\\\", "/", input$fish1$datapath)})
-      fig31 <- reactive({gsub("\\\\", "/", input$fish2$datapath)})
-      fig32 <- reactive({gsub("\\\\", "/", input$fish3$datapath)})
+    # Slope photos
+    fig21 <- reactive({
+        gsub("\\\\", "/", input$slope1$datapath)
+    })
+    fig22 <- reactive({
+        gsub("\\\\", "/", input$slope2$datapath)
+    })
+    fig23 <- reactive({
+        gsub("\\\\", "/", input$slope3$datapath)
+    })
 
-      # Perennial Indicator photos
-      fig33 <- reactive({gsub("\\\\", "/", input$per1$datapath)})
-      fig34 <- reactive({gsub("\\\\", "/", input$per2$datapath)})
-      fig35 <- reactive({gsub("\\\\", "/", input$per3$datapath)})
+    # Hydrophyte photos
+    fig24 <- reactive({
+        gsub("\\\\", "/", input$hydro1$datapath)
+    })
+    fig25 <- reactive({
+        gsub("\\\\", "/", input$hydro2$datapath)
+    })
+    fig26 <- reactive({
+        gsub("\\\\", "/", input$hydro3$datapath)
+    })
+    fig27 <- reactive({
+        gsub("\\\\", "/", input$hydro4$datapath)
+    })
+    fig28 <- reactive({
+        gsub("\\\\", "/", input$hydro5$datapath)
+    })
+    fig29 <- reactive({
+        gsub("\\\\", "/", input$hydro6$datapath)
+    })
 
-      # Algal Cover photos
-      fig36 <- reactive({gsub("\\\\", "/", input$algal1$datapath)})
-      fig37 <- reactive({gsub("\\\\", "/", input$algal2$datapath)})
-      fig38 <- reactive({gsub("\\\\", "/", input$algal3$datapath)})
+    # Fish photos
+    fig30 <- reactive({
+        gsub("\\\\", "/", input$fish1$datapath)
+    })
+    fig31 <- reactive({
+        gsub("\\\\", "/", input$fish2$datapath)
+    })
+    fig32 <- reactive({
+        gsub("\\\\", "/", input$fish3$datapath)
+    })
 
-      # Amphibian photos
-      fig39 <- reactive({gsub("\\\\", "/", input$amph1$datapath)})
-      fig40 <- reactive({gsub("\\\\", "/", input$amph2$datapath)})
-      fig41 <- reactive({gsub("\\\\", "/", input$amph3$datapath)})
+    # Perennial Indicator photos
+    fig33 <- reactive({
+        gsub("\\\\", "/", input$per1$datapath)
+    })
+    fig34 <- reactive({
+        gsub("\\\\", "/", input$per2$datapath)
+    })
+    fig35 <- reactive({
+        gsub("\\\\", "/", input$per3$datapath)
+    })
 
-      # Riffle Pool photos
-      fig42 <- reactive({gsub("\\\\", "/", input$riff1$datapath)})
-      fig43 <- reactive({gsub("\\\\", "/", input$riff2$datapath)})
-      fig44 <- reactive({gsub("\\\\", "/", input$riff3$datapath)})
+    # Algal Cover photos
+    fig36 <- reactive({
+        gsub("\\\\", "/", input$algal1$datapath)
+    })
+    fig37 <- reactive({
+        gsub("\\\\", "/", input$algal2$datapath)
+    })
+    fig38 <- reactive({
+        gsub("\\\\", "/", input$algal3$datapath)
+    })
 
-      # Upland rooted photos
-      fig45 <- reactive({gsub("\\\\", "/", input$ur1$datapath)})
-      fig46 <- reactive({gsub("\\\\", "/", input$ur2$datapath)})
-      fig47 <- reactive({gsub("\\\\", "/", input$ur3$datapath)})
+    # Amphibian photos
+    fig39 <- reactive({
+        gsub("\\\\", "/", input$amph1$datapath)
+    })
+    fig40 <- reactive({
+        gsub("\\\\", "/", input$amph2$datapath)
+    })
+    fig41 <- reactive({
+        gsub("\\\\", "/", input$amph3$datapath)
+    })
 
-      # Supplemental Info photos
-      fig48 <- reactive({gsub("\\\\", "/", input$add1$datapath)})
-      fig49 <- reactive({gsub("\\\\", "/", input$add2$datapath)})
-      fig50 <- reactive({gsub("\\\\", "/", input$add3$datapath)})
-      fig51 <- reactive({gsub("\\\\", "/", input$add4$datapath)})
+    # Riffle Pool photos
+    fig42 <- reactive({
+        gsub("\\\\", "/", input$riff1$datapath)
+    })
+    fig43 <- reactive({
+        gsub("\\\\", "/", input$riff2$datapath)
+    })
+    fig44 <- reactive({
+        gsub("\\\\", "/", input$riff3$datapath)
+    })
 
-      # Mean bankfull width
-      fig52 <- reactive({gsub("\\\\", "/", input$mb1$datapath)})
-      fig53 <- reactive({gsub("\\\\", "/", input$mb2$datapath)})
-      fig54 <- reactive({gsub("\\\\", "/", input$mb3$datapath)})
+    # Upland rooted photos
+    fig45 <- reactive({
+        gsub("\\\\", "/", input$ur1$datapath)
+    })
+    fig46 <- reactive({
+        gsub("\\\\", "/", input$ur2$datapath)
+    })
+    fig47 <- reactive({
+        gsub("\\\\", "/", input$ur3$datapath)
+    })
 
-      # Shading
-      fig55 <- reactive({gsub("\\\\", "/", input$shade1$datapath)})
-      fig56 <- reactive({gsub("\\\\", "/", input$shade2$datapath)})
-      fig57 <- reactive({gsub("\\\\", "/", input$shade3$datapath)})
-      fig58 <- reactive({gsub("\\\\", "/", input$shade4$datapath)})
+    # Supplemental Info photos
+    fig48 <- reactive({
+        gsub("\\\\", "/", input$add1$datapath)
+    })
+    fig49 <- reactive({
+        gsub("\\\\", "/", input$add2$datapath)
+    })
+    fig50 <- reactive({
+        gsub("\\\\", "/", input$add3$datapath)
+    })
+    fig51 <- reactive({
+        gsub("\\\\", "/", input$add4$datapath)
+    })
 
+    # Mean bankfull width
+    fig52 <- reactive({
+        gsub("\\\\", "/", input$mb1$datapath)
+    })
+    fig53 <- reactive({
+        gsub("\\\\", "/", input$mb2$datapath)
+    })
+    fig54 <- reactive({
+        gsub("\\\\", "/", input$mb3$datapath)
+    })
+
+    # Shading
+    fig55 <- reactive({
+        gsub("\\\\", "/", input$shade1$datapath)
+    })
+    fig56 <- reactive({
+        gsub("\\\\", "/", input$shade2$datapath)
+    })
+    fig57 <- reactive({
+        gsub("\\\\", "/", input$shade3$datapath)
+    })
+    fig58 <- reactive({
+        gsub("\\\\", "/", input$shade4$datapath)
+    })
+
+       # Entrenchment photos
+    fig59 <- reactive({
+        gsub("\\\\", "/", input$er1$datapath)
+    })
+    fig60 <- reactive({
+        gsub("\\\\", "/", input$er2$datapath)
+    })
+    fig61 <- reactive({
+        gsub("\\\\", "/", input$er3$datapath)
+    })
+
+    # Fibrous rooted photos
+    fig62 <- reactive({
+        gsub("\\\\", "/", input$fib1$datapath)
+    })
+    fig63 <- reactive({
+        gsub("\\\\", "/", input$fib2$datapath)
+    })
+    fig64 <- reactive({
+        gsub("\\\\", "/", input$fib3$datapath)
+    })
+
+    # Drainage photos
+    fig65 <- reactive({
+        gsub("\\\\", "/", input$drainage1$datapath)
+    })
+    fig66 <- reactive({
+        gsub("\\\\", "/", input$drainage2$datapath)
+    })
+    fig67 <- reactive({
+        gsub("\\\\", "/", input$drainage3$datapath)
+    })
+
+
+    ## Download handler----
     output$report <- downloadHandler(
         filename = glue::glue("SDAM Report ({format(Sys.time(), '%B %d, %Y')}).pdf"),
         content = function(file) {
-
-            temp_region <- if (is.atomic(region_class())){
-              region_class()
+            temp_region <- if (is.atomic(region_class())) {
+                region_class()
             } else {
-              region_class()$region 
-            }       
-
-            temp_lat <- if (input$vol_region == 'Select region'){
-              'Not Provided'
-            } else {
-              as.numeric(input$lat)
+                region_class()$region
             }
 
-            temp_lon <- if (input$vol_region == 'Select region'){
-              'Not Provided'
+            temp_lat <- if (input$vol_region == "Select region") {
+                "Not Provided"
             } else {
-              as.numeric(input$lon)
+                as.numeric(input$lat)
+            }
+
+            temp_lon <- if (input$vol_region == "Select region") {
+                "Not Provided"
+            } else {
+                as.numeric(input$lon)
             }
 
             general_params <- list(
-              # -------------------Classification
-              stream_class = classification(),
-              region = temp_region,
+                # -------------------Classification
+                stream_class = classification(),
+                region = temp_region,
 
-              # precip = precip(),
-              drain_area = input$user_DRNAREA,
-
-
-
-              # -------------------General Site Information
-              hp1 = file.path(tempdir(), "eph.jpg"),
-              hp2 = file.path(tempdir(), "int.jpg"),
-              hp3 = file.path(tempdir(), "per.jpg"),
-              a = input$project,
-              b = input$assessor,
-              c = input$code,
-              d = input$waterway,
-              e = visit_date(),
-              adj_regions = ifelse(alt_regions_str()=='', 'None', alt_regions_str()),
-              bm = case_when(input$radio_weather == 'heavyrain' ~ "Storm/heavy rain",
-                              input$radio_weather == 'steadyrain' ~ "Steady rain",
-                              input$radio_weather == 'intermittentrain' ~ "Intermittent rain",
-                              input$radio_weather == 'snowing' ~ "Snowing",
-                              input$radio_weather == 'cloudy' ~ "Cloudy",
-                              input$radio_weather == 'clearsunny' ~ "Clear/Sunny"),
+                # precip = precip(),
+                drain_area = input$user_DRNAREA,
 
 
-              j = input$weather,
-              g = temp_lat,
-              h = temp_lon,
-              notes_landuse = input$notes_landuse,
-              l = plyr::mapvalues(
-                      input$check_use,
-                      from = c(
-                      "urban","agricultural", "Developed open-space (e.g., golf course, parks, lawn grasses)",
-                      "forested","othernatural","other"),
-                      to = c(
-                      "Urban, industrial, or residential", "Agricultural","Developed open-space",
-                      "Forested","Other Natural","Other")
-                  ) %>% as.character() %>% paste0(collapse = ", "),
-              f = input$boundary,
-              fff = ifelse(is.na(input$actreach), ' ', input$actreach),
-              bn = plyr::mapvalues(
-                  input$radio_situation,
-                  from = c(
-                  "flood","stream_modifications", "diversions",
-                  "Water discharges","drought","vegetation",
-                  "other","none"),
-                  to = c(
-                  "Recent flood or debris flow","Stream modifications (e.g., channelization)","Diversions",
-                  "Water discharges","Drought","Vegetation removal/limitations",
-                  "Other (explain in notes)","None")
-              ) %>% as.character() %>% paste0(collapse = ", "),
-              k = input$situation,
 
-              # ------------------- Site Photos
-              v = fig4(),
-              u = fig3(),
-              t = fig2(),
-              s = fig1(),
+                # -------------------General Site Information
+                hp1 = file.path(tempdir(), "eph.jpg"),
+                hp2 = file.path(tempdir(), "int.jpg"),
+                hp3 = file.path(tempdir(), "per.jpg"),
+                a = input$project,
+                b = input$assessor,
+                c = input$code,
+                d = input$waterway,
+                e = visit_date(),
+                adj_regions = ifelse(alt_regions_str() == "", "None", alt_regions_str()),
+                bm = case_when(
+                    input$radio_weather == "heavyrain" ~ "Storm/heavy rain",
+                    input$radio_weather == "steadyrain" ~ "Steady rain",
+                    input$radio_weather == "intermittentrain" ~ "Intermittent rain",
+                    input$radio_weather == "snowing" ~ "Snowing",
+                    input$radio_weather == "cloudy" ~ "Cloudy",
+                    input$radio_weather == "clearsunny" ~ "Clear/Sunny"
+                ),
+                j = input$weather,
+                g = temp_lat,
+                h = temp_lon,
+                notes_landuse = input$notes_landuse,
+                l = plyr::mapvalues(
+                    input$check_use,
+                    from = c(
+                        "urban", "agricultural", "Developed open-space (e.g., golf course, parks, lawn grasses)",
+                        "forested", "othernatural", "other"
+                    ),
+                    to = c(
+                        "Urban, industrial, or residential", "Agricultural", "Developed open-space",
+                        "Forested", "Other Natural", "Other"
+                    )
+                ) %>% as.character() %>% paste0(collapse = ", "),
+                f = input$boundary,
+                fff = ifelse(is.na(input$actreach), " ", input$actreach),
+                bn = plyr::mapvalues(
+                    input$radio_situation,
+                    from = c(
+                        "flood", "stream_modifications", "diversions",
+                        "Water discharges", "drought", "vegetation",
+                        "other", "none"
+                    ),
+                    to = c(
+                        "Recent flood or debris flow", "Stream modifications (e.g., channelization)", "Diversions",
+                        "Water discharges", "Drought", "Vegetation removal/limitations",
+                        "Other (explain in notes)", "None"
+                    )
+                ) %>% as.character() %>% paste0(collapse = ", "),
+                k = input$situation,
 
-              # ------------------- Observed Hydrology
-              m = ifelse(is.na(input$surfflow), ' ', input$surfflow),
-              n = ifelse(is.na(input$subflow), ' ', input$subflow),
-              o = ifelse(is.na(input$pool), ' ', input$pool),
-              r = input$notes_observed_hydrology,
+                # ------------------- Site Photos
+                v = fig4(),
+                u = fig3(),
+                t = fig2(),
+                s = fig1(),
 
-              # ------------------- Site Sketch
-              w = fig5(),
+                # ------------------- Observed Hydrology
+                m = ifelse(is.na(input$surfflow), " ", input$surfflow),
+                n = ifelse(is.na(input$subflow), " ", input$subflow),
+                o = ifelse(is.na(input$pool), " ", input$pool),
+                r = input$notes_observed_hydrology,
 
-              # ------------------- Supplemental Information
-              notes_supplemental_information = input$notes_supplemental_information,
-              f48 = fig48(),
-              f48_cap = input$add1_cap,
-              f49 = fig49(),
-              f49_cap = input$add2_cap,
-              f50 = fig50(),
-              f50_cap = input$add3_cap,
-              f51 = fig51(),
-              f51_cap = input$add4_cap,
+                # ------------------- Site Sketch
+                w = fig5(),
 
-              # ------------------- Mean bankfull width
-              f52 = fig52(),
-              f52_cap = input$mb1_cap,
-              f53 = fig53(),
-              f53_cap = input$mb2_cap,
-              f54 = fig54(),
-              f54_cap = input$mb3_cap,
-              notes_mb = input$notes_mb
-            )   
+                # ------------------- Supplemental Information
+                notes_supplemental_information = input$notes_supplemental_information,
+                f48 = fig48(),
+                f48_cap = input$add1_cap,
+                f49 = fig49(),
+                f49_cap = input$add2_cap,
+                f50 = fig50(),
+                f50_cap = input$add3_cap,
+                f51 = fig51(),
+                f51_cap = input$add4_cap,
 
-            if (temp_region == 'Arid West'){
+                # ------------------- Mean bankfull width
+                f52 = fig52(),
+                f52_cap = input$mb1_cap,
+                f53 = fig53(),
+                f53_cap = input$mb2_cap,
+                f54 = fig54(),
+                f54_cap = input$mb3_cap,
+                notes_mb = input$notes_mb
+            )
+
+            if (temp_region == "Arid West") {
                 ## Arid West----
-                
-                        
-                        ### Report----
-                        tryCatch({
-            
-                            showModal(modalDialog("Please wait while the report is being generated.....", footer=NULL))
-                            
-            
-                            # Set up parameters to pass to Rmd document
-                            region_params <- list(
-                                
-                                ### ------------------- Biological indicators
-                                # EPT Taxa
-                                macro_check = input$macro_check,
-                                aqua_inv = case_when(
-                                  input$user_eph_isa == 0 ~ '0',
-                                  input$user_eph_isa == 1 ~ "1 to 4",
-                                  input$user_eph_isa == 2 ~ "5 to 9",
-                                  input$user_eph_isa == 3 ~ "10 to 19",
-                                  input$user_eph_isa == 4 ~ "Great than or equal to 20"
-                                ),
-                                f6 = fig6(),
-                                f6_cap = input$inv1_cap,
-                                f7 = fig7(),
-                                f7_cap = input$inv2_cap,
-                                f8 = fig8(),
-                                f8_cap = input$inv3_cap,
-                                f6_1 = fig6_1(),
-                                f6_1cap = input$inv4_cap,
-                                f7_1 = fig7_1(),
-                                f7_1cap = input$inv5_cap,
-                                f8_1 = fig8_1(),
-                                f8_cap = input$inv6_cap,
-                                notes_aquainv = input$notes_totalAbundance,
-
-                                # Hydrophytes
-                                hydro_check = input$hydro_check,
-                                hydro = case_when(
-                                  input$user_hydrophyte < 5 ~ as.character(input$user_hydrophyte),
-                                  T ~ "Greater than or equal to 5"
-                                ),
-                                f24 = fig24(),
-                                f24_cap = input$hydro1_cap,
-                                f25 = fig25(),
-                                f25_cap = input$hydro2_cap,
-                                f26 = fig26(),
-                                f26_cap = input$hydro3_cap,
-                                f27 = fig27(),
-                                f27_cap = input$hydro4_cap,
-                                f28 = fig28(),
-                                f28_cap = input$hydro5_cap,
-                                f29 = fig29(),
-                                f29_cap = input$hydro6_cap,
-                                notes_hydro = input$notes_hydro,                       
-
-                                # Upland Rooted
-                                upland_rooted = case_when(
-                                  input$user_upland_rooted == 0 ~ "0 (Poor)",
-                                  input$user_upland_rooted == 0.5 ~ "0.5",
-                                  input$user_upland_rooted == 1 ~ "1 (Weak)",
-                                  input$user_upland_rooted == 1.5 ~ "1.5",
-                                  input$user_upland_rooted == 2 ~ "2 (Moderate)",
-                                  input$user_upland_rooted == 2.5 ~ "2.5",
-                                  input$user_upland_rooted == 3 ~ "3 (Strong)"
-                                ),
-
-                                f45 = fig45(),
-                                f45_cap = input$ur1_cap,
-                                f46 = fig46(),
-                                f46_cap = input$ur2_cap,
-                                f47 = fig47(),
-                                f47_cap = input$ur3_cap,
-                                notes_rooted = input$notes_rooted,
-                                
-                                # Agal Cover
-                                algal_cb = input$user_algal_cb,
-                                algal = case_when(
-                                  input$user_algal_cover == 0 ~ "Not Detected",
-                                  input$user_algal_cover == 1 ~ "<2",
-                                  input$user_algal_cover == 2 ~ "2-10",
-                                  input$user_algal_cover == 3 ~ "10-40",
-                                  input$user_algal_cover == 4 ~ ">40"
-                                ),
-                                f36 = fig36(),
-                                f36_cap = input$algal1_cap,
-                                f37 = fig37(),
-                                f37_cap = input$algal2_cap,
-                                f38 = fig38(),
-                                f38_cap = input$algal3_cap,
-                                notes_algal = input$notes_algal,
-
-                                # Difference in Veg
-                                vegetation = case_when(
-                                  input$user_diff_veg == 0 ~ "0 (Poor)",
-                                  input$user_diff_veg == 0.5 ~ "0.5",
-                                  input$user_diff_veg == 1 ~ "1 (Weak)",
-                                  input$user_diff_veg == 1.5 ~ "1.5",
-                                  input$user_diff_veg == 2 ~ "2 (Moderate)",
-                                  input$user_diff_veg == 2.5 ~ "2.5",
-                                  input$user_diff_veg == 3 ~ "3 (Strong)"
-                                ),
-                                f15 = fig15(),
-                                f15_cap = input$veg1_cap,
-                                f16 = fig16(),
-                                f16_cap = input$veg2_cap,
-                                f17 = fig17(),
-                                f17_cap = input$veg3_cap,
-                                notes_vegetation = input$notes_veg,
-
-                                # Slope
-                                slope = input$user_slope,
-                                f21 = fig21(),
-                                f21_cap = input$slope1_cap,
-                                f22 = fig22(),
-                                f22_cap = input$slope2_cap,
-                                f23 = fig23(),
-                                f23_cap = input$slope3_cap,
-                                notes_slope = input$notes_slope,
-
-                                # Riffle Pool Sequence
-                                riff = case_when(
-                                  input$user_riff_pool == 0 ~ "0 (Poor)",
-                                  input$user_riff_pool == 0.5 ~ "0.5",
-                                  input$user_riff_pool == 1 ~ "1 (Weak)",
-                                  input$user_riff_pool == 1.5 ~ "1.5",
-                                  input$user_riff_pool == 2 ~ "2 (Moderate)",
-                                  input$user_riff_pool == 2.5 ~ "2.5",
-                                  input$user_riff_pool == 3 ~ "3 (Strong)"
-                                ),
-                                f42 = fig42(),
-                                f42_cap = input$riff1_cap,
-                                f43 = fig43(),
-                                f43_cap = input$riff2_cap,
-                                f44 = fig44(),
-                                f44_cap = input$riff3_cap,
-                                notes_riff = input$notes_riff,
-                
-                                # Bank Width
-                                bankwidth = bank_mean()
 
 
-                            )
+                ### Report----
+                tryCatch(
+                    {
+                        showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
 
-                            params <- c(general_params, region_params)
-            
-                            tempReport <- "aw_report.qmd"
-               
-                            quarto::quarto_render(
-                              tempReport,
-                              output_format = "pdf",
-                              execute_params = params
-                            )
 
-                            file.copy("aw_report.pdf", file, overwrite=TRUE)
+                        # Set up parameters to pass to Rmd document
+                        region_params <- list(
 
-                            removeModal()
-                        },
-                        warning = function(cond){
-                            showModal(
+                            ### ------------------- Biological indicators
+                            # EPT Taxa
+                            macro_check = input$macro_check,
+                            aqua_inv = case_when(
+                                input$user_eph_isa == 0 ~ "No perennial indicator taxa detected",
+                                input$user_eph_isa == 1 ~ "1 to 4 perennial indicator individuals",
+                                input$user_eph_isa == 2 ~ "5 to 9 perennial indicator individuals",
+                                input$user_eph_isa == 3 ~ "10 to 19 perennial indicator individuals",
+                                input$user_eph_isa == 4 ~ "20 or more perennial indicator individuals"
+                            ),
+                            f6 = fig6(),
+                            f6_cap = input$inv1_cap,
+                            f7 = fig7(),
+                            f7_cap = input$inv2_cap,
+                            f8 = fig8(),
+                            f8_cap = input$inv3_cap,
+                            f6_1 = fig6_1(),
+                            f6_1cap = input$inv4_cap,
+                            f7_1 = fig7_1(),
+                            f7_1cap = input$inv5_cap,
+                            f8_1 = fig8_1(),
+                            f8_cap = input$inv6_cap,
+                            notes_aquainv = input$notes_totalAbundance,
+
+                            # Hydrophytes
+                            hydro_check = input$hydro_check,
+                            hydro = case_when(
+                                input$user_hydrophyte < 5 ~ as.character(input$user_hydrophyte),
+                                T ~ "Greater than or equal to 5"
+                            ),
+                            f24 = fig24(),
+                            f24_cap = input$hydro1_cap,
+                            f25 = fig25(),
+                            f25_cap = input$hydro2_cap,
+                            f26 = fig26(),
+                            f26_cap = input$hydro3_cap,
+                            f27 = fig27(),
+                            f27_cap = input$hydro4_cap,
+                            f28 = fig28(),
+                            f28_cap = input$hydro5_cap,
+                            f29 = fig29(),
+                            f29_cap = input$hydro6_cap,
+                            notes_hydro = input$notes_hydro,
+
+                            # Upland Rooted
+                            upland_rooted = case_when(
+                                input$user_upland_rooted == 0 ~ "0 (Poor) Rooted upland plants are prevalent within the streambed/thalweg.",
+                                input$user_upland_rooted == 0.5 ~ "0.5",
+                                input$user_upland_rooted == 1 ~ "1 (Weak) Rooted upland plants are consistently dispersed throughout the streambed/thalweg.",
+                                input$user_upland_rooted == 1.5 ~ "1.5",
+                                input$user_upland_rooted == 2 ~ "2 (Moderate) There are a few rooted upland plants present within the streambed/thalweg.",
+                                input$user_upland_rooted == 2.5 ~ "2.5",
+                                input$user_upland_rooted == 3 ~ "3 (Strong) Rooted upland plants are absent from the streambed/thalweg."
+                            ),
+                            f45 = fig45(),
+                            f45_cap = input$ur1_cap,
+                            f46 = fig46(),
+                            f46_cap = input$ur2_cap,
+                            f47 = fig47(),
+                            f47_cap = input$ur3_cap,
+                            notes_rooted = input$notes_rooted,
+
+                            # Agal Cover
+                            algal_cb = input$user_algal_cb,
+                            algal = case_when(
+                                input$user_algal_cover == 0 ~ "Not Detected",
+                                input$user_algal_cover == 1 ~ "<2",
+                                input$user_algal_cover == 2 ~ "2-10",
+                                input$user_algal_cover == 3 ~ "10-40",
+                                input$user_algal_cover == 4 ~ ">40"
+                            ),
+                            f36 = fig36(),
+                            f36_cap = input$algal1_cap,
+                            f37 = fig37(),
+                            f37_cap = input$algal2_cap,
+                            f38 = fig38(),
+                            f38_cap = input$algal3_cap,
+                            notes_algal = input$notes_algal,
+
+                            # Difference in Veg
+                            vegetation = case_when(
+                                input$user_diff_veg == 0 ~ "0 (Poor) No compositional or density differences in vegetation are present between the banks and the adjacent uplands. ",
+                                input$user_diff_veg == 0.5 ~ "0.5",
+                                input$user_diff_veg == 1 ~ "1 (Weak) Vegetation growing along the reach may occur in greater densities or grow more vigorously than vegetation in the adjacent uplands, but there are no dramatic compositional differences between the two. ",
+                                input$user_diff_veg == 1.5 ~ "1.5",
+                                input$user_diff_veg == 2 ~ "2 (Moderate) A distinct riparian corridor exists along part of the reach. Riparian vegetation is interspersed with upland vegetation along the length of the reach. ",
+                                input$user_diff_veg == 2.5 ~ "2.5",
+                                input$user_diff_veg == 3 ~ "3 (Strong) Dramatic compositional differences in vegetation are present between the banks and the adjacent uplands. A distinct riparian vegetation corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach. "
+                            ),
+                            f15 = fig15(),
+                            f15_cap = input$veg1_cap,
+                            f16 = fig16(),
+                            f16_cap = input$veg2_cap,
+                            f17 = fig17(),
+                            f17_cap = input$veg3_cap,
+                            notes_vegetation = input$notes_veg,
+
+                            # Slope
+                            slope = input$user_slope,
+                            f21 = fig21(),
+                            f21_cap = input$slope1_cap,
+                            f22 = fig22(),
+                            f22_cap = input$slope2_cap,
+                            f23 = fig23(),
+                            f23_cap = input$slope3_cap,
+                            notes_slope = input$notes_slope,
+
+                            # Riffle Pool Sequence
+                            riff = case_when(
+                                input$user_riff_pool == 0 ~ "0 (Poor) No riffle-pool sequences observed. ",
+                                input$user_riff_pool == 0.5 ~ "0.5",
+                                input$user_riff_pool == 1 ~ "1 (Weak) Mostly has areas of pools or riffles. ",
+                                input$user_riff_pool == 1.5 ~ "1.5",
+                                input$user_riff_pool == 2 ~ "2 (Moderate) Represented by a less frequent number of riffles and pools. Distinguishing the transition between riffles and pools is difficult to observe. ",
+                                input$user_riff_pool == 2.5 ~ "2.5",
+                                input$user_riff_pool == 3 ~ "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools. "
+                            ),
+                            f42 = fig42(),
+                            f42_cap = input$riff1_cap,
+                            f43 = fig43(),
+                            f43_cap = input$riff2_cap,
+                            f44 = fig44(),
+                            f44_cap = input$riff3_cap,
+                            notes_riff = input$notes_riff,
+
+                            # Bank Width
+                            bankwidth = bank_mean()
+                        )
+
+                        params <- c(general_params, region_params)
+
+                        tempReport <- "aw_report.qmd"
+
+                        quarto::quarto_render(
+                            tempReport,
+                            output_format = "pdf",
+                            execute_params = params
+                        )
+
+                        file.copy("aw_report.pdf", file, overwrite = TRUE)
+
+                        removeModal()
+                    },
+                    warning = function(cond) {
+                        showModal(
                             modalDialog(
                                 "There was an error while generating the report.
                               Please contact Will Saulnier (wsaulnier@eprusa.net) for more details.",
                                 footer = modalButton("Ok")
                             )
+                        )
+                        return(NULL)
+                    }
+                )
+             
+            } else if (temp_region == "Northeast") {
+                ## Northeast ----
+
+                tryCatch(
+                    {
+                        showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
+
+                        # Set up parameters to pass to Rmd document
+                        region_params <- list(
+
+                            # ------------------- Biological indicators
+                            # Bankfull Mean Width
+                            bankwidth = bank_mean(),
+
+                            # precip 
+                            precip_info = input$current_precip %>% as.character() %>% paste0(collapse = ", "),
+                            precip_notes = input$notes_precip,
+                    
+
+                            # Entrenchment
+                            entrenchment = input$user_er,
+                            f59 = fig59(),
+                            f59_cap = input$er1_cap,
+                            f60 = fig60(),
+                            f60_cap = input$er2_cap,
+                            f61 = fig61(),
+                            f61_cap = input$er3_cap,
+                            notes_entrenchment = input$notes_entrenchment,
+
+                            # bmi
+                            bmi = case_when
+                            (
+                                input$user_bmi == 0 ~ "0 (Absent) Total abundance of benthic macroinvertebrates is zero.",
+                                input$user_bmi == 1 ~ "1 (Weak) Total abundance is 1 to 3.",
+                                input$user_bmi == 2 ~ "2 (Moderate) Total abundance ≥4",
+                                input$user_bmi == 3 ~ "3 (Strong) Total abundance ≥10 and richness ≥3 OR Total abundance < 10 and richness ≥5"
+                            ),
+                            f6 = fig6(),
+                            f6_cap = input$inv1_cap,
+                            f7 = fig7(),
+                            f7_cap = input$inv2_cap,
+                            f8 = fig8(),
+                            f8_cap = input$inv3_cap,
+                            f6_1 = fig6_1(),
+                            f6_1cap = input$inv4_cap,
+                            f7_1 = fig7_1(),
+                            f7_1cap = input$inv5_cap,
+                            f8_1 = fig8_1(),
+                            f8_cap = input$inv6_cap,
+                            notes_aquainv = input$notes_totalAbundance,
+
+                            # Slope
+                            slope = input$user_slope,
+                            f21 = fig21(),
+                            f21_cap = input$slope1_cap,
+                            f22 = fig22(),
+                            f22_cap = input$slope2_cap,
+                            f23 = fig23(),
+                            f23_cap = input$slope3_cap,
+                            notes_slope = input$notes_slope,
+
+                            # Shading
+                            shade = input$user_shade,
+                            f55 = fig55(),
+                            f55_cap = input$shade1_cap,
+                            f56 = fig56(),
+                            f56_cap = input$shade2_cap,
+                            f57 = fig57(),
+                            f57_cap = input$shade3_cap,
+                            f58 = fig58(),
+                            f58_cap = input$shade4_cap,
+                            notes_shade = input$notes_shade,
+
+                            
+                            # Drainage
+                            drainage = input$user_drainage,
+                            f65 = fig65(),
+                            f65_cap = input$drainage1_cap,
+                            f66 = fig66(),
+                            f66_cap = input$drainage2_cap,
+                            f67 = fig67(),
+                            f67_cap = input$drainage3_cap,
+                            notes_drainage = input$notes_drainage,
+
+                            # elevation
+                            elevation = ifelse(
+                                is.atomic(region_class()), 
+                                paste0(input$user_manual_elevation, " (Entered)"),
+                                paste0(elevation(), " (Calculated)")
+                            ),
+                            notes_elevation = input$notes_elevation
+
+                            
+                        )
+
+                        params <- c(general_params, region_params)
+
+                        tempReport <- "ne_report.qmd"
+
+                        quarto::quarto_render(
+                            tempReport,
+                            output_format = "pdf",
+                            execute_params = params
+                        )
+
+                        file.copy("ne_report.pdf", file, overwrite = TRUE)
+
+                        removeModal()
+                    },
+                    warning = function(cond) {
+                        showModal(
+                            modalDialog(
+                                "There was an error while generating the report.
+                            Please contact Will Saulnier (wsaulnier@eprusa.net) for more details.",
+                                footer = modalButton("Ok")
                             )
-                            return(NULL)
-                        })
+                        )
+                        return(NULL)
+                    }
+                )
+            } else if (temp_region == "Southeast") {
+                ## Southeast ----
 
-            } else if (temp_region == 'East'){
-                # reserved for future final East SDAM
+                tryCatch(
+                    {
+                        showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
 
-            } else if (temp_region == 'Great Plains'){
+                        # Set up parameters to pass to Rmd document
+                        region_params <- list(
+
+                            # ------------------- Biological indicators
+                            # Bankfull Mean Width
+                            bankwidth = bank_mean(),
+          
+                            # precip
+                            precip_info = input$current_precip %>% as.character() %>% paste0(collapse = ", "),
+                            precip_notes = input$notes_precip,
+
+                            # bmi
+                            bmi = case_when
+                            (
+                                input$user_bmi == 0 ~ "0 (Absent) Total abundance of benthic macroinvertebrates is zero.",
+                                input$user_bmi == 1 ~ "1 (Weak) Total abundance is 1 to 3.",
+                                input$user_bmi == 2 ~ "2 (Moderate) Total abundance ≥4",
+                                input$user_bmi == 3 ~ "3 (Strong) Total abundance ≥10 and richness ≥3 OR Total abundance < 10 and richness ≥5"
+                            ),
+                            
+                            # total abundance
+                            aqua_inv = case_when(
+                                input$user_total_abundance == 0 ~ "No aquatic macroinvertebrates detected",
+                                input$user_total_abundance == 1 ~ "Total abundance is 1 or 2",
+                                input$user_total_abundance == 2 ~ "Total abundance is 3 to 40",
+                                input$user_total_abundance == 3 ~ "Total abundance is 41 or more"
+                            ),
+                            f6 = fig6(),
+                            f6_cap = input$inv1_cap,
+                            f7 = fig7(),
+                            f7_cap = input$inv2_cap,
+                            f8 = fig8(),
+                            f8_cap = input$inv3_cap,
+                            f6_1 = fig6_1(),
+                            f6_1cap = input$inv4_cap,
+                            f7_1 = fig7_1(),
+                            f7_1cap = input$inv5_cap,
+                            f8_1 = fig8_1(),
+                            f8_cap = input$inv6_cap,
+                            notes_aquainv = input$notes_totalAbundance,
+
+                            # Shading
+                            shade = input$user_shade,
+                            f55 = fig55(),
+                            f55_cap = input$shade1_cap,
+                            f56 = fig56(),
+                            f56_cap = input$shade2_cap,
+                            f57 = fig57(),
+                            f57_cap = input$shade3_cap,
+                            f58 = fig58(),
+                            f58_cap = input$shade4_cap,
+                            notes_shade = input$notes_shade,
+
+                            # Upland Rooted
+                            # need to use the r string modifier to get latex escape character (\) correctly rendered
+                            upland_rooted = case_when(
+                                input$user_upland_rooted == 0 ~ r"(0 (Poor) Rooted upland plants are prevalent within the streambed/thalweg (>75\%).)",
+                                input$user_upland_rooted == 1 ~ r"(1 (Weak) Rooted upland plants are consistently dispersed throughout the streambed/thalweg (20-75\%).)",
+                                input$user_upland_rooted == 2 ~ r"(2 (Moderate) There are a few rooted upland plants present within the streambed/thalweg (<20\%).)",
+                                input$user_upland_rooted == 3 ~ r"(3 (Strong) Rooted upland plants are absent from the streambed/thalweg.)"
+                            ),
+                            f45 = fig45(),
+                            f45_cap = input$ur1_cap,
+                            f46 = fig46(),
+                            f46_cap = input$ur2_cap,
+                            f47 = fig47(),
+                            f47_cap = input$ur3_cap,
+                            notes_rooted = input$notes_rooted,
+
+                            # Substrate
+                            substrate = case_when(
+                                input$user_substrate == 0 ~ "0 (Absent) The channel is poorly developed, very little to no coarse sediment is present. There is no difference between particle size in the stream substrate and adjacent land.",
+                                input$user_substrate == 0.5 ~ "0.5",
+                                input$user_substrate == 1 ~ "1 (Weak) The channel is poorly developed through the soil profile. Some coarse sediment is present in the streambed but is discontinuous. Particle size differs little between the stream substrate and adjacent land.",
+                                input$user_substrate == 1.5 ~ "1.5",
+                                input$user_substrate == 2 ~ "2 (Moderate) There is a well-developed channel, but it is not deeply incised through the soil profile. Some coarse sediment is present in the streambed in a continuous layer. Particle size differs somewhat between the stream substrate and adjacent land.",
+                                input$user_substrate == 2.5 ~ "2.5",
+                                input$user_substrate == 3 ~ "3 (Strong) The channel is well-developed through the soil profile with relatively coarse streambed sediments compared to the riparian zone soils: coarse sand, gravel, or cobbles in the piedmont; cobbles or boulders in the mountains, and medium or coarse sand in the coastal plain. Particle size differs greatly between the stream substrate and adjacent land."
+                            ),
+                            f12 = fig12(),
+                            f12_cap = input$sub1_cap,
+                            f13 = fig13(),
+                            f13_cap = input$sub2_cap,
+                            f14 = fig14(),
+                            f14_cap = input$sub3_cap,
+                            notes_sub = input$notes_sub,
+
+                            # Fibrous Rooted
+                            fibrous = case_when
+                            (
+                                input$user_roots == 0 ~ "0 (Absent) A strong network of fibrous roots is persistent in the stream thalweg and surrounding area.",
+                                input$user_roots == 0.5 ~ "0.5",
+                                input$user_roots == 1 ~ "1 (Weak) A discontinuous network of fibrous roots is present in the stream thalweg and surrounding area.",
+                                input$user_roots == 1.5 ~ "1.5",
+                                input$user_roots == 2 ~ "2 (Moderate) Very few fibrous roots are present anywhere in the streambed.",
+                                input$user_roots == 2.5 ~ "2.5",
+                                input$user_roots == 3 ~ "3 (Strong) No fibrous roots are present."
+                            ),
+                            f62 = fig62(),
+                            f62_cap = input$fib1_cap,
+                            f63 = fig63(),
+                            f63_cap = input$fib2_cap,
+                            f64 = fig64(),
+                            f64_cap = input$fib3_cap,
+                            notes_fibrous = input$notes_fibrous,
+
+                            # Drainage
+                            drainage = input$user_drainage,
+                            f65 = fig65(),
+                            f65_cap = input$drainage1_cap,
+                            f66 = fig66(),
+                            f66_cap = input$drainage2_cap,
+                            f67 = fig67(),
+                            f67_cap = input$drainage3_cap,
+                            notes_drainage = input$notes_drainage,
+
+                            # elevation
+                            elevation = ifelse(
+                                is.atomic(region_class()), 
+                                paste0(input$user_manual_elevation, " (Entered)"),
+                                paste0(elevation(), " (Calculated)")
+                            ),
+                            notes_elevation = input$notes_elevation,
+
+                            # precipitation
+                            precip = ifelse(
+                                is.atomic(region_class()), 
+                                paste0(input$user_manual_precip, " (Entered)"),
+                                paste0(precip(), " (Calculated)")
+                            ),
+                            notes_precip = input$notes_precip
+
+                           
+                        )
+
+                        params <- c(general_params, region_params)
+
+                        tempReport <- "se_report.qmd"
+
+                        quarto::quarto_render(
+                            tempReport,
+                            output_format = "pdf",
+                            execute_params = params
+                        )
+
+                        file.copy("se_report.pdf", file, overwrite = TRUE)
+
+                        removeModal()
+                    },
+                    warning = function(cond) {
+                        showModal(
+                            modalDialog(
+                                "There was an error while generating the report.
+                            Please contact Will Saulnier (wsaulnier@eprusa.net) for more details.",
+                                footer = modalButton("Ok")
+                            )
+                        )
+                        return(NULL)
+                    }
+                )
+            } else if (temp_region == "Great Plains") {
                 ## Great Plains ----
 
-                        tryCatch({
-            
-                            showModal(modalDialog("Please wait while the report is being generated.....", footer=NULL))
+                tryCatch(
+                    {
+                        showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
 
-                            # Set up parameters to pass to Rmd document
-                            region_params <- list(
-                                
-                                # ------------------- Biological indicators
-                                # EPT Taxa
-                                aqua_inv = case_when(
-                                  input$user_total_abundance == 0 ~ '0',
-                                  input$user_total_abundance == 1 ~ "1 to 9",
-                                  input$user_total_abundance == 2 ~ "10 or greater9"
-                                ),
-                                f6 = fig6(),
-                                f6_cap = input$inv1_cap,
-                                f7 = fig7(),
-                                f7_cap = input$inv2_cap,
-                                f8 = fig8(),
-                                f8_cap = input$inv3_cap,
-                                f6_1 = fig6_1(),
-                                f6_1cap = input$inv4_cap,
-                                f7_1 = fig7_1(),
-                                f7_1cap = input$inv5_cap,
-                                f8_1 = fig8_1(),
-                                f8_cap = input$inv6_cap,
-                                notes_aquainv = input$notes_totalAbundance,
+                        # Set up parameters to pass to Rmd document
+                        region_params <- list(
 
-                                # Hydrophytes
-                                hydro_check = input$hydro_check,
-                                hydro = case_when(
-                                  input$user_hydrophyte == 0 ~ 'Less than 2',
-                                  T ~ "Greater than or equal to 2"
-                                ),
-                                f24 = fig24(),
-                                f24_cap = input$hydro1_cap,
-                                f25 = fig25(),
-                                f25_cap = input$hydro2_cap,
-                                f26 = fig26(),
-                                f26_cap = input$hydro3_cap,
-                                f27 = fig27(),
-                                f27_cap = input$hydro4_cap,
-                                f28 = fig28(),
-                                f28_cap = input$hydro5_cap,
-                                f29 = fig29(),
-                                f29_cap = input$hydro6_cap,
-                                notes_hydro = input$notes_hydro,                       
+                            # ------------------- Biological indicators
+                            # EPT Taxa
+                            aqua_inv = case_when(
+                                input$user_total_abundance == 0 ~ "Total abundance of aquatic macroinvertebrates is zero.",
+                                input$user_total_abundance == 1 ~ "Total abundance is 1 to 9 individuals.",
+                                input$user_total_abundance == 2 ~ "Total abundance is 10 or more individuals. "
+                            ),
+                            f6 = fig6(),
+                            f6_cap = input$inv1_cap,
+                            f7 = fig7(),
+                            f7_cap = input$inv2_cap,
+                            f8 = fig8(),
+                            f8_cap = input$inv3_cap,
+                            f6_1 = fig6_1(),
+                            f6_1cap = input$inv4_cap,
+                            f7_1 = fig7_1(),
+                            f7_1cap = input$inv5_cap,
+                            f8_1 = fig8_1(),
+                            f8_cap = input$inv6_cap,
+                            notes_aquainv = input$notes_totalAbundance,
 
-                                # Upland Rooted
-                                upland_rooted = case_when(
-                                  input$user_upland_rooted == 0 ~ "0 (Poor)",
-                                  input$user_upland_rooted == 0.5 ~ "0.5",
-                                  input$user_upland_rooted == 1 ~ "1 (Weak)",
-                                  input$user_upland_rooted == 1.5 ~ "1.5",
-                                  input$user_upland_rooted == 2 ~ "2 (Moderate)",
-                                  input$user_upland_rooted == 2.5 ~ "2.5",
-                                  input$user_upland_rooted == 3 ~ "3 (Strong)"
-                                ),
-                                f45 = fig45(),
-                                f45_cap = input$ur1_cap,
-                                f46 = fig46(),
-                                f46_cap = input$ur2_cap,
-                                f47 = fig47(),
-                                f47_cap = input$ur3_cap,
-                                notes_rooted = input$notes_rooted,
+                            # Hydrophytes
+                            hydro_check = input$hydro_check,
+                            hydro = case_when(
+                                input$user_hydrophyte == 0 ~ "Less than 2",
+                                T ~ "Greater than or equal to 2"
+                            ),
+                            f24 = fig24(),
+                            f24_cap = input$hydro1_cap,
+                            f25 = fig25(),
+                            f25_cap = input$hydro2_cap,
+                            f26 = fig26(),
+                            f26_cap = input$hydro3_cap,
+                            f27 = fig27(),
+                            f27_cap = input$hydro4_cap,
+                            f28 = fig28(),
+                            f28_cap = input$hydro5_cap,
+                            f29 = fig29(),
+                            f29_cap = input$hydro6_cap,
+                            notes_hydro = input$notes_hydro,
 
-                                # Substrate
-                                substrate = case_when(
-                                  input$user_substrate == 0 ~ "0 (Weak)",
-                                  input$user_substrate == 0.75 ~ "0.5",
-                                  input$user_substrate == 1.5 ~ "1.5 (Moderate)",
-                                  input$user_substrate == 2.25 ~ "2.25",
-                                  input$user_substrate == 3 ~ "3 (Strong)"
-                                ),
-                                f12 = fig12(),
-                                f12_cap = input$sub1_cap,
-                                f13 = fig13(),
-                                f13_cap = input$sub2_cap,
-                                f14 = fig14(),
-                                f14_cap = input$sub3_cap,
-                                notes_sub = input$notes_sub,
+                            # Upland Rooted
+                            upland_rooted = case_when(
+                                input$user_upland_rooted == 0 ~ "Present - rooted upland plant individuals are present in the streambed.",
+                                input$user_upland_rooted == 1 ~ "Absent - rooted upland plant individuals are absent in the streambed."
+                            ),
+                            f45 = fig45(),
+                            f45_cap = input$ur1_cap,
+                            f46 = fig46(),
+                            f46_cap = input$ur2_cap,
+                            f47 = fig47(),
+                            f47_cap = input$ur3_cap,
+                            notes_rooted = input$notes_rooted,
 
-                                # Difference in Veg
-                                vegetation = case_when(
-                                  input$user_diff_veg == 0 ~ "0 (Poor)",
-                                  input$user_diff_veg == 0.5 ~ "0.5",
-                                  input$user_diff_veg == 1 ~ "1 (Weak)",
-                                  input$user_diff_veg == 1.5 ~ "1.5",
-                                  input$user_diff_veg == 2 ~ "2 (Moderate)",
-                                  input$user_diff_veg == 2.5 ~ "2.5",
-                                  input$user_diff_veg == 3 ~ "3 (Strong)"
-                                ),
-                                f15 = fig15(),
-                                f15_cap = input$veg1_cap,
-                                f16 = fig16(),
-                                f16_cap = input$veg2_cap,
-                                f17 = fig17(),
-                                f17_cap = input$veg3_cap,
-                                notes_vegetation = input$notes_veg,
+                            # Substrate
+                            substrate = case_when(
+                                input$user_substrate == 0 ~ "0 (Poor) Particle sizes in the channel are similar or comparable to particle sizes in areas close to but not in the channel. Substrate sorting is not readily observed in the channel. ",
+                                input$user_substrate == 0.75 ~ "0.5",
+                                input$user_substrate == 1.5 ~ "1.5 (Moderate) Particle sizes in the channel are moderately similar to particle sizes in areas close to but not in the channel. Various sized substrates are present in the channel and are represented by a higher ratio of larger particles (gravel/cobble). ",
+                                input$user_substrate == 2.25 ~ "2.25",
+                                input$user_substrate == 3 ~ "3 (Strong) Particle sizes in the channel are noticeably different from particle sizes in areas close to but not in the channel. There is a clear distribution of various sized substrates in the channel with finer particles accumulating in the pools, and larger particles accumulating in the riffles/runs."
+                            ),
+                            f12 = fig12(),
+                            f12_cap = input$sub1_cap,
+                            f13 = fig13(),
+                            f13_cap = input$sub2_cap,
+                            f14 = fig14(),
+                            f14_cap = input$sub3_cap,
+                            notes_sub = input$notes_sub,
 
-                                # Sediment on plants
-                                sediment = case_when(
-                                  input$user_sediment_plants == 0 ~ "0 (Poor)",
-                                  input$user_sediment_plants == 0.25 ~ "0.25",
-                                  input$user_sediment_plants == 0.5 ~ "0.5 (Weak)",
-                                  input$user_sediment_plants == 0.75 ~ "0.75",
-                                  input$user_sediment_plants == 1 ~ "1 (Moderate)",
-                                  input$user_sediment_plants == 1.25 ~ "1.25",
-                                  input$user_sediment_plants == 1.5 ~ "1.5 (Strong)"
-                                ),
-                                f18 = fig18(),
-                                f18_cap = input$sed1_cap,
-                                f19 = fig19(),
-                                f19_cap = input$sed2_cap,
-                                f20 = fig20(),
-                                f20_cap = input$sed3_cap,
-                                notes_sed = input$notes_sed,
+                            # Difference in Veg
+                            vegetation = case_when(
+                                input$user_diff_veg == 0 ~ "0 (Poor) No compositional or density differences in vegetation are present between the streambanks and adjacent uplands. ",
+                                input$user_diff_veg == 0.5 ~ "0.5",
+                                input$user_diff_veg == 1 ~ "1 (Weak) Vegetation growing along the reach may occur in greater densities or grow more vigorously than vegetation in the adjacent uplands, but there are no dramatic compositional differences between the two. ",
+                                input$user_diff_veg == 1.5 ~ "1.5",
+                                input$user_diff_veg == 2 ~ "2 (Moderate) A distinct riparian vegetation corridor exists along part of the reach. Riparian vegetation is interspersed with upland vegetation along the length of the reach. ",
+                                input$user_diff_veg == 2.5 ~ "2.5",
+                                input$user_diff_veg == 3 ~ "3 (Strong) Dramatic compositional differences in vegetation are present between the stream banks and adjacent uplands. A distinct riparian corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach."
+                            ),
+                            f15 = fig15(),
+                            f15_cap = input$veg1_cap,
+                            f16 = fig16(),
+                            f16_cap = input$veg2_cap,
+                            f17 = fig17(),
+                            f17_cap = input$veg3_cap,
+                            notes_vegetation = input$notes_veg,
 
-                                # Riffle Pool Sequence
-                                riff = case_when(
-                                  input$user_riff_pool == 0 ~ "0 (Poor)",
-                                  input$user_riff_pool == 0.5 ~ "0.5",
-                                  input$user_riff_pool == 1 ~ "1 (Weak)",
-                                  input$user_riff_pool == 1.5 ~ "1.5",
-                                  input$user_riff_pool == 2 ~ "2 (Moderate)",
-                                  input$user_riff_pool == 2.5 ~ "2.5",
-                                  input$user_riff_pool == 3 ~ "3 (Strong)"
-                                ),
-                                f42 = fig42(),
-                                f42_cap = input$riff1_cap,
-                                f43 = fig43(),
-                                f43_cap = input$riff2_cap,
-                                f44 = fig44(),
-                                f44_cap = input$riff3_cap,
-                                notes_riff = input$notes_riff,
-                
-                                # Bank Width
-                                bankwidth = bank_mean()
+                            # Sediment on plants
+                            sediment = case_when(
+                                input$user_sediment_plants == 0 ~ "0 (Poor) No fine sediment is present on plants or debris. ",
+                                input$user_sediment_plants == 0.25 ~ "0.25",
+                                input$user_sediment_plants == 0.5 ~ "0.5 (Weak) Fine sediment is isolated in small amounts along the stream. ",
+                                input$user_sediment_plants == 0.75 ~ "0.75",
+                                input$user_sediment_plants == 1 ~ "1 (Moderate) Fine sediment found on plants or debris within the stream channel, although it is not prevalent along the stream. Mostly accumulating in pools. ",
+                                input$user_sediment_plants == 1.25 ~ "1.25",
+                                input$user_sediment_plants == 1.5 ~ "1.5 (Strong) Fine sediment found readily on plants and debris within the stream channel, on the streambank, and within the floodplain throughout the length of the stream."
+                            ),
+                            f18 = fig18(),
+                            f18_cap = input$sed1_cap,
+                            f19 = fig19(),
+                            f19_cap = input$sed2_cap,
+                            f20 = fig20(),
+                            f20_cap = input$sed3_cap,
+                            notes_sed = input$notes_sed,
 
+                            # Riffle Pool Sequence
+                            riff = case_when(
+                                input$user_riff_pool == 0 ~ "0 (Poor) No riffle-pool sequences observed. ",
+                                input$user_riff_pool == 0.5 ~ "0.5",
+                                input$user_riff_pool == 1 ~ "1 (Weak) Mostly has areas of pools or riffles. ",
+                                input$user_riff_pool == 1.5 ~ "1.5",
+                                input$user_riff_pool == 2 ~ "2 (Moderate) Represented by a less frequent number of riffles and pools. Distinguishing the transition between riffles and pools is difficult to observe. ",
+                                input$user_riff_pool == 2.5 ~ "2.5",
+                                input$user_riff_pool == 3 ~ "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools."
+                            ),
+                            f42 = fig42(),
+                            f42_cap = input$riff1_cap,
+                            f43 = fig43(),
+                            f43_cap = input$riff2_cap,
+                            f44 = fig44(),
+                            f44_cap = input$riff3_cap,
+                            notes_riff = input$notes_riff,
 
-                            )
-            
-                            params <- c(general_params, region_params)
-            
-                            tempReport <- "gp_report.qmd"
-               
-                            quarto::quarto_render(
-                              tempReport,
-                              output_format = "pdf",
-                              execute_params = params
-                            )
+                            # Bank Width
+                            bankwidth = bank_mean()
+                        )
 
-                            file.copy("gp_report.pdf", file, overwrite=TRUE)
+                        params <- c(general_params, region_params)
 
-                            removeModal()
-                        },
-                        warning = function(cond){
-                            showModal(
+                        tempReport <- "gp_report.qmd"
+
+                        quarto::quarto_render(
+                            tempReport,
+                            output_format = "pdf",
+                            execute_params = params
+                        )
+
+                        file.copy("gp_report.pdf", file, overwrite = TRUE)
+
+                        removeModal()
+                    },
+                    warning = function(cond) {
+                        showModal(
                             modalDialog(
                                 "There was an error while generating the report.
                             Please contact Will Saulnier (wsaulnier@eprusa.net) for more details.",
                                 footer = modalButton("Ok")
                             )
-                            )
-                            return(NULL)
-                        })
-
-
-            } else if (temp_region == 'Pacific Northwest'){
+                        )
+                        return(NULL)
+                    }
+                )
+            } else if (temp_region == "Pacific Northwest") {
                 ## Pacific Northwest----
-                        tryCatch({
-            
-                            showModal(modalDialog("Please wait while the report is being generated.....", footer=NULL))
+                tryCatch(
+                    {
+                        showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
 
-                            # Set up parameters to pass to Rmd document
-                            region_params <- list(
-                                cwidth = ifelse(is.na(input$cwidth), ' ', input$cwidth),
-                                # cwidth = input$cwidth,
-                                diff_site = input$diff_site,
-                                diff_situation = input$diff_situation %>% as.character() %>% paste0(collapse = ", "),
-                                precip_avg = input$precip_avg,
+                        # Set up parameters to pass to Rmd document
+                        region_params <- list(
+                            cwidth = ifelse(is.na(input$cwidth), " ", input$cwidth),
+                            # cwidth = input$cwidth,
+                            diff_site = input$diff_site,
+                            diff_situation = input$diff_situation %>% as.character() %>% paste0(collapse = ", "),
+                            precip_avg = input$precip_avg,
 
-                                # -------------------Ancillary Info
-                                notes_anc = input$notes_anc,
-                                anc_rip = input$anc_rip,
-                                anc_erosion = input$anc_erosion,
-                                anc_fp = input$anc_fp,
-                                disturbance = input$disturbance,
-                                diff_other = input$diff_other,
-
-
-                                # ------------------- Biological indicators
-                                # EPT Taxa
-                                aqua_inv = input$user_aquatic_presence,
-                                ephem = input$user_ephemeroptera,
-                                f6 = fig6(),
-                                f6_cap = input$inv1_cap,
-                                f7 = fig7(),
-                                f7_cap = input$inv2_cap,
-                                f8 = fig8(),
-                                f8_cap = input$inv3_cap,
-                                f6_1 = fig6_1(),
-                                f6_1cap = input$inv4_cap,
-                                f7_1 = fig7_1(),
-                                f7_1cap = input$inv5_cap,
-                                f8_1 = fig8_1(),
-                                f8_cap = input$inv6_cap,
-                                notes_aquainv = input$notes_totalAbundance,
-
-                                # Hydrophytes
-                                hydro = input$user_plants,
-                                f24 = fig24(),
-                                f24_cap = input$hydro1_cap,
-                                f25 = fig25(),
-                                f25_cap = input$hydro2_cap,
-                                f26 = fig26(),
-                                f26_cap = input$hydro3_cap,
-                                f27 = fig27(),
-                                f27_cap = input$hydro4_cap,
-                                f28 = fig28(),
-                                f28_cap = input$hydro5_cap,
-                                f29 = fig29(),
-                                f29_cap = input$hydro6_cap,
-                                notes_hydro = input$notes_hydro,                       
-
-                                # Perennial Taxa
-                                per_taxa = input$user_per_taxa,
-                                f33 = fig33(),
-                                f33_cap = input$per1_cap,
-                                f34 = fig34(),
-                                f34_cap = input$per2_cap,
-                                f35 = fig35(),
-                                f35_cap = input$per3_cap,
-                                notes_per = input$notes_per,
-
-                                # Fish
-                                fish = input$user_fish,
-                                f30 = fig30(),
-                                f30_cap = input$fish1_cap,
-                                f31 = fig31(),
-                                f31_cap = input$fish2_cap,
-                                f32 = fig32(),
-                                f32_cap = input$fish3_cap,
-                                notes_fish = input$notes_fish,
-
-                                # Amphibians
-                                amphibians = input$user_amphibians,
-                                f39 = fig39(),
-                                f39_cap = input$amph1_cap,
-                                f40 = fig40(),
-                                f40_cap = input$amph2_cap,
-                                f41 = fig41(),
-                                f41_cap = input$amph3_cap,
-                                notes_amph = input$notes_amph,
-
-                                # Slope
-                                slope = input$user_slope,
-                                f21 = fig21(),
-                                f21_cap = input$slope1_cap,
-                                f22 = fig22(),
-                                f22_cap = input$slope2_cap,
-                                f23 = fig23(),
-                                f23_cap = input$slope3_cap,
-                                notes_slope = input$notes_slope
+                            # -------------------Ancillary Info
+                            notes_anc = input$notes_anc,
+                            anc_rip = input$anc_rip,
+                            anc_erosion = input$anc_erosion,
+                            anc_fp = input$anc_fp,
+                            disturbance = input$disturbance,
+                            diff_other = input$diff_other,
 
 
-                            )
+                            # ------------------- Biological indicators
+                            # EPT Taxa
+                            aqua_inv = input$user_aquatic_presence,
+                            ephem = input$user_ephemeroptera,
+                            f6 = fig6(),
+                            f6_cap = input$inv1_cap,
+                            f7 = fig7(),
+                            f7_cap = input$inv2_cap,
+                            f8 = fig8(),
+                            f8_cap = input$inv3_cap,
+                            f6_1 = fig6_1(),
+                            f6_1cap = input$inv4_cap,
+                            f7_1 = fig7_1(),
+                            f7_1cap = input$inv5_cap,
+                            f8_1 = fig8_1(),
+                            f8_cap = input$inv6_cap,
+                            notes_aquainv = input$notes_totalAbundance,
 
-                            params <- c(general_params, region_params)
-            
-                            tempReport <- "pnw_report.qmd"
-               
-                            quarto::quarto_render(
-                              tempReport,
-                              output_format = "pdf",
-                              execute_params = params
-                            )
+                            # Hydrophytes
+                            hydro = input$user_plants,
+                            f24 = fig24(),
+                            f24_cap = input$hydro1_cap,
+                            f25 = fig25(),
+                            f25_cap = input$hydro2_cap,
+                            f26 = fig26(),
+                            f26_cap = input$hydro3_cap,
+                            f27 = fig27(),
+                            f27_cap = input$hydro4_cap,
+                            f28 = fig28(),
+                            f28_cap = input$hydro5_cap,
+                            f29 = fig29(),
+                            f29_cap = input$hydro6_cap,
+                            notes_hydro = input$notes_hydro,
 
-                            file.copy("pnw_report.pdf", file, overwrite=TRUE)
+                            # Perennial Taxa
+                            per_taxa = input$user_per_taxa,
+                            f33 = fig33(),
+                            f33_cap = input$per1_cap,
+                            f34 = fig34(),
+                            f34_cap = input$per2_cap,
+                            f35 = fig35(),
+                            f35_cap = input$per3_cap,
+                            notes_per = input$notes_per,
 
-                            removeModal()
-                        },
-                        warning = function(cond){
-                            showModal(
+                            # Fish
+                            fish = input$user_fish,
+                            f30 = fig30(),
+                            f30_cap = input$fish1_cap,
+                            f31 = fig31(),
+                            f31_cap = input$fish2_cap,
+                            f32 = fig32(),
+                            f32_cap = input$fish3_cap,
+                            notes_fish = input$notes_fish,
+
+                            # Amphibians
+                            amphibians = input$user_amphibians,
+                            f39 = fig39(),
+                            f39_cap = input$amph1_cap,
+                            f40 = fig40(),
+                            f40_cap = input$amph2_cap,
+                            f41 = fig41(),
+                            f41_cap = input$amph3_cap,
+                            notes_amph = input$notes_amph,
+
+                            # Slope
+                            slope = input$user_slope,
+                            f21 = fig21(),
+                            f21_cap = input$slope1_cap,
+                            f22 = fig22(),
+                            f22_cap = input$slope2_cap,
+                            f23 = fig23(),
+                            f23_cap = input$slope3_cap,
+                            notes_slope = input$notes_slope
+                        )
+
+                        params <- c(general_params, region_params)
+
+                        tempReport <- "pnw_report.qmd"
+
+                        quarto::quarto_render(
+                            tempReport,
+                            output_format = "pdf",
+                            execute_params = params
+                        )
+
+                        file.copy("pnw_report.pdf", file, overwrite = TRUE)
+
+                        removeModal()
+                    },
+                    warning = function(cond) {
+                        showModal(
                             modalDialog(
                                 "There was an error while generating the report.
                             Please contact Will Saulnier (wsaulnier@eprusa.net) for more details.",
                                 footer = modalButton("Ok")
                             )
-                            )
-                            return(NULL)
-                        })
-            
-
-            } else if (temp_region == 'Western Mountains'){
+                        )
+                        return(NULL)
+                    }
+                )
+            } else if (temp_region == "Western Mountains") {
                 ## Western Mountains----
 
-                        tryCatch({
-            
-                            showModal(modalDialog("Please wait while the report is being generated.....", footer=NULL))
+                tryCatch(
+                    {
+                        showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
 
-                            # Set up parameters to pass to Rmd document
-                            region_params <- list(
-                                
-                                # ------------------- Biological indicators
-                                # EPT Taxa
-                                macro_check = input$macro_check,
-                                aqua_inv = case_when(
-                                  input$user_total_abundance == 0 ~ '0',
-                                  input$user_total_abundance == 1 ~ "1 to 4",
-                                  input$user_total_abundance == 2 ~ "5 to 9",
-                                  input$user_total_abundance == 3 ~ "10 to 19",
-                                  input$user_total_abundance == 4 ~ "Great than or equal to 20"
-                                ),
-                                f6 = fig6(),
-                                f6_cap = input$inv1_cap,
-                                f7 = fig7(),
-                                f7_cap = input$inv2_cap,
-                                f8 = fig8(),
-                                f8_cap = input$inv3_cap,
-                                f6_1 = fig6_1(),
-                                f6_1cap = input$inv4_cap,
-                                f7_1 = fig7_1(),
-                                f7_1cap = input$inv5_cap,
-                                f8_1 = fig8_1(),
-                                f8_cap = input$inv6_cap,
-                                notes_aquainv = input$notes_totalAbundance,
+                        # Set up parameters to pass to Rmd document
+                        region_params <- list(
 
-                                eph_isa = case_when(
-                                  input$user_eph_isa == 0 ~ '0',
-                                  input$user_eph_isa == 1 ~ "1 to 4",
-                                  input$user_eph_isa == 2 ~ "5 to 9",
-                                  input$user_eph_isa == 3 ~ "10 to 19",
-                                  input$user_eph_isa == 4 ~ "Great than or equal to 20"
-                                ),
+                            # ------------------- Biological indicators
+                            # EPT Taxa
+                            macro_check = input$macro_check,
+                            aqua_inv = case_when(
+                                input$user_total_abundance == 0 ~ "No EPT detected",
+                                input$user_total_abundance == 1 ~ "1 to 4 EPT individuals ",
+                                input$user_total_abundance == 2 ~ "5 to 9 EPT individuals",
+                                input$user_total_abundance == 3 ~ "10 to 19 EPT individuals",
+                                input$user_total_abundance == 4 ~ "20 or more EPT individuals"
+                            ),
+                            f6 = fig6(),
+                            f6_cap = input$inv1_cap,
+                            f7 = fig7(),
+                            f7_cap = input$inv2_cap,
+                            f8 = fig8(),
+                            f8_cap = input$inv3_cap,
+                            f6_1 = fig6_1(),
+                            f6_1cap = input$inv4_cap,
+                            f7_1 = fig7_1(),
+                            f7_1cap = input$inv5_cap,
+                            f8_1 = fig8_1(),
+                            f8_cap = input$inv6_cap,
+                            notes_aquainv = input$notes_totalAbundance,
+                            eph_isa = case_when(
+                                input$user_eph_isa == 0 ~ "No perennial indicator taxa detected",
+                                input$user_eph_isa == 1 ~ "1 to 4 perennial indicator individuals ",
+                                input$user_eph_isa == 2 ~ "5 to 9 perennial indicator individuals",
+                                input$user_eph_isa == 3 ~ "10 to 19 perennial indicator individuals",
+                                input$user_eph_isa == 4 ~ "20 or more perennial indicator individuals"
+                            ),
 
-                                # Hydrophytes
-                                hydro_check = input$hydro_check,
-                                hydro = case_when(
-                                  input$user_hydrophyte < 5 ~ as.character(input$user_hydrophyte),
-                                  T ~ "Greater than or equal to 5"
-                                ),
-                                f24 = fig24(),
-                                f24_cap = input$hydro1_cap,
-                                f25 = fig25(),
-                                f25_cap = input$hydro2_cap,
-                                f26 = fig26(),
-                                f26_cap = input$hydro3_cap,
-                                f27 = fig27(),
-                                f27_cap = input$hydro4_cap,
-                                f28 = fig28(),
-                                f28_cap = input$hydro5_cap,
-                                f29 = fig29(),
-                                f29_cap = input$hydro6_cap,
-                                notes_hydro = input$notes_hydro,                       
+                            # Hydrophytes
+                            hydro_check = input$hydro_check,
+                            hydro = case_when(
+                                input$user_hydrophyte < 5 ~ as.character(input$user_hydrophyte),
+                                T ~ "Greater than or equal to 5"
+                            ),
+                            f24 = fig24(),
+                            f24_cap = input$hydro1_cap,
+                            f25 = fig25(),
+                            f25_cap = input$hydro2_cap,
+                            f26 = fig26(),
+                            f26_cap = input$hydro3_cap,
+                            f27 = fig27(),
+                            f27_cap = input$hydro4_cap,
+                            f28 = fig28(),
+                            f28_cap = input$hydro5_cap,
+                            f29 = fig29(),
+                            f29_cap = input$hydro6_cap,
+                            notes_hydro = input$notes_hydro,
 
-                                # Upland Rooted
-                                upland_rooted = case_when(
-                                  input$user_upland_rooted == 0 ~ "0 (Poor)",
-                                  input$user_upland_rooted == 0.5 ~ "0.5",
-                                  input$user_upland_rooted == 1 ~ "1 (Weak)",
-                                  input$user_upland_rooted == 1.5 ~ "1.5",
-                                  input$user_upland_rooted == 2 ~ "2 (Moderate)",
-                                  input$user_upland_rooted == 2.5 ~ "2.5",
-                                  input$user_upland_rooted == 3 ~ "3 (Strong)"
-                                ),
-                                f45 = fig45(),
-                                f45_cap = input$ur1_cap,
-                                f46 = fig46(),
-                                f46_cap = input$ur2_cap,
-                                f47 = fig47(),
-                                f47_cap = input$ur3_cap,
-                                notes_rooted = input$notes_rooted,
+                            # Upland Rooted
+                            upland_rooted = case_when(
+                                input$user_upland_rooted == 0 ~ "0 (Poor) Rooted upland plants are prevalent within the streambed/thalweg. ",
+                                input$user_upland_rooted == 0.5 ~ "0.5",
+                                input$user_upland_rooted == 1 ~ "1 (Weak) Rooted upland plants are consistently dispersed throughout the streambed/thalweg. ",
+                                input$user_upland_rooted == 1.5 ~ "1.5",
+                                input$user_upland_rooted == 2 ~ "2 (Moderate) There are a few rooted upland plants present within the streambed/thalweg. ",
+                                input$user_upland_rooted == 2.5 ~ "2.5",
+                                input$user_upland_rooted == 3 ~ "3 (Strong) Rooted upland plants are absent from the streambed/thalweg. "
+                            ),
+                            f45 = fig45(),
+                            f45_cap = input$ur1_cap,
+                            f46 = fig46(),
+                            f46_cap = input$ur2_cap,
+                            f47 = fig47(),
+                            f47_cap = input$ur3_cap,
+                            notes_rooted = input$notes_rooted,
 
-                                # Substrate
-                                substrate = case_when(
-                                  input$user_substrate == 0 ~ "0 (Weak)",
-                                  input$user_substrate == 0.75 ~ "0.75",
-                                  input$user_substrate == 1.5 ~ "1.5 (Moderate)",
-                                  input$user_substrate == 2.25 ~ "2.25",
-                                  input$user_substrate == 3 ~ "3 (Strong)"
-                                ),
-                                f12 = fig12(),
-                                f12_cap = input$sub1_cap,
-                                f13 = fig13(),
-                                f13_cap = input$sub2_cap,
-                                f14 = fig14(),
-                                f14_cap = input$sub3_cap,
-                                notes_sub = input$notes_sub,
+                            # Substrate
+                            substrate = case_when(
+                                input$user_substrate == 0 ~ "0 (Poor) Particle sizes in the channel are similar or comparable to particle sizes in areas close to but not in the channel. Substrate sorting is not readily observed in the channel.",
+                                input$user_substrate == 0.75 ~ "0.75",
+                                input$user_substrate == 1.5 ~ "1.5 (Moderate) Particle sizes in the channel are moderately similar to particle sizes in areas close to but not in the channel. Various sized substrates are present in the channel and are represented by a higher ratio of larger particles (gravel/cobble; coarse sand in low-gradient streams).",
+                                input$user_substrate == 2.25 ~ "2.25",
+                                input$user_substrate == 3 ~ "3 (Strong) Particle sizes in the channel are noticeably different from particle sizes in areas close to but not in the channel. There is a clear distribution of various sized substrates in the channel with finer particles accumulating in the pools, and larger particles accumulating in the riffles/runs."
+                            ),
+                            f12 = fig12(),
+                            f12_cap = input$sub1_cap,
+                            f13 = fig13(),
+                            f13_cap = input$sub2_cap,
+                            f14 = fig14(),
+                            f14_cap = input$sub3_cap,
+                            notes_sub = input$notes_sub,
 
-                                # Difference in Veg
-                                vegetation = case_when(
-                                  input$user_diff_veg == 0 ~ "0 (Poor)",
-                                  input$user_diff_veg == 0.5 ~ "0.5",
-                                  input$user_diff_veg == 1 ~ "1 (Weak)",
-                                  input$user_diff_veg == 1.5 ~ "1.5",
-                                  input$user_diff_veg == 2 ~ "2 (Moderate)",
-                                  input$user_diff_veg == 2.5 ~ "2.5",
-                                  input$user_diff_veg == 3 ~ "3 (Strong)"
-                                ),
-                                f15 = fig15(),
-                                f15_cap = input$veg1_cap,
-                                f16 = fig16(),
-                                f16_cap = input$veg2_cap,
-                                f17 = fig17(),
-                                f17_cap = input$veg3_cap,
-                                notes_vegetation = input$notes_veg,
+                            # Difference in Veg
+                            vegetation = case_when(
+                                input$user_diff_veg == 0 ~ "0 (Poor) No compositional or density differences in vegetation are present between the banks and the adjacent uplands. ",
+                                input$user_diff_veg == 0.5 ~ "0.5",
+                                input$user_diff_veg == 1 ~ "1 (Weak) Vegetation growing along the reach may occur in greater densities or grow more vigorously than vegetation in the adjacent uplands, but there are no dramatic compositional differences between the two. ",
+                                input$user_diff_veg == 1.5 ~ "1.5",
+                                input$user_diff_veg == 2 ~ "2 (Moderate) A distinct riparian corridor exists along part of the reach. Riparian vegetation is interspersed with upland vegetation along the length of the reach. ",
+                                input$user_diff_veg == 2.5 ~ "2.5",
+                                input$user_diff_veg == 3 ~ "3 (Strong) Dramatic compositional differences in vegetation are present between the banks and the adjacent uplands. A distinct riparian vegetation corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach. "
+                            ),
+                            f15 = fig15(),
+                            f15_cap = input$veg1_cap,
+                            f16 = fig16(),
+                            f16_cap = input$veg2_cap,
+                            f17 = fig17(),
+                            f17_cap = input$veg3_cap,
+                            notes_vegetation = input$notes_veg,
 
-                                # Slope
-                                slope = input$user_slope,
-                                f21 = fig21(),
-                                f21_cap = input$slope1_cap,
-                                f22 = fig22(),
-                                f22_cap = input$slope2_cap,
-                                f23 = fig23(),
-                                f23_cap = input$slope3_cap,
-                                notes_slope = input$notes_slope,
+                            # Slope
+                            slope = input$user_slope,
+                            f21 = fig21(),
+                            f21_cap = input$slope1_cap,
+                            f22 = fig22(),
+                            f22_cap = input$slope2_cap,
+                            f23 = fig23(),
+                            f23_cap = input$slope3_cap,
+                            notes_slope = input$notes_slope,
 
-                                # Shading
-                                shade = input$user_shade,
-                                f55 = fig55(),
-                                f55_cap = input$shade1_cap,
-                                f56 = fig56(),
-                                f56_cap = input$shade2_cap,
-                                f57 = fig57(),
-                                f57_cap = input$shade3_cap,
-                                f58 = fig58(),
-                                f58_cap = input$shade4_cap,
-                                notes_shade = input$notes_shade,
+                            # Shading
+                            shade = input$user_shade,
+                            f55 = fig55(),
+                            f55_cap = input$shade1_cap,
+                            f56 = fig56(),
+                            f56_cap = input$shade2_cap,
+                            f57 = fig57(),
+                            f57_cap = input$shade3_cap,
+                            f58 = fig58(),
+                            f58_cap = input$shade4_cap,
+                            notes_shade = input$notes_shade,
 
-                                # Riffle Pool Sequence
-                                riff = case_when(
-                                  input$user_riff_pool == 0 ~ "0 (Poor)",
-                                  input$user_riff_pool == 0.5 ~ "0.5",
-                                  input$user_riff_pool == 1 ~ "1 (Weak)",
-                                  input$user_riff_pool == 1.5 ~ "1.5",
-                                  input$user_riff_pool == 2 ~ "2 (Moderate)",
-                                  input$user_riff_pool == 2.5 ~ "2.5",
-                                  input$user_riff_pool == 3 ~ "3 (Strong)"
-                                ),
-                                f42 = fig42(),
-                                f42_cap = input$riff1_cap,
-                                f43 = fig43(),
-                                f43_cap = input$riff2_cap,
-                                f44 = fig44(),
-                                f44_cap = input$riff3_cap,
-                                notes_riff = input$notes_riff,
-                
-                                # Bank Width
-                                bankwidth = bank_mean()
-                
+                            # Riffle Pool Sequence
+                            riff = case_when(
+                                input$user_riff_pool == 0 ~ "0 (Poor) No riffle-pool sequences observed. ",
+                                input$user_riff_pool == 0.5 ~ "0.5",
+                                input$user_riff_pool == 1 ~ "1 (Weak) Mostly has areas of pools or riffles. ",
+                                input$user_riff_pool == 1.5 ~ "1.5",
+                                input$user_riff_pool == 2 ~ "2 (Moderate) Represented by a less frequent number of riffles and pools. Distinguishing the transition between riffles and pools is difficult to observe. ",
+                                input$user_riff_pool == 2.5 ~ "2.5",
+                                input$user_riff_pool == 3 ~ "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools. "
+                            ),
+                            f42 = fig42(),
+                            f42_cap = input$riff1_cap,
+                            f43 = fig43(),
+                            f43_cap = input$riff2_cap,
+                            f44 = fig44(),
+                            f44_cap = input$riff3_cap,
+                            notes_riff = input$notes_riff,
 
-                            )
+                            # Bank Width
+                            bankwidth = bank_mean()
+                        )
 
-                            params <- c(general_params, region_params)
-            
-                            tempReport <- "wm_report.qmd"
-               
-                            quarto::quarto_render(
-                              tempReport,
-                              output_format = "pdf",
-                              execute_params = params
-                            )
+                        params <- c(general_params, region_params)
 
-                            file.copy("wm_report.pdf", file, overwrite=TRUE)
+                        tempReport <- "wm_report.qmd"
 
-                            removeModal()
-                        },
-                        warning = function(cond){
-                            showModal(
+                        quarto::quarto_render(
+                            tempReport,
+                            output_format = "pdf",
+                            execute_params = params
+                        )
+
+                        file.copy("wm_report.pdf", file, overwrite = TRUE)
+
+                        removeModal()
+                    },
+                    warning = function(cond) {
+                        showModal(
                             modalDialog(
                                 "There was an error while generating the report.
                             Please contact Will Saulnier (wsaulnier@eprusa.net) for more details.",
                                 footer = modalButton("Ok")
                             )
-                            )
-                            return(NULL)
-                        })
+                        )
+                        return(NULL)
+                    }
+                )
             }
-
         }
-
     )
 }
 ## End server code

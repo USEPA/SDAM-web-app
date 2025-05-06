@@ -176,18 +176,17 @@ gp_report <- function(){
                 
                 div(
                     numericInput(
+                        inputId = "surfflow",
+                        label = "Percent of reach with surface flows:",
+                        value = NULL,
+                        min = 0,
+                    ),
+                    numericInput(
                         inputId = "subflow",
                         label = "Percent of reach with surface and sub-surface flows:",
                         value = NULL,
                         min = 0,
                     ),
-                    numericInput(
-                        inputId = "surfflow",
-                        label = "Percent of reach with surface flows:",
-                        value = NULL,
-                        min = 0,
-                    ),   
-
                     numericInput(
                         inputId = "pool",
                         label = "Number of isolated pools:",

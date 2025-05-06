@@ -39,11 +39,11 @@ aw_panel <- function(){
                                 "user_eph_isa", 
                                 HTML("<b><i>Perennial indicator taxa</b></i><br>"),
                                 c(
-                                    "0" = 0,
-                                    "1 to 4" = 1,
-                                    "5 to 9" = 2,
-                                    "10 to 19" = 3,
-                                    "Great than or equal to 20" = 4
+                                    "No perennial indicator taxa detected" = 0,
+                                    "1 to 4 perennial indicator individuals" = 1,
+                                    "5 to 9 perennial indicator individuals" = 2,
+                                    "10 to 19 perennial indicator individuals" = 3,
+                                    "20 or more perennial indicator individuals" = 4
                                 ),
                                 inline = F,
                                 width = '100%',
@@ -58,7 +58,7 @@ aw_panel <- function(){
                     fluidRow(
                         column(
                             12,
-                            HTML("<b><i>Slope</b></i>"),
+                            HTML("<b><i>Slope (to the nearest half-percent)</b></i>"),
                             numericInputIcon("user_slope",
                                 label = NULL,
                                 min = -500,
@@ -105,13 +105,13 @@ aw_panel <- function(){
                                 HTML("<b><i>Prevalence of upland rooted plants in streambed</i></b><br>
                                       Upland rooted plants include FAC, FACU, UPL, NI, or not listed in the regionally appropriate National Wetland Plant List."),
                                 c(
-                                    "0 (Poor)" = 0,
+                                    "0 (Poor) Rooted upland plants are prevalent within the streambed/thalweg." = 0,
                                     "0.5" = 0.5,
-                                    "1 (Weak)" = 1,
+                                    "1 (Weak) Rooted upland plants are consistently dispersed throughout the streambed/thalweg." = 1,
                                     "1.5" = 1.5,
-                                    "2 (Moderate)" = 2,
+                                    "2 (Moderate) There are a few rooted upland plants present within the streambed/thalweg." = 2,
                                     "2.5" = 2.5,
-                                    "3 (Strong)" = 3
+                                    "3 (Strong) Rooted upland plants are absent from the streambed/thalweg." = 3
                                 ),
                                 inline = F,
                                 width = '100%',
@@ -159,13 +159,13 @@ aw_panel <- function(){
                                 "user_diff_veg", 
                                 HTML("<b><i>Differences in vegetation</b></i>"),
                                 c(
-                                    "0 (Poor)" = 0,
+                                    "0 (Poor) No compositional or density differences in vegetation are present between the banks and the adjacent uplands." = 0,
                                     "0.5" = 0.5,
-                                    "1 (Weak)" = 1,
+                                    "1 (Weak) Vegetation growing along the reach may occur in greater densities or grow more vigorously than vegetation in the adjacent uplands, but there are no dramatic compositional differences between the two." = 1,
                                     "1.5" = 1.5,
-                                    "2 (Moderate)" = 2,
+                                    "2 (Moderate) A distinct riparian corridor exists along part of the reach. Riparian vegetation is interspersed with upland vegetation along the length of the reach." = 2,
                                     "2.5" = 2.5,
-                                    "3 (Strong)" = 3
+                                    "3 (Strong) Dramatic compositional differences in vegetation are present between the banks and the adjacent uplands. A distinct riparian vegetation corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach." = 3
                                 ),
                                 inline = F,
                                 width = '100%',
@@ -184,13 +184,13 @@ aw_panel <- function(){
                                 "user_riff_pool", 
                                 HTML("<b><i>Riffle-pool sequence score</b></i>"),
                                 c(
-                                    "0 (Poor)" = 0,
+                                    "0 (Poor) No riffle-pool sequences observed." = 0,
                                     "0.5" = 0.5,
-                                    "1 (Weak)" = 1,
+                                    "1 (Weak) Mostly has areas of pools or riffles." = 1,
                                     "1.5" = 1.5,
-                                    "2 (Moderate)" = 2,
+                                    "2 (Moderate) Represented by a less frequent number of riffles and pools. Distinguishing the transition between riffles and pools is difficult to observe." = 2,
                                     "2.5" = 2.5,
-                                    "3 (Strong)" = 3
+                                    "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools." = 3
                                 ),
                                 inline = F,
                                 width = '100%',
@@ -204,7 +204,7 @@ aw_panel <- function(){
                 div(
                     fluidRow(
                         column(width = 12,
-                            HTML("<b><i>Enter the number of bankfull measurements (m) (min. 1, max. 3) and associated measurement values to the nearest 0.1 m</b></i>"),
+                            HTML("<b><i>Enter the number of bankfull width measurements (m) (min. 1, max. 3) and associated measurement values to the nearest 0.1 m</b></i>"),
                             numericInputIcon("select_bank",
                                 width = "300px",
                                 label = NULL,
