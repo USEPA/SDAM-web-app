@@ -661,7 +661,7 @@ se_report <- function() {
 
                 ## mean elevation----
                 div(
-                    h4(HTML("<b><u>Mean Watershed Elevation (ft)</u></b>")) %>% tagAppendAttributes(class = "center-div-text"),
+                    h4(HTML("<b><u>Mean Watershed Elevation (m)</u></b>")) %>% tagAppendAttributes(class = "center-div-text"),
                     textAreaInput(
                         inputId = "notes_elevation",
                         label = "Notes about mean watershed elevation from StreamCat:",

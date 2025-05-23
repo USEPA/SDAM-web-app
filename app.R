@@ -1363,7 +1363,7 @@ server <- function(input, output, session) {
 
     # ws elevation----
     elevation <- eventReactive(input$runmodel, {
-        ws_elev(longitude(), latitude(), unit='ft')
+        ws_elev(longitude(), latitude(), unit='m')
     })
 
     # nese output ----
@@ -1412,12 +1412,12 @@ server <- function(input, output, session) {
             req(input$runmodel)
             if (input$runmodel != 0) {
                 if (region_class()$region == 'Northeast'){
-                    h3(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", elevation(), " ]</b>")))
+                    h3(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", elevation(), " ]</b>")))
                 } else if (region_class()$region == 'Southeast'){
                     h3(
                         HTML(
                             paste0(
-                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", elevation(), " ]</b>"))),
+                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", elevation(), " ]</b>"))),
                                 h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", precip(), " ]</b>")))
                             )
                         )
@@ -1432,12 +1432,12 @@ server <- function(input, output, session) {
             req(input$runmodel)
             if (input$runmodel != 0) {
                 if (region_class() == 'Northeast'){
-                    h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", input$user_manual_elevation, " ]</b>")))
+                    h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", input$user_manual_elevation, " ]</b>")))
                 } else if (region_class() == 'Southeast'){
                     h3(
                         HTML(
                             paste0(
-                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet) [ ", input$user_manual_elevation, " ]</b>"))),
+                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", input$user_manual_elevation, " ]</b>"))),
                                 h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", input$user_manual_precip, " ]</b>")))
                             )
                         )

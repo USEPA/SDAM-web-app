@@ -176,7 +176,7 @@ ne_panel <- function(){
                         fluidRow(
                             column(
                                 12,
-                                HTML("<b><i>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (in feet)</b></i>"),
+                                HTML("<b><i>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m)</b></i>"),
                                 numericInputIcon("user_manual_elevation",
                                     label = NULL,
                                     min = 0.0000000000001,

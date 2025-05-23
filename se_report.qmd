@@ -26,7 +26,7 @@ format:
           \newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
           \rfoot{Page \thepage\ of \pageref{LastPage}}
           \cfoot{}
-          \lfoot{SDAM Version 2.0.1 February 2025, Date of site visit: \sitedate}
+          \lfoot{SDAM Version 3.0.0 June 2025, Date of site visit: \sitedate}
     template-partials:
       - before-body.tex
 params:
@@ -423,47 +423,87 @@ Notes on observed hydrology: `r params$r`
 \textbf{\underline{\LARGE{Site photos}}}
 \end{center}
 
+
+```{=latex}
+\begin{minipage}{16cm}
 Top of reach looking downstream:
-```{r, out.width = '50%', out.height= '50%', out.extra='angle=0', fig.align='center'}
+```
+```{r, out.width='72%', out.height= '50%', out.extra='angle=0', fig.align='center'}
 if (!length(params$v)==0){ 
   knitr::include_graphics(params[["v"]])
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
 Middle of reach looking upstream:
-```{r, out.width='50%', fig.align='center'}
+```
+```{r, out.width='72%', fig.align='center'}
 if (!length(params$u)==0){ 
   knitr::include_graphics(params[["u"]])
 }
 
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
 Middle of reach looking downstream:
-```{r, out.width='50%', fig.align='center'}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$t)==0){ 
   knitr::include_graphics(params[["t"]])
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
 Bottom of reach looking upstream:
-```{r, out.width='50%', fig.align='center'}
+```
+```{r, out.width='72%', fig.align='center'}
 if (!length(params$s)==0){ 
   knitr::include_graphics(params[["s"]])
 }
 
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
 \vspace{3mm}
 \begin{center}
 \textbf{\underline{\LARGE{Site sketch}}}
 \end{center}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{r, out.width='72%', fig.align='center'}
 if (!length(params$w)==0){ 
   knitr::include_graphics(params[["w"]])
 }
 
+```
+```{=latex}
+\end{minipage}
+\vspace{2mm}
 ```
 
 \noindent\rule{16cm}{2pt}\
@@ -481,7 +521,10 @@ Notes on mean bankfull channel width: `r params$notes_mb`
 
 Mean bankfull channel width photos and descriptions:
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f52)==0){ 
   knitr::include_graphics(params[["f52"]])
@@ -495,8 +538,15 @@ if (!length(params$f52)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f53)==0){ 
   knitr::include_graphics(params[["f53"]])
@@ -510,10 +560,18 @@ if (!length(params$f53)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f54)==0){ 
-  knitr::include_graphics(params[["f44"]])
+  knitr::include_graphics(params[["f54"]])
 }
 
 ```
@@ -522,6 +580,11 @@ if (!length(params$f54)==0){
 if (!length(params$f54)==0){ 
   cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f54_cap, perl = TRUE)))
 }
+```
+
+```{=latex}
+\end{minipage}
+\vspace{2mm}
 ```
 
 \vspace{2mm}
@@ -539,14 +602,16 @@ Notes on aquatic macroinvertebrates:
 
 Macroinvertebrate photos and photo descriptions:
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f6)==0){ 
   knitr::include_graphics(params[["f6"]])
 }
   
 ```
-
 
 ```{r}
 
@@ -555,8 +620,15 @@ if (!length(params$f6)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f7)==0){ 
   knitr::include_graphics(params[["f7"]])
@@ -570,7 +642,15 @@ if (!length(params$f7)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f8)==0){ 
   knitr::include_graphics(params[["f8"]])
@@ -584,9 +664,17 @@ if (!length(params$f8)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
 
 
-```{r, out.width='50%', fig.align='center'}
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f6_1)==0){ 
   knitr::include_graphics(params[["f6_1"]])
@@ -602,8 +690,16 @@ if (!length(params$f6_1)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f7_1)==0){ 
   knitr::include_graphics(params[["f7_1"]])
@@ -617,7 +713,15 @@ if (!length(params$f7_1)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f8_1)==0){ 
   knitr::include_graphics(params[["f8_1"]])
@@ -631,6 +735,10 @@ if (!length(params$f8_1)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
 \vspace{2mm}
 
@@ -640,7 +748,10 @@ Notes about shading: `r params$notes_shade`
 
 Shading photos and descriptions:
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f55)==0){ 
   knitr::include_graphics(params[["f55"]])
@@ -654,8 +765,16 @@ if (!length(params$f55)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f56)==0){ 
   knitr::include_graphics(params[["f56"]])
@@ -669,7 +788,15 @@ if (!length(params$f56)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f57)==0){ 
   knitr::include_graphics(params[["f57"]])
@@ -683,13 +810,29 @@ if (!length(params$f57)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
 ```{r}
 if (!length(params$f56)==0){ 
   cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f56_cap, perl = TRUE)))
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f58)==0){ 
   knitr::include_graphics(params[["f58"]])
@@ -703,6 +846,10 @@ if (!length(params$f58)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
 \vspace{2mm}
 
@@ -716,7 +863,10 @@ Notes about upland rooted plants:
 
 Upland rooted plants photos and descriptions:
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f45)==0){ 
   knitr::include_graphics(params[["f45"]])
@@ -730,8 +880,16 @@ if (!length(params$f45)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f46)==0){ 
   knitr::include_graphics(params[["f46"]])
@@ -745,7 +903,15 @@ if (!length(params$f46)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f47)==0){ 
   knitr::include_graphics(params[["f47"]])
@@ -759,7 +925,10 @@ if (!length(params$f47)==0){
 }
 ```
 
-
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
 \vspace{2mm}
 
@@ -771,8 +940,10 @@ Notes about particle size of stream substrate:
 `r params$notes_sub`
 
 Substrate photos and descriptions: 
-
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f12)==0){ 
   knitr::include_graphics(params[["f12"]])
@@ -786,8 +957,16 @@ if (!length(params$f12)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f13)==0){ 
   knitr::include_graphics(params[["f13"]])
@@ -800,7 +979,15 @@ if (!length(params$f13)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f14)==0){ 
   knitr::include_graphics(params[["f14"]])
@@ -814,6 +1001,10 @@ if (!length(params$f14)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
 \vspace{2mm}
 
@@ -826,14 +1017,16 @@ Notes about fibrous roots:
 
 Fibrous root photos and photo descriptions:
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f62)==0){ 
   knitr::include_graphics(params[["f62"]])
 }
   
 ```
-
 
 ```{r}
 
@@ -842,8 +1035,16 @@ if (!length(params$f62)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f63)==0){ 
   knitr::include_graphics(params[["f63"]])
@@ -857,7 +1058,15 @@ if (!length(params$f63)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f64)==0){ 
   knitr::include_graphics(params[["f64"]])
@@ -869,6 +1078,11 @@ if (!length(params$f64)==0){
 if (!length(params$f64)==0){ 
   cat(paste0("Description: ",gsub('(?=(?:.{91})+$)', "\n", params$f64_cap, perl = TRUE)))
 }
+```
+
+```{=latex}
+\end{minipage}
+\vspace{2mm}
 ```
 
 \vspace{2mm}
@@ -883,7 +1097,10 @@ Notes about drainage area:
 
 Drainage area photos and descriptions:
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f65)==0){ 
   knitr::include_graphics(params[["f65"]])
@@ -897,8 +1114,16 @@ if (!length(params$f65)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\begin{minipage}{16cm}
+```
+
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f66)==0){ 
   knitr::include_graphics(params[["f66"]])
@@ -912,7 +1137,15 @@ if (!length(params$f66)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f67)==0){ 
   knitr::include_graphics(params[["f67"]])
@@ -926,9 +1159,14 @@ if (!length(params$f67)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
 \textbf{Mean watershed elevation from }
 \href{https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/}{\textcolor{cyan}{StreamCat}}
-\textbf{(in feet): `r if (!is.null(params$elevation)){params$elevation}`}
+\textbf{(m): `r if (!is.null(params$elevation)){params$elevation}`}
 
 Notes about mean watershed elevation from StreamCat:
 
@@ -957,7 +1195,11 @@ Additional notes about the assessment:
 `r params$notes_supplemental_information`
 
 Supplemental information photos and descriptions:
-```{r, out.width='50%', fig.align='center'}
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f48)==0){ 
     knitr::include_graphics(params[["f48"]])
@@ -971,7 +1213,15 @@ if (!length(params$f48)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f49)==0){ 
     knitr::include_graphics(params[["f49"]])
@@ -984,7 +1234,15 @@ if (!length(params$f49)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f50)==0){ 
     knitr::include_graphics(params[["f50"]])
@@ -998,7 +1256,15 @@ if (!length(params$f50)==0){
 }
 ```
 
-```{r, out.width='50%', fig.align='center'}
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
+
+```{=latex}
+\begin{minipage}{16cm}
+```
+```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f51)==0){ 
     knitr::include_graphics(params[["f51"]])
@@ -1012,6 +1278,10 @@ if (!length(params$f51)==0){
 }
 ```
 
+```{=latex}
+\end{minipage}
+\vspace{2mm}
+```
 
 
 \noindent\rule{16cm}{2.5pt}\

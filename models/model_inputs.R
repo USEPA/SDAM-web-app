@@ -153,8 +153,8 @@ ne_df <- function(
     if (is.na(user_elev)){
         user_elev <- ws_elev(user_lon, user_lat)
     } else {
-        # convert user elevation from ft to m for model feature
-        user_elev <- user_elev * 0.3048
+        # manually provided elevation
+        user_elev <- user_elev 
     }
 
         df_input <- tibble(
@@ -204,8 +204,8 @@ se_df <- function(
         user_elev <- ws_elev(user_lon, user_lat)
         user_precip <- prism_fetch(user_lon, user_lat)
     } else {
-        # convert user elevation from ft to m for model feature
-        user_elev <- user_elev * 0.3048
+        # manually provided elevation
+        user_elev <- user_elev 
     }
 
     df_input <- tibble(

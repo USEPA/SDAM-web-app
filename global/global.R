@@ -100,7 +100,7 @@ point_region <- function(
 
 
 # Query StreamCat and NHDPlus APIs to get mean watershed mean elevation
-# mean elevation returned in feet
+# mean elevation returned in meters
 ws_elev <- function(lng, lat, unit = "m"){
   # get comid from NHDPlus
   sfc <- st_sfc(st_point(c(lng,lat)), crs=4326)
