@@ -529,7 +529,7 @@ if (!length(params$f53)==0){
 ```{r, out.width='72%', fig.align='center'}
 
 if (!length(params$f54)==0){ 
-  knitr::include_graphics(params[["f44"]])
+  knitr::include_graphics(params[["f54"]])
 }
 
 ```
