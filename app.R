@@ -612,7 +612,7 @@ ui <- fluidPage(
                                                 background-color:#1a4480;
                                                 margin-right:8px;">Step 1
                                       </span>
-                                      Method for documenting reach location
+                                      Step 1 Document reach location and select regional SDAM
                                     </h3>'
                         ),
                         div(
@@ -627,7 +627,7 @@ ui <- fluidPage(
                                 column(1),
                                 column(
                                     10,
-                                    HTML("<b><i>Method for assessing reach location</b></i>"),
+                                    br(),
                                     selectInput(
                                         "vol_region",
                                         label = NULL,
@@ -907,6 +907,18 @@ server <- function(input, output, session) {
         x
     })
 
+    region_east <- eventReactive(c(input$vol_region, input$user_region, input$lat, input$lon), {
+        
+        if (input$vol_region == "Select region") {
+            if (input$user_region == "Northeast" || input$user_region == "Southeast"){
+                x <- point_region(user_lat = input$lat, user_lon = input$lon)
+                x$SDAM
+            }
+        } 
+        
+    })
+
+
     # store adjacent regions for report
     alt_regions_str <- reactive({
         if (!is.null(map_coords()) && input$vol_region == "Select location on map") {
@@ -983,54 +995,54 @@ server <- function(input, output, session) {
     output$regionPanel <- renderUI({
         if (is.atomic(region_class())) {
             if (region_class() == "Northeast") {
-                show_alert(
-                    title = "",
-                    text = 
-                        tagList(
-                            # tags$p(
-                                HTML(
-                                    paste0(
-                                        "This site is located in the Northeast SDAM study area. In order to run the Northeast SDAM model, you must either:<br><br>",
-                                        "<ul style='list-style-type:square;text-align:left;'>",
-                                            "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
-                                        # "OR",
-                                            "<li>Select by region and directly enter your site’s:</li>",
-                                                "<ul>",
-                                                    "<li>Mean watershed elevation from StreamCat</li>",
-                                                    "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
-                                                "</ul>",
-                                        "</ul>"
-                                    )
-                                ),
-                            # )
-                        ),
-                    type = "default"
-                )
+                # show_alert(
+                #     title = "",
+                #     text = 
+                #         tagList(
+                #             # tags$p(
+                #                 HTML(
+                #                     paste0(
+                #                         "This site is located in the Northeast SDAM study area. In order to run the Northeast SDAM model, you must either:<br><br>",
+                #                         "<ul style='list-style-type:square;text-align:left;'>",
+                #                             "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
+                #                         # "OR",
+                #                             "<li>Select by region and directly enter your site’s:</li>",
+                #                                 "<ul>",
+                #                                     "<li>Mean watershed elevation from StreamCat</li>",
+                #                                     "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
+                #                                 "</ul>",
+                #                         "</ul>"
+                #                     )
+                #                 ),
+                #             # )
+                #         ),
+                #     type = "default"
+                # )
                 ne_panel()
             } else if (region_class() == 'Southeast') {
-                show_alert(
-                    title = "",
-                    text = 
-                        tagList(
-                            # tags$p(
-                                HTML(
-                                    paste0(
-                                        "This site is located in the Southeast SDAM study area. In order to run the Southeast SDAM model, you must either:<br><br>",
-                                        "<ul style='list-style-type:square;text-align:left;'>",
-                                            "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
-                                        # "OR",
-                                            "<li>Select by region and directly enter your site’s:</li>",
-                                                "<ul>",
-                                                    "<li>Mean watershed elevation from StreamCat</li>",
-                                                    "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
-                                                "</ul>",
-                                        "</ul>"
-                                    )
-                                ),
-                            # )
-                        ),
-                    type = "default"
-                )
+                # show_alert(
+                #     title = "",
+                #     text = 
+                #         tagList(
+                #             # tags$p(
+                #                 HTML(
+                #                     paste0(
+                #                         "This site is located in the Southeast SDAM study area. In order to run the Southeast SDAM model, you must either:<br><br>",
+                #                         "<ul style='list-style-type:square;text-align:left;'>",
+                #                             "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
+                #                         # "OR",
+                #                             "<li>Select by region and directly enter your site’s:</li>",
+                #                                 "<ul>",
+                #                                     "<li>Mean watershed elevation from StreamCat</li>",
+                #                                     "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
+                #                                 "</ul>",
+                #                         "</ul>"
+                #                     )
+                #                 ),
+                #             # )
+                #         ),
+                #     type = "default"
+                # )
                 se_panel()
             } else if (region_class() == "Great Plains") {
                 gp_panel()
@@ -1363,7 +1375,7 @@ server <- function(input, output, session) {
 
     # ws elevation----
     elevation <- eventReactive(input$runmodel, {
-        ws_elev(longitude(), latitude(), unit='m')
+        ws_elev(longitude(), latitude())
     })
 
     # nese output ----
@@ -1412,12 +1424,12 @@ server <- function(input, output, session) {
             req(input$runmodel)
             if (input$runmodel != 0) {
                 if (region_class()$region == 'Northeast'){
-                    h3(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", elevation(), " ]</b>")))
+                    h3(HTML(paste0("<b>Elevation (m) [ ", elevation(), " ]</b>")))
                 } else if (region_class()$region == 'Southeast'){
                     h3(
                         HTML(
                             paste0(
-                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", elevation(), " ]</b>"))),
+                                h4(HTML(paste0("<b>Elevation (m) [ ", elevation(), " ]</b>"))),
                                 h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", precip(), " ]</b>")))
                             )
                         )
@@ -1432,13 +1444,13 @@ server <- function(input, output, session) {
             req(input$runmodel)
             if (input$runmodel != 0) {
                 if (region_class() == 'Northeast'){
-                    h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", input$user_manual_elevation, " ]</b>")))
+                    h4(HTML(paste0("<b>Elevation (m) [ ", elevation(), " ]</b>")))
                 } else if (region_class() == 'Southeast'){
                     h3(
                         HTML(
                             paste0(
-                                h4(HTML(paste0("<b>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m) [ ", input$user_manual_elevation, " ]</b>"))),
-                                h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", input$user_manual_precip, " ]</b>")))
+                                h4(HTML(paste0("<b>Elevation (m) [ ", elevation(), " ]</b>"))),
+                                h4(HTML(paste0("<b>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a> [ ", precip(), " ]</b>")))
                             )
                         )
                     )
@@ -1637,7 +1649,7 @@ server <- function(input, output, session) {
                     user_slope = input$user_slope,
                     user_shading = input$user_shade,
                     user_drainage = input$user_drainage,
-                    user_elev = input$user_manual_elevation # for Northeast only, if using manual inputs
+                    # user_elev = input$user_manual_elevation # for Northeast only, if using manual inputs
                 )
             } else if (region_class() == 'Southeast'){
                 se_df(
@@ -1651,8 +1663,8 @@ server <- function(input, output, session) {
                     user_substrate = input$user_substrate,
                     user_roots = input$user_roots,
                     user_drainage = input$user_drainage,
-                    user_elev = input$user_manual_elevation, # for Southeast only, if using manual inputs
-                    user_precip = input$user_manual_precip # for Southeast only, if using manual inputs
+                    # user_elev = input$user_manual_elevation, # for Southeast only, if using manual inputs
+                    # user_precip = input$user_manual_precip # for Southeast only, if using manual inputs
                 )
             }
         } else if (!is.atomic(region_class())) {
@@ -1762,6 +1774,7 @@ server <- function(input, output, session) {
             toupper(run_sdam(df(), region_class()$region))
         }
     })
+
 
     # format site visit date
     visit_date <- eventReactive(input$date, {
@@ -2186,6 +2199,12 @@ server <- function(input, output, session) {
                 region_class()$region
             }
 
+            alt_region <- if (is.atomic(region_class())) {
+                region_class()
+            } else {
+                region_class()$region
+            }
+
             temp_lat <- if (input$vol_region == "Select region") {
                 "Not Provided"
             } else {
@@ -2476,9 +2495,14 @@ server <- function(input, output, session) {
                             # Bankfull Mean Width
                             bankwidth = bank_mean(),
 
+                            # alternate SDAM 
+                            entered_lat = as.numeric(input$lat),
+                            entered_lon = as.numeric(input$lon),
+                            entered_loc = region_east(),
+
                             # precip 
                             precip_info = input$current_precip %>% as.character() %>% paste0(collapse = ", "),
-                            precip_notes = input$notes_precip,
+                            # precip_notes = input$notes_precip,
                     
 
                             # Entrenchment
@@ -2547,12 +2571,7 @@ server <- function(input, output, session) {
                             notes_drainage = input$notes_drainage,
 
                             # elevation
-                            elevation = ifelse(
-                                is.atomic(region_class()), 
-                                paste0(input$user_manual_elevation, " (Entered)"),
-                                paste0(elevation(), " (Calculated)")
-                            ),
-                            notes_elevation = input$notes_elevation
+                            elevation = elevation()
 
                             
                         )
@@ -2595,10 +2614,14 @@ server <- function(input, output, session) {
                             # ------------------- Biological indicators
                             # Bankfull Mean Width
                             bankwidth = bank_mean(),
+                            
+                            entered_lat = as.numeric(input$lat),
+                            entered_lon = as.numeric(input$lon),
+                            entered_loc = region_east(),
           
                             # precip
                             precip_info = input$current_precip %>% as.character() %>% paste0(collapse = ", "),
-                            precip_notes = input$notes_precip,
+                            # precip_notes = input$notes_precip,
 
                             # bmi
                             bmi = case_when
@@ -2706,20 +2729,10 @@ server <- function(input, output, session) {
                             notes_drainage = input$notes_drainage,
 
                             # elevation
-                            elevation = ifelse(
-                                is.atomic(region_class()), 
-                                paste0(input$user_manual_elevation, " (Entered)"),
-                                paste0(elevation(), " (Calculated)")
-                            ),
-                            notes_elevation = input$notes_elevation,
+                            elevation = elevation(),
 
                             # precipitation
-                            precip = ifelse(
-                                is.atomic(region_class()), 
-                                paste0(input$user_manual_precip, " (Entered)"),
-                                paste0(precip(), " (Calculated)")
-                            ),
-                            notes_precip = input$notes_precip
+                            precip = precip()
 
                            
                         )

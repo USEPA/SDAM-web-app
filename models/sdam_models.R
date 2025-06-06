@@ -124,6 +124,7 @@ run_sdam <- function(df = NA,
                         T ~ "Other"
                     )
                 )
+
             output_df$Class
         } else if (pnts_join_df$Strata_UNC == "Pacific Northwest") {
             check_list <- list()
@@ -284,6 +285,7 @@ run_sdam <- function(df = NA,
                     T ~ "Other"
                 )
             )
+
         output_df$Class
     } else if (var_input_reg == "Pacific Northwest") {
         check_list <- list()

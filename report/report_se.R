@@ -660,32 +660,32 @@ se_report <- function() {
                 br(),
 
                 ## mean elevation----
-                div(
-                    h4(HTML("<b><u>Mean Watershed Elevation (m)</u></b>")) %>% tagAppendAttributes(class = "center-div-text"),
-                    textAreaInput(
-                        inputId = "notes_elevation",
-                        label = "Notes about mean watershed elevation from StreamCat:",
-                        value = "",
-                        width = "100%",
-                        height = "75px",
-                        placeholder = NULL
-                    ),
-                ) %>% tagAppendAttributes(class = "question_box"),
-                br(),
+                # div(
+                #     h4(HTML("<b><u>Mean Watershed Elevation (m)</u></b>")) %>% tagAppendAttributes(class = "center-div-text"),
+                #     textAreaInput(
+                #         inputId = "notes_elevation",
+                #         label = "Notes about mean watershed elevation from StreamCat:",
+                #         value = "",
+                #         width = "100%",
+                #         height = "75px",
+                #         placeholder = NULL
+                #     ),
+                # ) %>% tagAppendAttributes(class = "question_box"),
+                # br(),
 
                 ## Average Precipitation-----
-                div(
-                    h4(HTML("<b><u>Average monthly precipitation for May, June, and July (mm)</u></b>")) %>% tagAppendAttributes(class = "center-div-text"),
-                    textAreaInput(
-                        inputId = "notes_precip",
-                        label = "Notes about average precipitation:",
-                        value = "",
-                        width = "100%",
-                        height = "75px",
-                        placeholder = NULL
-                    ),
-                ) %>% tagAppendAttributes(class = "question_box"),
-                br(),
+                # div(
+                #     h4(HTML("<b><u>Average monthly precipitation for May, June, and July (mm)</u></b>")) %>% tagAppendAttributes(class = "center-div-text"),
+                #     textAreaInput(
+                #         inputId = "notes_precip",
+                #         label = "Notes about average precipitation:",
+                #         value = "",
+                #         width = "100%",
+                #         height = "75px",
+                #         placeholder = NULL
+                #     ),
+                # ) %>% tagAppendAttributes(class = "question_box"),
+                # br(),
 
                 ## Notes and photos----
                 HTML('<hr style="color: black; height: 5px; background-color: black;">'),

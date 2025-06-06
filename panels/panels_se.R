@@ -219,31 +219,27 @@ se_panel <- function(){
                 conditionalPanel(
                     condition = "output.region_choice == 'manual'",
                     div(
-                        fluidRow(
-                            column(
-                                12,
-                                HTML("<b><i>Mean watershed elevation from <a href='https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/'>StreamCat</a> (m)</b></i>"),
-                                numericInputIcon("user_manual_elevation",
-                                    label = NULL,
-                                    min = 0.0000000000001,
-                                    max = Inf,
-                                    value = NA,
-                                    step = 0.1,
-                                    width = '300px',
-                                    icon = icon("hashtag")
+                        div(
+                            id = "coords",
+                            HTML("<b><i>Enter coordinates in decimal degrees to retrieve the Elevation and Average Monthly Precipitation for May, June and July.</i></b>"),
+                            fluidRow(
+                                column(
+                                    4,
+                                    numericInput("lat",
+                                        label = NULL,
+                                        value = 40
+                                    )
                                 ),
-                                HTML("<b><i>Average monthly precipitation for May, June, and July (mm) from <a href='https://prism.oregonstate.edu/explorer/'>PRISM</a></b></i>"),
-                                numericInputIcon("user_manual_precip",
+                                column(12, h5("Latitude"))
+                            ),
+                            fluidRow(
+                                column(4, numericInput("lon",
                                     label = NULL,
-                                    min = 0.0000000000001,
-                                    max = Inf,
-                                    value = NA,
-                                    step = 0.01,
-                                    width = '300px',
-                                    icon = icon("hashtag")
-                                )   
+                                    value = -98
+                                )),
+                                column(12, h5("Longitude"))
                             )
-                        ),
+                        )
                     ) %>% tagAppendAttributes(class = 'question_box'),
                     br()
                 ),

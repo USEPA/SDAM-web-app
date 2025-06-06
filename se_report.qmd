@@ -224,9 +224,9 @@ params:
     drainage: NA
     notes_drainage: NA
     elevation: NA
-    notes_elevation: NA
-    notes_precip: NA
-
+    entered_lat: NA
+    entered_lon: NA
+    entered_loc: NA
     
   
 ---
@@ -1164,24 +1164,33 @@ if (!length(params$f67)==0){
 \vspace{2mm}
 ```
 
-\textbf{Mean watershed elevation from }
-\href{https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/}{\textcolor{cyan}{StreamCat}}
-\textbf{(m): `r if (!is.null(params$elevation)){params$elevation}`}
-
-Notes about mean watershed elevation from StreamCat:
-
-`r params$notes_elevation`
+\textbf{Elevation (m): `r if (!is.null(params$elevation)){params$elevation}`}
 
 \textbf{Average monthly precipitation for May, June, and July (mm) from }
 \href{https://prism.oregonstate.edu/explorer/}{\textcolor{cyan}{PRISM}}
 \textbf{: `r if (!is.null(params$precip)){params$precip}`}
 
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('Coordinates used: '))
 
-Notes about average precipitation:
-
-`r params$notes_precip`
-
-
+}
+```
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('      Latitude: ', params$entered_lat))
+}
+```
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('      Longitude:', params$entered_lon))
+}
+```
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('SDAM Region of the coordinates: ', params$entered_loc))
+}
+```
 \noindent\rule{16cm}{2pt}\
 
 

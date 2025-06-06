@@ -223,7 +223,9 @@ params:
     drainage: NA
     notes_drainage: NA
     elevation: NA
-    notes_elevation: NA
+    entered_lat: NA
+    entered_lon: NA
+    entered_loc: NA
 
     
   
@@ -1053,15 +1055,29 @@ if (!length(params$f67)==0){
 ```
 
 
-\textbf{Mean watershed elevation from }
-\href{https://www.epa.gov/national-aquatic-resource-surveys/streamcat-web-tool-map-view/}{\textcolor{cyan}{StreamCat}}
-\textbf{(m): `r if (!is.null(params$elevation)){params$elevation}`}
+\textbf{Elevation (m): `r if (!is.null(params$elevation)){params$elevation}`}
 
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('Coordinates used: '))
 
-
-Notes about mean watershed elevation from StreamCat:
-
-`r params$notes_elevation`
+}
+```
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('      Latitude: ', params$entered_lat))
+}
+```
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('      Longitude:', params$entered_lon))
+}
+```
+```{r}
+if (params$h == 'Not Provided'){
+  cat(paste0('SDAM Region of the coordinates: ', params$entered_loc))
+}
+```
 
 
 \noindent\rule{16cm}{2pt}\
