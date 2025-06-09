@@ -145,7 +145,7 @@ ne_panel <- function(){
                     fluidRow(
                         column(
                             12,
-                            HTML("<b><i>Drainage area (in square miles, to nearest tenth)</b></i>"),
+                            HTML("<b><i>Drainage area (in square miles, if < 1 round to the nearest 0.001)</b></i>"),
                             numericInputIcon("user_drainage",
                                 label = NULL,
                                 min = 0.0000000000001,
