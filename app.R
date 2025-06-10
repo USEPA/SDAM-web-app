@@ -595,7 +595,7 @@ ui <- fluidPage(
                             '<div class="alert alert-danger" role="alert"
                                       style="background-color:#005ea2; margin-top:-50px; padding-top:0px; padding-bottom:0px;">
                                       <h3 style=padding-top:2%;>
-                                        <a href=\"https://www.epa.gov/streamflow-duration-assessment/supporting-materials\" style="color:#ffffff;">
+                                        <a href=\"https://www.epa.gov/streamflow-duration-assessment/materials-support-application-regional-sdams\" style="color:#ffffff;">
                                         Supporting SDAM materials including user manuals, field assessment forms, training videos and more </a>
                                       </h3>
                                     </div>'
