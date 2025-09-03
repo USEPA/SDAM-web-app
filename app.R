@@ -912,7 +912,7 @@ server <- function(input, output, session) {
         
         if (input$vol_region == "Select region") {
             if (input$user_region == "Northeast" || input$user_region == "Southeast"){
-                x <- point_region(user_lat = input$lat, user_lon = input$lon)
+                x <- point_region(user_lat = latitude(), user_lon = longitude())
                 x$SDAM
             }
         } 
@@ -2408,8 +2408,8 @@ server <- function(input, output, session) {
                             bankwidth = bank_mean(),
 
                             # alternate SDAM 
-                            entered_lat = as.numeric(input$lat),
-                            entered_lon = as.numeric(input$lon),
+                            entered_lat = as.numeric(latitude()),
+                            entered_lon = as.numeric(longitude()),
                             entered_loc = region_east(),
 
                             # precip 
@@ -2527,8 +2527,8 @@ server <- function(input, output, session) {
                             # Bankfull Mean Width
                             bankwidth = bank_mean(),
                             
-                            entered_lat = as.numeric(input$lat),
-                            entered_lon = as.numeric(input$lon),
+                            entered_lat = as.numeric(latitude()),
+                            entered_lon = as.numeric(longitude()),
                             entered_loc = region_east(),
           
                             # precip
