@@ -894,6 +894,7 @@ server <- function(input, output, session) {
     # increase file upload size to 30MB
     options(shiny.maxRequestSize = 30 * 1024^2)
 
+
     # region -----
 
     region_class <- eventReactive(c(input$reg_button, input$map_click, input$vol_region, input$user_region), {
@@ -1253,7 +1254,11 @@ server <- function(input, output, session) {
     # lat/long----
     latitude <- eventReactive(c(input$map_click, input$lat, input$lon), {
         if (is.null(map_coords())) {
-            latitude <- input$lat
+            if (is.atomic(region_class()) && (region_class() == "Northeast" | region_class() == "Southeast")){
+                latitude <- input$man_lat
+            } else {
+                latitude <- input$lat
+            }
         } else if (!is.null(map_coords())) {
             latitude <- map_coords()[1]
         }
@@ -1261,7 +1266,11 @@ server <- function(input, output, session) {
     })
     longitude <- eventReactive(c(input$map_click, input$lat, input$lon), {
         if (is.null(map_coords())) {
-            longitude <- input$lon
+            if (is.atomic(region_class()) && (region_class() == "Northeast" | region_class() == "Southeast")){
+                longitude <- input$man_lon
+            } else {
+                longitude <- input$lon
+            }
         } else if (!is.null(map_coords())) {
             longitude <- map_coords()[2]
         }
@@ -1297,95 +1306,11 @@ server <- function(input, output, session) {
         prism_fetch(longitude(), latitude())
     })
 
-    # observeEvent(c(input$reg_button, region_class()), {
-        
-    #     if ((is.atomic(region_class())) && (region_class() == "Northeast" | region_class() == "Southeast")) {
-    #             div(
-    #                 fluidRow(
-    #                     column(
-    #                         12,
-    #                         HTML("<b><i>i.	Mean watershed elevation from StreamCat</b></i>"),
-    #                         numericInputIcon("user_manual_elevation",
-    #                             label = NULL,
-    #                             min = 0.0000000000001,
-    #                             max = Inf,
-    #                             value = NA,
-    #                             step = 0.1,
-    #                             width = '300px',
-    #                             icon = icon("hashtag")
-    #                         )
-    #                         # if (region_class() == 'Southeast'){
-    #                         #     HTML("<b><i>ii.	Average monthly precipitation for May, June, and July in millimeters from PRISM</b></i>"),
-    #                         #     numericInputIcon("user_manual_precip",
-    #                         #         label = NULL,
-    #                         #         min = 0.0000000000001,
-    #                         #         max = Inf,
-    #                         #         value = NA,
-    #                         #         step = 0.01,
-    #                         #         width = '300px',
-    #                         #         icon = icon("hashtag")
-    #                         #     )
-
-    #                         # }
-    #                     )
-    #                 )
-    #             ) %>% tagAppendAttributes(class = 'question_box'),
-    #             br()
-    #     }
-
-    # })
-
-    # output$manual_inputs <- renderUI({
-    #     if ((is.atomic(region_class())) && (region_class() == "Northeast")) {
-    #         # HTML("<b><i>i.	Mean watershed elevation from StreamCat</b></i>"),
-    #         # numericInputIcon("user_manual_elevation",
-    #         #     label = NULL,
-    #         #     min = 0.0000000000001,
-    #         #     max = Inf,
-    #         #     value = NA,
-    #         #     step = 0.1,
-    #         #     width = '300px',
-    #         #     icon = icon("hashtag")
-    #         # )
-    #     } else if ((is.atomic(region_class())) && (region_class() == "Southeast")) {
-    #         HTML("<b><i>Mean watershed elevation (ft) from StreamCat</b></i>")
-    #         numericInputIcon("user_manual_elevation",
-    #             label = NULL,
-    #             min = 0.0000000000001,
-    #             max = Inf,
-    #             value = NA,
-    #             step = 0.1,
-    #             width = '300px',
-    #             icon = icon("hashtag")
-    #         )
-    #         HTML("<b><i>Average monthly precipitation for May, June, and July in millimeters from PRISM</b></i>")
-    #         numericInputIcon("user_manual_precip",
-    #             label = NULL,
-    #             min = 0.0000000000001,
-    #             max = Inf,
-    #             value = NA,
-    #             step = 0.01,
-    #             width = '300px',
-    #             icon = icon("hashtag")
-    #         )   
-    #     } 
-
-    # })
-
-
     # ws elevation----
     elevation <- eventReactive(input$runmodel, {
         ws_elev(longitude(), latitude())
     })
 
-    # nese output ----
-    # output$region_str <- renderText({
-    #     if (is.atomic(region_class())) {
-    #         return(print("no coords"))
-    #     } else if (!is.atomic(region_class())) {
-    #         return(print(region_class()$region))
-    #     } 
-    # })  
 
     # var <- eventReactive(c(input$runmodel), {
     var <- reactive({
@@ -1463,19 +1388,6 @@ server <- function(input, output, session) {
         }
     })
 
-    # output$nese <- renderUI({
-    #     if (is.atomic(region_class()) && (region_class() == "Northeast" || region_class() == "Southeast")) {
-    #         # if in the Northeast or Southeast
-    #         req(input$runmodel)
-    #         if (input$runmodel != 0) {
-    #             h3(HTML(paste0("<b>Precipitation: ", precip(), " mm</b>")))
-    #         } else {
-    #             return(NULL)
-    #         }
-    #     } else {
-    #         return(NULL)
-    #     }
-    # })
 
     # percent shade calculation -----
     # dynamic UI output for length 1:12 for densiometer recordings

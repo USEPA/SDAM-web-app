@@ -179,7 +179,7 @@ ne_panel <- function(){
                             fluidRow(
                                 column(
                                     4,
-                                    numericInput("lat",
+                                    numericInput("man_lat",
                                         label = NULL,
                                         value = 40
                                     )
@@ -187,7 +187,7 @@ ne_panel <- function(){
                                 column(12, h5("Latitude"))
                             ),
                             fluidRow(
-                                column(4, numericInput("lon",
+                                column(4, numericInput("man_lon",
                                     label = NULL,
                                     value = -98
                                 )),
