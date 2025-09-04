@@ -16,6 +16,7 @@ format:
           \usepackage{geometry}
           \usepackage{xcolor}
           \usepackage{fancyhdr}
+          \usepackage{underscore}
           \renewcommand{\headrulewidth}{0.0pt}
           \pagestyle{fancy}
           \usepackage{lastpage}

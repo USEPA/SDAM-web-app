@@ -17,6 +17,7 @@ format:
           \usepackage{indentfirst}
           \usepackage{geometry}
           \usepackage{xcolor}
+          \usepackage{underscore}
           \usepackage{fancyhdr}
           \renewcommand{\headrulewidth}{0.0pt}
           \pagestyle{fancy}
