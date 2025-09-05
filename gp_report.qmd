@@ -292,7 +292,7 @@ if (params$h != 'Not Provided'){
 
 if (params$h != 'Not Provided'){
   lmap <- leaflet(options=leafletOptions(minZoom=16, maxZoom=16)) %>%
-    addTiles() %>%
+    addTiles(urlTemplate = "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}") %>%
     addCircleMarkers(
         lng=params$h,
         lat=params$g,
