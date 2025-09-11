@@ -1374,9 +1374,7 @@ if (!length(params$f51)==0){
 \begin{tcolorbox}[colframe=darker-blue,
   colback=my-blue,
   width=16cm,
-  title={\centering \Huge \underline{\textcolor{white}{`r params$region` SDAM classification}}},
-  fonttitle=\bfseries,
-  coltitle=white]
+  squeezed title*={\Huge{\underline{\textcolor{white}{`r params$region` SDAM classification}}}}]
   \begin{center}
     \Huge{\textcolor{white}{`r params$stream_class`}}
   \end{center}
