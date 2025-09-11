@@ -20,19 +20,9 @@ run_sdam <- function(df = NA,
                 "<p>Please check your latitude and longitude coordinates to ensure they are entered correctly.<p><br>"
             )
             print(spatial_msg)
-        } else if (pnts_join_df$Strata_UNC == "East") {
-            show_alert(
-                title = "Location Error!",
-                text = tagList(
-                    tags$p(HTML(paste0(
-                        "This site is located in the East Beta SDAM study area.",
-                        "Please visit the <a href=\"https://ecosystemplanningrestoration.shinyapps.io/beta_sdam_nese\">East Beta SDAM application</a>  for the Northeast and Southeast."
-                    )))
-                ),
-                type = "error"
-            )
+
         } else if (pnts_join_df$Strata_UNC == "Great Plains") {
-            set.seed(1111)
+            # set.seed(1111)
             ClassProbs <- predict(gp_rf, newdata = df, type = "prob") %>% as.data.frame()
 
             output_df <- bind_cols(pnts_join_df, ClassProbs) %>%
@@ -51,45 +41,72 @@ run_sdam <- function(df = NA,
                 )
 
             output_df$Class
-        } else if (pnts_join_df$Strata_UNC == "Western Mountains") {
-            load("NotForGit/Step5/all_refined_rf_mods.Rdata")
+        } else if (pnts_join_df$Strata_UNC == "Western Mountains") {    
 
-            ClassProbs <- predict(wm_rf, newdata = pnts_join_df, type = "prob") %>% as.data.frame()
-            # assign appropriate class based on probabilities
-            output_df <- bind_cols(df, ClassProbs) %>%
-                mutate(
-                    ALI = I + P,
-                    Class = case_when(
-                        P >= .5 ~ "perennial",
-                        I >= .5 ~ "intermittent",
-                        E >= 0.5 ~ "ephemeral",
-                        P > E ~ "at least intermittent",
-                        E > P ~ "less than perennial",
-                        P == E & I > P ~ "Need more information",
-                        P == E & I <= P ~ "Need more information",
-                        T ~ "Other"
-                    )
+            if (any(is.na(pnts_join_df)) ){
+                print("Null found in model df")
+                show_alert(
+                    title = "",
+                    text = tagList(
+                        tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                    ),
+                    type = "default"
                 )
-            output_df$Class
+                "Other"
+            } else {
+                ClassProbs <- predict(wm_rf, newdata = pnts_join_df, type = "prob") %>% as.data.frame()
+                    # assign appropriate class based on probabilities
+                output_df <- bind_cols(df, ClassProbs) %>%
+                    mutate(
+                        ALI = I + P,
+                        Class = case_when(
+                            P >= .5 ~ "perennial",
+                            I >= .5 ~ "intermittent",
+                            E >= 0.5 ~ "ephemeral",
+                            P > E ~ "at least intermittent",
+                            E > P ~ "less than perennial",
+                            P == E & I > P ~ "Need more information",
+                            P == E & I <= P ~ "Need more information",
+                            T ~ "Other"
+                        )
+                    )
+                output_df$Class
+            }
+            
         } else if (pnts_join_df$Strata_UNC == "Arid West") {
-            ClassProbs <- predict(aw_rf, newdata = df, type = "prob") %>% as.data.frame()
-            # assign appropriate class based on probabilities
-            output_df <- bind_cols(pnts_join_df, ClassProbs) %>%
-                mutate(
-                    ALI = I + P,
-                    Class = case_when(
-                        P >= .5 ~ "perennial",
-                        I >= .5 ~ "intermittent",
-                        E >= 0.5 ~ "ephemeral",
-                        P > E ~ "at least intermittent",
-                        E > P ~ "less than perennial",
-                        P == E & I > P ~ "Need more information",
-                        P == E & I <= P ~ "Need more information",
-                        T ~ "Other"
-                    )
+
+            if (any(is.na(pnts_join_df)) ){
+                print("Null found in model df")
+                show_alert(
+                    title = "",
+                    text = tagList(
+                        tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                    ),
+                    type = "default"
                 )
-            output_df$Class
+                "Other"
+            } else {
+                ClassProbs <- predict(aw_rf, newdata = pnts_join_df, type = "prob") %>% as.data.frame()
+                    # assign appropriate class based on probabilities
+                output_df <- bind_cols(df, ClassProbs) %>%
+                    mutate(
+                        ALI = I + P,
+                        Class = case_when(
+                            P >= .5 ~ "perennial",
+                            I >= .5 ~ "intermittent",
+                            E >= 0.5 ~ "ephemeral",
+                            P > E ~ "at least intermittent",
+                            E > P ~ "less than perennial",
+                            P == E & I > P ~ "Need more information",
+                            P == E & I <= P ~ "Need more information",
+                            T ~ "Other"
+                        )
+                    )
+                output_df$Class
+            }
+
         } else if (pnts_join_df$Strata_UNC == "Northeast") {
+
             ClassProbs <- predict(ne_rf, newdata = df, type = "prob") %>% as.data.frame()
             # assign appropriate class based on probabilities
             output_df <- bind_cols(df, ClassProbs) %>%
@@ -108,6 +125,7 @@ run_sdam <- function(df = NA,
                 )
             output_df$Class
         } else if (pnts_join_df$Strata_UNC == "Southeast") {
+
             ClassProbs <- predict(se_rf, newdata = df, type = "prob") %>% as.data.frame()
             # assign appropriate class based on probabilities
             output_df <- bind_cols(df, ClassProbs) %>%
@@ -126,6 +144,7 @@ run_sdam <- function(df = NA,
                 )
 
             output_df$Class
+
         } else if (pnts_join_df$Strata_UNC == "Pacific Northwest") {
             check_list <- list()
             for (t in names(df)) {
@@ -182,19 +201,8 @@ run_sdam <- function(df = NA,
                 output_df$Class
             }
         }
-    # } else if (var_input_reg == "East") {
-    #     show_alert(
-    #         title = "Location Error!",
-    #         text = tagList(
-    #             tags$p(HTML(paste0(
-    #                 "This site is located in the East Beta SDAM study area.",
-    #                 "Please visit the <a href=\"https://github.com/WSaulnier/beta_sdam_nese\">East Beta SDAM application</a>  for the Northeast and Southeast."
-    #             )))
-    #         ),
-    #         type = "error"
-    #     )
+
     } else if (var_input_reg == "Great Plains") {
-        set.seed(1111)
 
         ClassProbs <- predict(gp_rf, newdata = df, type = "prob")
         # assign appropriate class based on probabilities
@@ -214,43 +222,71 @@ run_sdam <- function(df = NA,
             )
 
         output_df$Class
+
     } else if (var_input_reg == "Western Mountains") {
-        ClassProbs <- predict(wm_rf, newdata = df, type = "prob") %>% as.data.frame()
-        # assign appropriate class based on probabilities
-        output_df <- bind_cols(df, ClassProbs) %>%
-            mutate(
-                ALI = I + P,
-                Class = case_when(
-                    P >= .5 ~ "perennial",
-                    I >= .5 ~ "intermittent",
-                    E >= 0.5 ~ "ephemeral",
-                    P > E ~ "at least intermittent",
-                    E > P ~ "less than perennial",
-                    P == E & I > P ~ "Need more information",
-                    P == E & I <= P ~ "Need more information",
-                    T ~ "Other"
+
+        if (any(is.na(df)) ){
+                show_alert(
+                    title = "",
+                    text = tagList(
+                        tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                    ),
+                    type = "default"
                 )
-            )
-        output_df$Class
+                "Other"
+            } else {
+                ClassProbs <- predict(wm_rf, newdata = df, type = "prob") %>% as.data.frame()
+                    # assign appropriate class based on probabilities
+                output_df <- bind_cols(df, ClassProbs) %>%
+                    mutate(
+                        ALI = I + P,
+                        Class = case_when(
+                            P >= .5 ~ "perennial",
+                            I >= .5 ~ "intermittent",
+                            E >= 0.5 ~ "ephemeral",
+                            P > E ~ "at least intermittent",
+                            E > P ~ "less than perennial",
+                            P == E & I > P ~ "Need more information",
+                            P == E & I <= P ~ "Need more information",
+                            T ~ "Other"
+                        )
+                    )
+                output_df$Class
+            }
+
     } else if (var_input_reg == "Arid West") {
-        ClassProbs <- predict(aw_rf, newdata = df, type = "prob") %>% as.data.frame()
-        # assign appropriate class based on probabilities
-        output_df <- bind_cols(df, ClassProbs) %>%
-            mutate(
-                ALI = I + P,
-                Class = case_when(
-                    P >= .5 ~ "perennial",
-                    I >= .5 ~ "intermittent",
-                    E >= 0.5 ~ "ephemeral",
-                    P > E ~ "at least intermittent",
-                    E > P ~ "less than perennial",
-                    P == E & I > P ~ "Need more information",
-                    P == E & I <= P ~ "Need more information",
-                    T ~ "Other"
-                )
+
+        if (any(is.na(df)) ){
+            show_alert(
+                title = "",
+                text = tagList(
+                    tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                ),
+                type = "default"
             )
-        output_df$Class
+            "Other"
+        } else {
+            ClassProbs <- predict(aw_rf, newdata = df, type = "prob") %>% as.data.frame()
+                # assign appropriate class based on probabilities
+            output_df <- bind_cols(df, ClassProbs) %>%
+                mutate(
+                    ALI = I + P,
+                    Class = case_when(
+                        P >= .5 ~ "perennial",
+                        I >= .5 ~ "intermittent",
+                        E >= 0.5 ~ "ephemeral",
+                        P > E ~ "at least intermittent",
+                        E > P ~ "less than perennial",
+                        P == E & I > P ~ "Need more information",
+                        P == E & I <= P ~ "Need more information",
+                        T ~ "Other"
+                    )
+                )
+            output_df$Class
+        }
+
     } else if (var_input_reg == "Northeast") {
+
         ClassProbs <- predict(ne_rf, newdata = df, type = "prob") %>% as.data.frame()
         # assign appropriate class based on probabilities
         output_df <- bind_cols(df, ClassProbs) %>%
@@ -268,7 +304,9 @@ run_sdam <- function(df = NA,
                 )
             )
         output_df$Class
+
     } else if (var_input_reg == "Southeast") {
+
         ClassProbs <- predict(se_rf, newdata = df, type = "prob") %>% as.data.frame()
         # assign appropriate class based on probabilities
         output_df <- bind_cols(df, ClassProbs) %>%
@@ -285,8 +323,8 @@ run_sdam <- function(df = NA,
                     T ~ "Other"
                 )
             )
-
         output_df$Class
+
     } else if (var_input_reg == "Pacific Northwest") {
         check_list <- list()
         for (t in names(df)) {
@@ -305,6 +343,7 @@ run_sdam <- function(df = NA,
                 ),
                 type = "default"
             )
+            "Other"
         } else {
             if (df$aqua_presence == "Yes") {
                 if (df$ephemeroptera == "Yes") {

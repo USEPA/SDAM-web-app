@@ -2,8 +2,8 @@
 title: \vspace{-2cm} \begin{huge} Streamflow Duration Assessment Methods \end{huge}
 title-block-banner: false
 title-block-banner-color: "#03fcfc"
-subtitle: "SDAM Version 3.0.0 Release Date: June 2025"
-revision: "SDAM revision date: June, 2025" 
+subtitle: "SDAM Version 3.0.1 Release Date: September 2025"
+revision: "SDAM revision date: September, 2025" 
 date: "Report generated on: `r format(Sys.time(), '%B %d, %Y')`"
 embed-resources: false
 filters: [remove_title.lua]
@@ -27,7 +27,7 @@ format:
           \newtcolorbox{mybox}{colback=red!5!white,colframe=red!75!black}
           \rfoot{Page \thepage\ of \pageref{LastPage}}
           \cfoot{}
-          \lfoot{SDAM Version 3.0.0 June 2025, Date of site visit: \sitedate}
+          \lfoot{SDAM Version 3.0.1 September 2025, Date of site visit: \sitedate}
     template-partials:
       - before-body.tex
 params:
@@ -232,11 +232,11 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
 \vspace{-3cm}
 \begin{tcolorbox}
     \begin{center}
-        \begin{huge} Streamflow Duration Assessment Methods \end{huge}
+        \begin{huge} Streamflow Duration Assessment Method Report \end{huge}
     \end{center}
     \vspace{2mm}
     \begin{center}
-        \begin{Large} SDAM Version 3.0.0 Release Date: June 2025 \end{Large}
+        \begin{Large} SDAM Version 3.0.1 Release Date: September 2025 \end{Large}
     \end{center}
     \vspace{2mm}
     \begin{center}
@@ -260,7 +260,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
     \end{center}
     \vspace{2mm}
     \begin{center}
-        \begin{large}Regional SDAM classification: `r params$stream_class`\end{large}
+        \begin{large}`r params$region` SDAM classification: `r params$stream_class`\end{large}
     \end{center}
     
 \end{tcolorbox}
@@ -345,7 +345,7 @@ Project name or number: `r params$a`
 
 Site code or identifier: `r params$c`
 
-SDAM Region: `r params$region`
+Regional SDAM: `r params$region`
 
 Adjacent SDAM Regions within 10 miles: `r params$adj_regions`
 
@@ -360,7 +360,7 @@ Current weather conditions: `r params$bm`
 Notes on current or recent weather conditions:
 `r params$j`
 
-Location: `r ifelse(params$g != 'Not Provided' | params$h != 'Not Provided', paste0(params$g," N, ", params$h, " E"), paste0('Not provided'))`
+Location: `r ifelse(params$g != 'Not Provided' | params$h != 'Not Provided', paste0(params$g,", ", params$h), paste0('Not provided'))`
 
 Surrounding land use within 100 m: `r params$l`
 
@@ -1374,7 +1374,9 @@ if (!length(params$f51)==0){
 \begin{tcolorbox}[colframe=darker-blue,
   colback=my-blue,
   width=16cm,
-  squeezed title*={\Huge{\underline{\textcolor{white}{`r params$region` Regional SDAM classification}}}}]
+  title={\centering \Huge \underline{\textcolor{white}{`r params$region` SDAM classification}}},
+  fonttitle=\bfseries,
+  coltitle=white]
   \begin{center}
     \Huge{\textcolor{white}{`r params$stream_class`}}
   \end{center}

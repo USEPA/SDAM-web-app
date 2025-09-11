@@ -571,7 +571,7 @@ ui <- fluidPage(
                     "Web application for the Regional Streamflow Duration Assessment Methods (SDAMs)"
                 )
             ),
-            h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">3.0.0</a> Release date: June 2025 </p>")),
+            h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">3.0.1</a> Release date: September 2025 </p>")),
         ),
         "SDAMs"
     ),
@@ -894,7 +894,6 @@ server <- function(input, output, session) {
     # increase file upload size to 30MB
     options(shiny.maxRequestSize = 30 * 1024^2)
 
-
     # region -----
 
     region_class <- eventReactive(c(input$reg_button, input$map_click, input$vol_region, input$user_region), {
@@ -996,54 +995,8 @@ server <- function(input, output, session) {
     output$regionPanel <- renderUI({
         if (is.atomic(region_class())) {
             if (region_class() == "Northeast") {
-                # show_alert(
-                #     title = "",
-                #     text = 
-                #         tagList(
-                #             # tags$p(
-                #                 HTML(
-                #                     paste0(
-                #                         "This site is located in the Northeast SDAM study area. In order to run the Northeast SDAM model, you must either:<br><br>",
-                #                         "<ul style='list-style-type:square;text-align:left;'>",
-                #                             "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
-                #                         # "OR",
-                #                             "<li>Select by region and directly enter your site’s:</li>",
-                #                                 "<ul>",
-                #                                     "<li>Mean watershed elevation from StreamCat</li>",
-                #                                     "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
-                #                                 "</ul>",
-                #                         "</ul>"
-                #                     )
-                #                 ),
-                #             # )
-                #         ),
-                #     type = "default"
-                # )
                 ne_panel()
             } else if (region_class() == 'Southeast') {
-                # show_alert(
-                #     title = "",
-                #     text = 
-                #         tagList(
-                #             # tags$p(
-                #                 HTML(
-                #                     paste0(
-                #                         "This site is located in the Southeast SDAM study area. In order to run the Southeast SDAM model, you must either:<br><br>",
-                #                         "<ul style='list-style-type:square;text-align:left;'>",
-                #                             "<li>Enter your site's coordinates or select a location on the map to retrieve associated values for mean watershed elevation and average monthly precipitation for May, June, and July (SE only), </li>",
-                #                         # "OR",
-                #                             "<li>Select by region and directly enter your site’s:</li>",
-                #                                 "<ul>",
-                #                                     "<li>Mean watershed elevation from StreamCat</li>",
-                #                                     "<li>Average monthly precipitation for May, June, and July in millimeters from PRISM (SE only) </li>",
-                #                                 "</ul>",
-                #                         "</ul>"
-                #                     )
-                #                 ),
-                #             # )
-                #         ),
-                #     type = "default"
-                # )
                 se_panel()
             } else if (region_class() == "Great Plains") {
                 gp_panel()
@@ -1055,17 +1008,6 @@ server <- function(input, output, session) {
                 pnw_panel()
             }
         } else if (!is.atomic(region_class())) {
-            # if (region_class()$region == "East") {
-            #     show_alert(
-            #         title = "",
-            #         text = tagList(
-            #             tags$p(HTML(paste0(
-            #                 "This site is located in the East Beta SDAM study area. ",
-            #                 "Please visit the <a href=\"https://ecosystemplanningrestoration.shinyapps.io/beta_sdam_nese/\">East Beta SDAM application</a>  for the Northeast and Southeast."
-            #             )))
-            #         ),
-            #         type = "default"
-            #     )
             if (region_class()$region == "Northeast"){
                 ne_panel()
             } else if (region_class()$region == "Southeast"){
@@ -1232,27 +1174,35 @@ server <- function(input, output, session) {
     })
 
     # coordinates
+
+    # reactive map coords
+    rv_coords <- reactiveValues(clicked_coords = NULL)
+
+    # assign map click coordinates to reactive rv_coords object
+    observeEvent(input$map_click, {
+        rv_coords$clicked_coords <- input$map_click
+    })
+
+    # reset rv_coords object when user leaves the map input screen
+    observeEvent(input$vol_region, {
+        rv_coords$clicked_coords <- NULL
+    })
+
     map_coords <- reactive({
-        click <- input$map_click
+        click <- rv_coords$clicked_coords 
         if (is.null(click)) {
+            print(paste0('Coords null'))
             return()
         }
         coords <- c(round(click$lat, 4), round(click$lng, 4))
-        updateNumericInput(
-            session,
-            "lat",
-            value = coords[1]
-        )
-        updateNumericInput(
-            session,
-            "lon",
-            value = coords[2]
-        )
+
+
         coords
     })
+    
 
     # lat/long----
-    latitude <- eventReactive(c(input$map_click, input$lat, input$lon), {
+    latitude <- eventReactive(c(input$map_click, input$lat, input$man_lat, input$man_lon, input$lon, input$reg_button, input$vol_region, input$user_region), {
         if (is.null(map_coords())) {
             if (is.atomic(region_class()) && (region_class() == "Northeast" | region_class() == "Southeast")){
                 latitude <- input$man_lat
@@ -1264,7 +1214,7 @@ server <- function(input, output, session) {
         }
         latitude
     })
-    longitude <- eventReactive(c(input$map_click, input$lat, input$lon), {
+    longitude <- eventReactive(c(input$map_click, input$lat, input$man_lat, input$man_lon, input$lon, input$reg_button, input$vol_region, input$user_region), {
         if (is.null(map_coords())) {
             if (is.atomic(region_class()) && (region_class() == "Northeast" | region_class() == "Southeast")){
                 longitude <- input$man_lon
@@ -1280,8 +1230,10 @@ server <- function(input, output, session) {
  
     # map popup----
     observe({
-        click <- input$map_click
+        click <- map_coords()
         if (is.null(click)) {
+            map_proxy <- leafletProxy("map") %>%
+            clearPopups()
             return()
         }
 
@@ -1293,13 +1245,19 @@ server <- function(input, output, session) {
 
         text <- HTML(paste(
             "<b><u>", region, "</u></b><br>",
-            "Latitude: ", round(click$lat, 4), ", Longtitude: ", round(click$lng, 4)
+            "Latitude: ", round(latitude(), 4), ", Longtitude: ", round(longitude(), 4)
         ))
         text2 <- paste("You've selected point ", text)
         map_proxy <- leafletProxy("map") %>%
             clearPopups() %>%
-            addPopups(round(click$lng, 4), round(click$lat, 4), text)
+            addPopups(
+                round(longitude(), 4), 
+                round(latitude(), 4), 
+                text,
+                layerId = "sdam_popup")
     })
+
+
 
     # precipitation----
     precip <- eventReactive(input$runmodel, {
@@ -1500,8 +1458,8 @@ server <- function(input, output, session) {
         if (is.atomic(region_class())) {
             if (region_class() == "Great Plains") {
                 gp_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_total_abundance = input$user_total_abundance,
                     user_hydrophyte = input$user_hydrophyte,
                     user_upland_rooted = input$user_upland_rooted,
@@ -1513,8 +1471,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class() == "Western Mountains") {
                 wm_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_total_abundance = input$user_total_abundance,
                     user_hydrophyte = input$user_hydrophyte,
                     user_substrate = input$user_substrate,
@@ -1528,8 +1486,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class() == "Arid West") {
                 aw_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_hydrophyte = input$user_hydrophyte,
                     user_eph_isa = input$user_eph_isa,
                     user_upland_rooted = input$user_upland_rooted,
@@ -1541,8 +1499,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class() == "Pacific Northwest") {
                 pnw_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_aquatic_presence = input$user_aquatic_presence,
                     user_ephemeroptera = input$user_ephemeroptera,
                     user_per_taxa = input$user_per_taxa,
@@ -1553,8 +1511,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class() == 'Northeast'){
                 ne_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_bank_mean = bank_mean(),
                     user_er = input$user_er,
                     user_bmi = input$user_bmi,
@@ -1565,8 +1523,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class() == 'Southeast'){
                 se_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_bank_mean = bank_mean(),
                     user_bmi = input$user_bmi,
                     user_total_abundance = input$user_total_abundance,
@@ -1582,8 +1540,8 @@ server <- function(input, output, session) {
         } else if (!is.atomic(region_class())) {
             if (region_class()$region == "Great Plains") {
                 gp_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_total_abundance = input$user_total_abundance,
                     user_hydrophyte = input$user_hydrophyte,
                     user_upland_rooted = input$user_upland_rooted,
@@ -1595,8 +1553,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class()$region == "Western Mountains") {
                 wm_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_total_abundance = input$user_total_abundance,
                     user_hydrophyte = input$user_hydrophyte,
                     user_substrate = input$user_substrate,
@@ -1610,8 +1568,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class()$region == "Arid West") {
                 aw_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_hydrophyte = input$user_hydrophyte,
                     user_eph_isa = input$user_eph_isa,
                     user_upland_rooted = input$user_upland_rooted,
@@ -1623,8 +1581,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class()$region == "Pacific Northwest") {
                 pnw_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_aquatic_presence = input$user_aquatic_presence,
                     user_ephemeroptera = input$user_ephemeroptera,
                     user_per_taxa = input$user_per_taxa,
@@ -1635,8 +1593,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class()$region == "Northeast") {
                 ne_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_bank_mean = bank_mean(),
                     user_er = input$user_er,
                     user_bmi = input$user_bmi,
@@ -1647,8 +1605,8 @@ server <- function(input, output, session) {
                 )
             } else if (region_class()$region == "Southeast") {
                 se_df(
-                    user_lat = input$lat,
-                    user_lon = input$lon,
+                    user_lat = latitude(),
+                    user_lon = longitude(),
                     user_bank_mean = bank_mean(),
                     user_bmi = input$user_bmi,
                     user_total_abundance = input$user_total_abundance,
@@ -1658,18 +1616,6 @@ server <- function(input, output, session) {
                     user_roots = input$user_roots,
                     user_drainage = input$user_drainage
                 )
-                # se_df(
-                #     user_lat = 32,
-                #     user_lon = -82,
-                #     user_bank_mean = 5,
-                #     user_bmi = 0,
-                #     user_total_abundance = 1,
-                #     user_shading = 22,
-                #     user_upland_rooted = 2,
-                #     user_substrate = 2,
-                #     user_roots = 1,
-                #     user_drainage = 22
-                # )
             }
         } else {
             return(NULL)
@@ -1680,11 +1626,17 @@ server <- function(input, output, session) {
     classification <- eventReactive(input$runmodel, {
         if (is.atomic(region_class())) {
             set.seed(1111)
-            toupper(run_sdam(df(), region_class()))
+            class_id = toupper(run_sdam(df(), region_class()))
         } else if (!is.atomic(region_class())) {
             set.seed(1111)
-            toupper(run_sdam(df(), region_class()$region))
-        }
+            class_id = toupper(run_sdam(df(), region_class()$region))
+        } 
+
+        if (class_id == "OTHER"){
+            class_id = NULL
+        } 
+
+        class_id
     })
 
 
@@ -1708,9 +1660,9 @@ server <- function(input, output, session) {
 
 
     # output classification to ui
-    output$class_out <- renderUI({
-        h2(HTML(paste0("<b>", "This reach is classified as:<br>", classification(), "</b>")))
-    })
+    # output$class_out <- renderUI({
+    #     h2(HTML(paste0("<b>", "This reach is classified as:<br>", classification(), "</b>")))
+    # })
 
     # data checks----
     # Ensure that the user has filled in all required inputs before running the model
@@ -1719,14 +1671,17 @@ server <- function(input, output, session) {
         check_list <- list()
         for (t in names(df())) {
             if (length(df()[[t]]) == 0) {
-                cv <- "NULL"
-                # print(df()[[t]])
-                check_list <- append(check_list, cv)
+            cv <- "NULL"
+            # print(df()[[t]])
+            check_list <- append(check_list, cv)
             }
         }
-
+        
         if ("NULL" %in% check_list) {
             print("Null found in check list")
+            output$class_out <- renderUI({
+                h2(HTML(paste0("<b>", "This reach is classified as:<br></b>")))
+            })
             show_alert(
                 title = "",
                 text = tagList(
@@ -1734,8 +1689,29 @@ server <- function(input, output, session) {
                 ),
                 type = "default"
             )
+            return()
+        } else if (is.null(classification())) {
+            # check numeric inputs for NA values
+            output$class_out <- renderUI({
+                h2(HTML(paste0("<b>", "This reach is classified as:<br></b>")))
+            })
+            show_alert(
+                title = "",
+                text = tagList(
+                    tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                ),
+                type = "default"
+            ) 
+            
+        } else {
+            output$class_out <- renderUI({
+                h2(HTML(paste0("<b>", "This reach is classified as:<br>", classification(), "</b>")))
+            })
         }
     })
+
+
+
 
     # Ensure numeric inputs are within range for the model
     observeEvent(input$user_er, {
@@ -2120,13 +2096,13 @@ server <- function(input, output, session) {
             temp_lat <- if (input$vol_region == "Select region") {
                 "Not Provided"
             } else {
-                as.numeric(input$lat)
+                as.numeric(latitude())
             }
 
             temp_lon <- if (input$vol_region == "Select region") {
                 "Not Provided"
             } else {
-                as.numeric(input$lon)
+                as.numeric(longitude())
             }
 
             general_params <- list(
