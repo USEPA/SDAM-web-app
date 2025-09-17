@@ -124,9 +124,19 @@ ws_elev <- function(lng, lat, unit = "meters"){
         lat = lat,
         long = lng
     )
-    sfc <- st_as_sf(sdf, coords=c('long', 'lat'), crs=4326)
+    if (is.na(lat) | is.na(lng)){
+        show_alert(
+                title = "",
+                text = tagList(
+                    tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                ),
+                type = "default"
+            ) 
+    } else {
+        sfc <- st_as_sf(sdf, coords=c('long', 'lat'), crs=4326)
 
-    get_elev_point(sfc, units=unit, src="aws")$elevation
+        get_elev_point(sfc, units=unit, src="aws")$elevation
+    }
 }
 
 
@@ -136,34 +146,36 @@ prism_fetch <- function(long, lat){
     download_dir <- file.path(main_dir)
     prism_set_dl_dir(main_dir)
     mydf <- data.frame(lat=lat, long=long)
-    mydf_sf<-st_as_sf(mydf,
-                        coords=c("long","lat"),
-                        remove=F,
-                        crs=4326)
-    #Turn them into rasters with projection info
-    ppt.m05_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM2_05_bil")
-    proj4string(ppt.m05_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
-    ppt.m06_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM2_06_bil")
-    proj4string(ppt.m06_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
-    ppt.m07_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM2_07_bil")
-    proj4string(ppt.m07_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
-    # ppt.m08_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM4_08_bil")
-    # proj4string(ppt.m08_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
-    # ppt.m09_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM4_09_bil")
-    # proj4string(ppt.m09_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
-    # ppt.m10_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM4_10_bil")
-    # proj4string(ppt.m10_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+    if (is.na(lat) | is.na(long)){
+        show_alert(
+                title = "",
+                text = tagList(
+                    tags$p(HTML(paste0("Indicator data missing!  Please fill in all indicators before running the model prediction.")))
+                ),
+                type = "default"
+            ) 
+        return(NA)
+    } else {
+        mydf_sf<-st_as_sf(mydf,
+                            coords=c("long","lat"),
+                            remove=F,
+                            crs=4326)
+        #Turn them into rasters with projection info
+        ppt.m05_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM2_05_bil")
+        proj4string(ppt.m05_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+        ppt.m06_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM2_06_bil")
+        proj4string(ppt.m06_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
+        ppt.m07_RS<-pd_stack("PRISM_ppt_30yr_normal_800mM2_07_bil")
+        proj4string(ppt.m07_RS)<-CRS("+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs")
 
-    mydf_prism<-data.frame(UID='user_input') %>% 
-        mutate(
-            ppt.m05 = raster::extract(ppt.m05_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1],
-            ppt.m06 = raster::extract(ppt.m06_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1],
-            ppt.m07 = raster::extract(ppt.m07_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1]
-            # ppt.m08 = raster::extract(ppt.m08_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1],
-            # ppt.m09 = raster::extract(ppt.m09_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1],
-            # ppt.m10 = raster::extract(ppt.m10_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1]
-            )
+        mydf_prism<-data.frame(UID='user_input') %>% 
+            mutate(
+                ppt.m05 = raster::extract(ppt.m05_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1],
+                ppt.m06 = raster::extract(ppt.m06_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1],
+                ppt.m07 = raster::extract(ppt.m07_RS, mydf_sf, fun=mean, na.rm=T, sp=F)[1]
+                )
 
-    avg <- round(mean(c(mydf_prism$ppt.m05, mydf_prism$ppt.m06, mydf_prism$ppt.m07)),2)
-    avg
+        avg <- round(mean(c(mydf_prism$ppt.m05, mydf_prism$ppt.m06, mydf_prism$ppt.m07)),2)
+        avg
+    }
 }

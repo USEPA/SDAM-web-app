@@ -894,6 +894,7 @@ server <- function(input, output, session) {
     # increase file upload size to 30MB
     options(shiny.maxRequestSize = 30 * 1024^2)
 
+
     # region -----
 
     region_class <- eventReactive(c(input$reg_button, input$map_click, input$vol_region, input$user_region), {
@@ -1117,7 +1118,7 @@ server <- function(input, output, session) {
                     output$reg_class <- renderUI({
                         if (!is.na(region_class()$region)) {
                             if (region_class()$region == "Northeast" || region_class()$region == "Southeast") {
-                                h2(HTML(paste0("<b>Eastern Region: <br>", region_class()$region, "</b>")))
+                                h2(HTML(paste0("<b>SDAM Region: <br>", region_class()$region, "</b>")))
                             } else {
                                 h2(HTML(paste0("<b>SDAM Region: <br>", region_class()$region, "</b>")))
                             }
