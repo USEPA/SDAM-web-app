@@ -39,6 +39,8 @@ if (is.null(ws)){
 }
 
 Sys.setenv(OPENSSL_CONF="/dev/null")
+
+
 # app code inputs
 #-----------------------------------------
 
@@ -179,3 +181,77 @@ prism_fetch <- function(long, lat){
         avg
     }
 }
+
+
+fig_list <- list(
+    fig1 = NULL,
+    fig2 = NULL,
+    fig3 = NULL,
+    fig4 = NULL,
+    fig5 = NULL,
+    fig6 = NULL,
+    fig7 = NULL,
+    fig8 = NULL,
+    fig9 = NULL,
+    fig10 = NULL,
+    fig11 = NULL,
+    fig12 = NULL,
+    fig13 = NULL,
+    fig14 = NULL,
+    fig15 = NULL,
+    fig16 = NULL,
+    fig17 = NULL,
+    fig18 = NULL,
+    fig19 = NULL,
+    fig20 = NULL,
+    fig21 = NULL,
+    fig22 = NULL,
+    fig23 = NULL,
+    fig24 = NULL,
+    fig25 = NULL,
+    fig26 = NULL,
+    fig27 = NULL,
+    fig28 = NULL,
+    fig29 = NULL,
+    fig30 = NULL,
+    fig31 = NULL,
+    fig32 = NULL,
+    fig33 = NULL,
+    fig34 = NULL,
+    fig35 = NULL,
+    fig36 = NULL,
+    fig37 = NULL,
+    fig38 = NULL,
+    fig39 = NULL,
+    fig40 = NULL,
+    fig41 = NULL,
+    fig42 = NULL,
+    fig43 = NULL,
+    fig44 = NULL,
+    fig45 = NULL,
+    fig46 = NULL,
+    fig47 = NULL,
+    fig48 = NULL,
+    fig49 = NULL,
+    fig50 = NULL,
+    fig51 = NULL,
+    fig52 = NULL,
+    fig53 = NULL,
+    fig54 = NULL,
+    fig55 = NULL,
+    fig56 = NULL,
+    fig57 = NULL,
+    fig58 = NULL,
+    fig59 = NULL,
+    fig60 = NULL,
+    fig61 = NULL,
+    fig62 = NULL,
+    fig63 = NULL,
+    fig64 = NULL,
+    fig65 = NULL,
+    fig66 = NULL,
+    fig67 = NULL,
+    fig6_1 = NULL,
+    fig7_1 = NULL,
+    fig8_1 = NULL
+)

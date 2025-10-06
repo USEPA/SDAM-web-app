@@ -3,6 +3,14 @@ source("./global/global.R")
 print(paste0("phantom: ", webshot:::find_phantom()))
 
 ui <- fluidPage(
+    shinyjs::useShinyjs(),
+    tags$script(
+        HTML("
+        Shiny.addCustomMessageHandler('scrollToTop', function(message) {
+            window.scrollTo({ top: 500, behavior: 'smooth' });
+        });
+        ")
+    ),
     tags$style(
         HTML('
             input[type=number] {
@@ -61,8 +69,8 @@ ui <- fluidPage(
             #indicator_button {
                 background-color:#005ea2;
                 color:white;
-                padding: 7px;
-                font-size: 110%;
+                padding: 12px 14px;
+                font-size: 130%;
                 font-weight: bold;
                 border-style: outset;
 
@@ -95,6 +103,24 @@ ui <- fluidPage(
                 transition-duration: 0.1s;
             }
             #runmodel:hover {
+                background-color:#1a4480;
+                color: white;
+                border-style: solid;
+                border-color: black;
+                border-width: px;
+            }
+            #download_trigger {
+                background-color:#005ea2;
+                color:white;
+                padding: 12px 14px;
+                font-size: 130%;
+                font-weight: bold;
+                border-style: outset;
+
+                box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 1px 1px 0 rgba(0,0,0,0.19);
+                transition-duration: 0.1s;
+            }
+            #download_trigger:hover {
                 background-color:#1a4480;
                 color: white;
                 border-style: solid;
@@ -571,7 +597,7 @@ ui <- fluidPage(
                     "Web application for the Regional Streamflow Duration Assessment Methods (SDAMs)"
                 )
             ),
-            h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">3.0.1</a> Release date: September 2025 </p>")),
+            h4(HTML("<p>Version <a href=\"https://github.com/USEPA/SDAM-web-app\">3.0.1</a> Release date: October 2025 </p>")),
         ),
         "SDAMs"
     ),
@@ -761,10 +787,16 @@ ui <- fluidPage(
 
                 # Region UI Split-----
 
-                conditionalPanel(
-                    condition = "input.indicator_button != 0",
+                # conditionalPanel(
+                #     # condition = "input.indicator_button != 0",
+                #     condition = "output.panel_render == 'render'",
+                #     uiOutput("regionPanel")
+                # ),
+                div(
+                    id = "regionUI",
                     uiOutput("regionPanel")
                 ),
+                
                 uiOutput("reportPanel"),
             )
         ) # end div
@@ -894,6 +926,106 @@ server <- function(input, output, session) {
     # increase file upload size to 30MB
     options(shiny.maxRequestSize = 30 * 1024^2)
 
+    # Get a list of all active inputs
+    AllInputs <- reactive({
+        x <- reactiveValuesToList(input)
+        names(x)
+    })
+
+    # Function to reset all rv$ data path values to NULL
+    reset_all_rv <- function(rv) {
+        for (nm in names(rv)) {
+            rv[[nm]] <- NULL
+        }
+    }
+
+    # resets app to intial state after report generation; deletes all file input data paths
+    observeEvent(input$download_trigger, {
+        shinyjs::click("indicator_button")      
+        session$sendCustomMessage("scrollToTop", list())
+        delay(1000, shinyjs::click("report"))
+        delay(5000, reset_all_rv(rv))
+    })
+    
+    # remove region and report panels after report generation
+    observeEvent(panel_render(), {
+        if (panel_render() == "render") {
+            shinyjs::show("reportPanel")
+        } else {
+            hide("reportPanel")
+        }
+    })
+        
+
+    # added to force server to recognize changes in reactive value file input data paths
+    observeEvent(c(fig1(),
+        fig2(),
+        fig3(),
+        fig4(),
+        fig5(),
+        fig6(),
+        fig7(),
+        fig8(),
+        fig12(),
+        fig13(),
+        fig14(),
+        fig15(),
+        fig16(),
+        fig17(),
+        fig18(),
+        fig19(),
+        fig20(),
+        fig21(),
+        fig22(),
+        fig23(),
+        fig24(),
+        fig25(),
+        fig26(),
+        fig27(),
+        fig28(),
+        fig29(),
+        fig30(),
+        fig31(),
+        fig32(),
+        fig33(),
+        fig34(),
+        fig35(),
+        fig36(),
+        fig37(),
+        fig38(),
+        fig39(),
+        fig40(),
+        fig41(),
+        fig42(),
+        fig43(),
+        fig44(),
+        fig45(),
+        fig46(),
+        fig47(),
+        fig48(),
+        fig49(),
+        fig50(),
+        fig51(),
+        fig52(),
+        fig53(),
+        fig54(),
+        fig55(),
+        fig56(),
+        fig57(),
+        fig58(),
+        fig59(),
+        fig60(),
+        fig61(),
+        fig62(),
+        fig63(),
+        fig64(),
+        fig65(),
+        fig66(),
+        fig67(),
+        fig6_1(),
+        fig7_1(),
+        fig8_1()),{ })
+        
 
     # region -----
 
@@ -993,73 +1125,82 @@ server <- function(input, output, session) {
     # Render UI Panels ------
 
     ### region panel-----
-    output$regionPanel <- renderUI({
-        if (is.atomic(region_class())) {
-            if (region_class() == "Northeast") {
-                ne_panel()
-            } else if (region_class() == 'Southeast') {
-                se_panel()
-            } else if (region_class() == "Great Plains") {
-                gp_panel()
-            } else if (region_class() == "Western Mountains") {
-                wm_panel()
-            } else if (region_class() == "Arid West") {
-                aw_panel()
-            } else if (region_class() == "Pacific Northwest") {
-                pnw_panel()
+    observeEvent(panel_render(),{
+        output$regionPanel <- renderUI({
+            if (panel_render() == "render") {
+                if (is.atomic(region_class())) {
+                    if (region_class() == "Northeast") {
+                        ne_panel()
+                    } else if (region_class() == 'Southeast') {
+                        se_panel()
+                    } else if (region_class() == "Great Plains") {
+                        gp_panel()
+                    } else if (region_class() == "Western Mountains") {
+                        wm_panel()
+                    } else if (region_class() == "Arid West") {
+                        aw_panel()
+                    } else if (region_class() == "Pacific Northwest") {
+                        pnw_panel()
+                    }
+                } else if (!is.atomic(region_class())) {
+                    if (region_class()$region == "Northeast"){
+                        ne_panel()
+                    } else if (region_class()$region == "Southeast"){
+                        se_panel()
+                    } else if (region_class()$region == "Great Plains") {
+                        gp_panel()
+                    } else if (region_class()$region == "Western Mountains") {
+                        wm_panel()
+                    } else if (region_class()$region == "Arid West") {
+                        aw_panel()
+                    } else if (region_class()$region == "Pacific Northwest") {
+                        pnw_panel()
+                    }
+                } else {
+                    return(NULL)
+                }
+            } else {
+                return(NULL)
             }
-        } else if (!is.atomic(region_class())) {
-            if (region_class()$region == "Northeast"){
-                ne_panel()
-            } else if (region_class()$region == "Southeast"){
-                se_panel()
-            } else if (region_class()$region == "Great Plains") {
-                gp_panel()
-            } else if (region_class()$region == "Western Mountains") {
-                wm_panel()
-            } else if (region_class()$region == "Arid West") {
-                aw_panel()
-            } else if (region_class()$region == "Pacific Northwest") {
-                pnw_panel()
-            }
-        } else {
-            return(NULL)
-        }
+        })
     })
+
 
     ### report panel--------
     output$reportPanel <- renderUI({
-        if (is.atomic(region_class())) {
-            if (region_class() == "Great Plains" & input$runmodel != 0) {
-                gp_report()
-            } else if (region_class() == "Western Mountains" & input$runmodel != 0) {
-                wm_report()
-            } else if (region_class() == "Arid West" & input$runmodel != 0) {
-                aw_report()
-            } else if (region_class() == "Pacific Northwest" & input$runmodel != 0) {
-                pnw_report()
-            } else if (region_class() == "Northeast" & input$runmodel != 0) {
-                ne_report()
-            } else if (region_class() == "Southeast" & input$runmodel != 0) {
-                se_report()
+            if (is.atomic(region_class())) {
+                if (region_class() == "Great Plains" & input$runmodel != 0) {
+                    gp_report()
+                } else if (region_class() == "Western Mountains" & input$runmodel != 0) {
+                    wm_report()
+                } else if (region_class() == "Arid West" & input$runmodel != 0) {
+                    aw_report()
+                } else if (region_class() == "Pacific Northwest" & input$runmodel != 0) {
+                    pnw_report()
+                } else if (region_class() == "Northeast" & input$runmodel != 0) {
+                    ne_report()
+                } else if (region_class() == "Southeast" & input$runmodel != 0) {
+                    se_report()
+                }
+            } else if (!is.atomic(region_class())) {
+                req(region_class()$region)
+                req(input$runmodel)
+                if (region_class()$region == "Great Plains" & input$runmodel != 0) {
+                    gp_report()
+                } else if (region_class()$region == "Western Mountains" & input$runmodel != 0) {
+                    wm_report()
+                } else if (region_class()$region == "Arid West" & input$runmodel != 0) {
+                    aw_report()
+                } else if (region_class()$region == "Pacific Northwest" & input$runmodel != 0) {
+                    pnw_report()
+                } else if (region_class()$region == "Northeast" & input$runmodel != 0) {
+                    ne_report()
+                } else if (region_class()$region == "Southeast" & input$runmodel != 0) {
+                    se_report()
+                }
             }
-        } else if (!is.atomic(region_class())) {
-            req(region_class()$region)
-            req(input$runmodel)
-            if (region_class()$region == "Great Plains" & input$runmodel != 0) {
-                gp_report()
-            } else if (region_class()$region == "Western Mountains" & input$runmodel != 0) {
-                wm_report()
-            } else if (region_class()$region == "Arid West" & input$runmodel != 0) {
-                aw_report()
-            } else if (region_class()$region == "Pacific Northwest" & input$runmodel != 0) {
-                pnw_report()
-            } else if (region_class()$region == "Northeast" & input$runmodel != 0) {
-                ne_report()
-            } else if (region_class()$region == "Southeast" & input$runmodel != 0) {
-                se_report()
-            }
-        }
+        
+        
     })
 
 
@@ -1298,9 +1439,17 @@ server <- function(input, output, session) {
         var2()
     })
 
+    panel_render <- reactive({
+        if(input$indicator_button %% 2 != 0){
+            "render"
+        } else {
+            "hidden"
+        }
+    })
+
+
     outputOptions(output, "region_str", suspendWhenHidden=FALSE)
     outputOptions(output, "region_choice", suspendWhenHidden=FALSE)
-
 
     output$nese <- renderUI({
         if (!is.atomic(region_class()) && (region_class()$region == "Northeast" || region_class()$region == "Southeast")) {
@@ -1647,23 +1796,6 @@ server <- function(input, output, session) {
         # print(format(input$date, '%Y-%m-%d'))
     })
 
-    # observe({
-    #     print(req(input$lat))
-    #     print(req(input$lon))
-    #     # print(req(bank_mean()))
-    #     print(req(input$user_er))
-    #     print(req(input$user_bmi))
-    #     print(req(input$user_slope))
-    #     print(req(input$user_shading))
-    #     print(req(input$user_drainage))
-    # })
-
-
-
-    # output classification to ui
-    # output$class_out <- renderUI({
-    #     h2(HTML(paste0("<b>", "This reach is classified as:<br>", classification(), "</b>")))
-    # })
 
     # data checks----
     # Ensure that the user has filled in all required inputs before running the model
@@ -1837,244 +1969,246 @@ server <- function(input, output, session) {
 
     # Report Tab--------------------------------------------------------------
 
+    rv <- do.call(reactiveValues, fig_list)
+
     # Site photos----
     fig1 <- reactive({
-        gsub("\\\\", "/", input$blu$datapath)
+        rv$fig1 <- gsub("\\\\", "/", input$blu$datapath)
     })
     fig2 <- reactive({
-        gsub("\\\\", "/", input$mld$datapath)
+        rv$fig2 <- gsub("\\\\", "/", input$mld$datapath)
     })
     fig3 <- reactive({
-        gsub("\\\\", "/", input$mlu$datapath)
+        rv$fig3 <- gsub("\\\\", "/", input$mlu$datapath)
     })
     fig4 <- reactive({
-        gsub("\\\\", "/", input$tld$datapath)
+        rv$fig4 <- gsub("\\\\", "/", input$tld$datapath)
     })
     fig5 <- reactive({
-        gsub("\\\\", "/", input$sketch$datapath)
+        rv$fig5 <- gsub("\\\\", "/", input$sketch$datapath)
     })
 
     # Invertebrate photos
     fig6 <- reactive({
-        gsub("\\\\", "/", input$inv1$datapath)
+        rv$fig6 <- gsub("\\\\", "/", input$inv1$datapath)
     })
     fig7 <- reactive({
-        gsub("\\\\", "/", input$inv2$datapath)
+        rv$fig7 <- gsub("\\\\", "/", input$inv2$datapath)
     })
     fig8 <- reactive({
-        gsub("\\\\", "/", input$inv3$datapath)
+        rv$fig8 <- gsub("\\\\", "/", input$inv3$datapath)
     })
     # retroactively added photos; naming convention broken
     fig6_1 <- reactive({
-        gsub("\\\\", "/", input$inv4$datapath)
+        rv$fig6_1 <- gsub("\\\\", "/", input$inv4$datapath)
     })
     fig7_1 <- reactive({
-        gsub("\\\\", "/", input$inv5$datapath)
+        rv$fig7_1 <- gsub("\\\\", "/", input$inv5$datapath)
     })
     fig8_1 <- reactive({
-        gsub("\\\\", "/", input$inv6$datapath)
+        rv$fig8_1 <- gsub("\\\\", "/", input$inv6$datapath)
     })
 
     # Substrate photos
     fig12 <- reactive({
-        gsub("\\\\", "/", input$sub1$datapath)
+        rv$fig12 <- gsub("\\\\", "/", input$sub1$datapath)
     })
     fig13 <- reactive({
-        gsub("\\\\", "/", input$sub2$datapath)
+        rv$fig13 <- gsub("\\\\", "/", input$sub2$datapath)
     })
     fig14 <- reactive({
-        gsub("\\\\", "/", input$sub3$datapath)
+        rv$fig14 <- gsub("\\\\", "/", input$sub3$datapath)
     })
 
     # Differences in vegetation photos
     fig15 <- reactive({
-        gsub("\\\\", "/", input$veg1$datapath)
+        rv$fig15 <- gsub("\\\\", "/", input$veg1$datapath)
     })
     fig16 <- reactive({
-        gsub("\\\\", "/", input$veg2$datapath)
+        rv$fig16 <- gsub("\\\\", "/", input$veg2$datapath)
     })
     fig17 <- reactive({
-        gsub("\\\\", "/", input$veg3$datapath)
+        rv$fig17 <- gsub("\\\\", "/", input$veg3$datapath)
     })
 
     # Sediment on Plants photos
     fig18 <- reactive({
-        gsub("\\\\", "/", input$sed1$datapath)
+        rv$fig18 <- gsub("\\\\", "/", input$sed1$datapath)
     })
     fig19 <- reactive({
-        gsub("\\\\", "/", input$sed2$datapath)
+        rv$fig19 <- gsub("\\\\", "/", input$sed2$datapath)
     })
     fig20 <- reactive({
-        gsub("\\\\", "/", input$sed3$datapath)
+        rv$fig20 <- gsub("\\\\", "/", input$sed3$datapath)
     })
 
     # Slope photos
     fig21 <- reactive({
-        gsub("\\\\", "/", input$slope1$datapath)
+        rv$fig21 <- gsub("\\\\", "/", input$slope1$datapath)
     })
     fig22 <- reactive({
-        gsub("\\\\", "/", input$slope2$datapath)
+        rv$fig22 <- gsub("\\\\", "/", input$slope2$datapath)
     })
     fig23 <- reactive({
-        gsub("\\\\", "/", input$slope3$datapath)
+        rv$fig23 <- gsub("\\\\", "/", input$slope3$datapath)
     })
 
     # Hydrophyte photos
     fig24 <- reactive({
-        gsub("\\\\", "/", input$hydro1$datapath)
+        rv$fig24 <- gsub("\\\\", "/", input$hydro1$datapath)
     })
     fig25 <- reactive({
-        gsub("\\\\", "/", input$hydro2$datapath)
+        rv$fig25 <- gsub("\\\\", "/", input$hydro2$datapath)
     })
     fig26 <- reactive({
-        gsub("\\\\", "/", input$hydro3$datapath)
+        rv$fig26 <- gsub("\\\\", "/", input$hydro3$datapath)
     })
     fig27 <- reactive({
-        gsub("\\\\", "/", input$hydro4$datapath)
+        rv$fig27 <- gsub("\\\\", "/", input$hydro4$datapath)
     })
     fig28 <- reactive({
-        gsub("\\\\", "/", input$hydro5$datapath)
+        rv$fig28 <- gsub("\\\\", "/", input$hydro5$datapath)
     })
     fig29 <- reactive({
-        gsub("\\\\", "/", input$hydro6$datapath)
+        rv$fig29 <- gsub("\\\\", "/", input$hydro6$datapath)
     })
 
     # Fish photos
     fig30 <- reactive({
-        gsub("\\\\", "/", input$fish1$datapath)
+        rv$fig30 <- gsub("\\\\", "/", input$fish1$datapath)
     })
     fig31 <- reactive({
-        gsub("\\\\", "/", input$fish2$datapath)
+        rv$fig31 <- gsub("\\\\", "/", input$fish2$datapath)
     })
     fig32 <- reactive({
-        gsub("\\\\", "/", input$fish3$datapath)
+        rv$fig32 <- gsub("\\\\", "/", input$fish3$datapath)
     })
 
     # Perennial Indicator photos
     fig33 <- reactive({
-        gsub("\\\\", "/", input$per1$datapath)
+        rv$fig33 <- gsub("\\\\", "/", input$per1$datapath)
     })
     fig34 <- reactive({
-        gsub("\\\\", "/", input$per2$datapath)
+        rv$fig34 <- gsub("\\\\", "/", input$per2$datapath)
     })
     fig35 <- reactive({
-        gsub("\\\\", "/", input$per3$datapath)
+        rv$fig35 <- gsub("\\\\", "/", input$per3$datapath)
     })
 
     # Algal Cover photos
     fig36 <- reactive({
-        gsub("\\\\", "/", input$algal1$datapath)
+        rv$fig36 <- gsub("\\\\", "/", input$algal1$datapath)
     })
     fig37 <- reactive({
-        gsub("\\\\", "/", input$algal2$datapath)
+        rv$fig37 <- gsub("\\\\", "/", input$algal2$datapath)
     })
     fig38 <- reactive({
-        gsub("\\\\", "/", input$algal3$datapath)
+        rv$fig38 <- gsub("\\\\", "/", input$algal3$datapath)
     })
 
     # Amphibian photos
     fig39 <- reactive({
-        gsub("\\\\", "/", input$amph1$datapath)
+        rv$fig39 <- gsub("\\\\", "/", input$amph1$datapath)
     })
     fig40 <- reactive({
-        gsub("\\\\", "/", input$amph2$datapath)
+        rv$fig40 <- gsub("\\\\", "/", input$amph2$datapath)
     })
     fig41 <- reactive({
-        gsub("\\\\", "/", input$amph3$datapath)
+        rv$fig41 <- gsub("\\\\", "/", input$amph3$datapath)
     })
 
     # Riffle Pool photos
     fig42 <- reactive({
-        gsub("\\\\", "/", input$riff1$datapath)
+        rv$fig42 <- gsub("\\\\", "/", input$riff1$datapath)
     })
     fig43 <- reactive({
-        gsub("\\\\", "/", input$riff2$datapath)
+        rv$fig43 <- gsub("\\\\", "/", input$riff2$datapath)
     })
     fig44 <- reactive({
-        gsub("\\\\", "/", input$riff3$datapath)
+        rv$fig44 <- gsub("\\\\", "/", input$riff3$datapath)
     })
 
     # Upland rooted photos
     fig45 <- reactive({
-        gsub("\\\\", "/", input$ur1$datapath)
+        rv$fig45 <- gsub("\\\\", "/", input$ur1$datapath)
     })
     fig46 <- reactive({
-        gsub("\\\\", "/", input$ur2$datapath)
+        rv$fig46 <- gsub("\\\\", "/", input$ur2$datapath)
     })
     fig47 <- reactive({
-        gsub("\\\\", "/", input$ur3$datapath)
+        rv$fig47 <- gsub("\\\\", "/", input$ur3$datapath)
     })
 
     # Supplemental Info photos
     fig48 <- reactive({
-        gsub("\\\\", "/", input$add1$datapath)
+        rv$fig48 <- gsub("\\\\", "/", input$add1$datapath)
     })
     fig49 <- reactive({
-        gsub("\\\\", "/", input$add2$datapath)
+        rv$fig49 <- gsub("\\\\", "/", input$add2$datapath)
     })
     fig50 <- reactive({
-        gsub("\\\\", "/", input$add3$datapath)
+        rv$fig50 <- gsub("\\\\", "/", input$add3$datapath)
     })
     fig51 <- reactive({
-        gsub("\\\\", "/", input$add4$datapath)
+        rv$fig51 <- gsub("\\\\", "/", input$add4$datapath)
     })
 
     # Mean bankfull width
     fig52 <- reactive({
-        gsub("\\\\", "/", input$mb1$datapath)
+        rv$fig52 <- gsub("\\\\", "/", input$mb1$datapath)
     })
     fig53 <- reactive({
-        gsub("\\\\", "/", input$mb2$datapath)
+        rv$fig53 <- gsub("\\\\", "/", input$mb2$datapath)
     })
     fig54 <- reactive({
-        gsub("\\\\", "/", input$mb3$datapath)
+        rv$fig54 <- gsub("\\\\", "/", input$mb3$datapath)
     })
 
     # Shading
     fig55 <- reactive({
-        gsub("\\\\", "/", input$shade1$datapath)
+        rv$fig55 <- gsub("\\\\", "/", input$shade1$datapath)
     })
     fig56 <- reactive({
-        gsub("\\\\", "/", input$shade2$datapath)
+        rv$fig56 <- gsub("\\\\", "/", input$shade2$datapath)
     })
     fig57 <- reactive({
-        gsub("\\\\", "/", input$shade3$datapath)
+        rv$fig57 <- gsub("\\\\", "/", input$shade3$datapath)
     })
     fig58 <- reactive({
-        gsub("\\\\", "/", input$shade4$datapath)
+        rv$fig58 <- gsub("\\\\", "/", input$shade4$datapath)
     })
 
-       # Entrenchment photos
+    # Entrenchment photos
     fig59 <- reactive({
-        gsub("\\\\", "/", input$er1$datapath)
+        rv$fig59 <- gsub("\\\\", "/", input$er1$datapath)
     })
     fig60 <- reactive({
-        gsub("\\\\", "/", input$er2$datapath)
+        rv$fig60 <- gsub("\\\\", "/", input$er2$datapath)
     })
     fig61 <- reactive({
-        gsub("\\\\", "/", input$er3$datapath)
+        rv$fig61 <- gsub("\\\\", "/", input$er3$datapath)
     })
 
     # Fibrous rooted photos
     fig62 <- reactive({
-        gsub("\\\\", "/", input$fib1$datapath)
+        rv$fig62 <- gsub("\\\\", "/", input$fib1$datapath)
     })
     fig63 <- reactive({
-        gsub("\\\\", "/", input$fib2$datapath)
+        rv$fig63 <- gsub("\\\\", "/", input$fib2$datapath)
     })
     fig64 <- reactive({
-        gsub("\\\\", "/", input$fib3$datapath)
+        rv$fig64 <- gsub("\\\\", "/", input$fib3$datapath)
     })
 
     # Drainage photos
     fig65 <- reactive({
-        gsub("\\\\", "/", input$drainage1$datapath)
+        rv$fig65 <- gsub("\\\\", "/", input$drainage1$datapath)
     })
     fig66 <- reactive({
-        gsub("\\\\", "/", input$drainage2$datapath)
+        rv$fig66 <- gsub("\\\\", "/", input$drainage2$datapath)
     })
     fig67 <- reactive({
-        gsub("\\\\", "/", input$drainage3$datapath)
+        rv$fig67 <- gsub("\\\\", "/", input$drainage3$datapath)
     })
 
 
@@ -2113,8 +2247,6 @@ server <- function(input, output, session) {
 
                 # precip = precip(),
                 drain_area = input$user_DRNAREA,
-
-
 
                 # -------------------General Site Information
                 hp1 = file.path(tempdir(), "eph.jpg"),
@@ -2167,10 +2299,10 @@ server <- function(input, output, session) {
                 k = input$situation,
 
                 # ------------------- Site Photos
-                v = fig4(),
-                u = fig3(),
-                t = fig2(),
-                s = fig1(),
+                v = rv$fig4,
+                u = rv$fig3,
+                t = rv$fig2,
+                s = rv$fig1,
 
                 # ------------------- Observed Hydrology
                 m = ifelse(is.na(input$surfflow), " ", input$surfflow),
@@ -2179,25 +2311,26 @@ server <- function(input, output, session) {
                 r = input$notes_observed_hydrology,
 
                 # ------------------- Site Sketch
-                w = fig5(),
+                # w = fig5(),
+                w = rv$fig5,
 
                 # ------------------- Supplemental Information
                 notes_supplemental_information = input$notes_supplemental_information,
-                f48 = fig48(),
+                f48 = rv$fig48,
                 f48_cap = input$add1_cap,
-                f49 = fig49(),
+                f49 = rv$fig49,
                 f49_cap = input$add2_cap,
-                f50 = fig50(),
+                f50 = rv$fig50,
                 f50_cap = input$add3_cap,
-                f51 = fig51(),
+                f51 = rv$fig51,
                 f51_cap = input$add4_cap,
 
                 # ------------------- Mean bankfull width
-                f52 = fig52(),
+                f52 = rv$fig52,
                 f52_cap = input$mb1_cap,
-                f53 = fig53(),
+                f53 = rv$fig53,
                 f53_cap = input$mb2_cap,
-                f54 = fig54(),
+                f54 = rv$fig54,
                 f54_cap = input$mb3_cap,
                 notes_mb = input$notes_mb
             )
@@ -2205,8 +2338,6 @@ server <- function(input, output, session) {
             if (temp_region == "Arid West") {
                 ## Arid West----
 
-
-                ### Report----
                 tryCatch(
                     {
                         showModal(modalDialog("Please wait while the report is being generated.....", footer = NULL))
@@ -2225,17 +2356,17 @@ server <- function(input, output, session) {
                                 input$user_eph_isa == 3 ~ "10 to 19 perennial indicator individuals",
                                 input$user_eph_isa == 4 ~ "20 or more perennial indicator individuals"
                             ),
-                            f6 = fig6(),
+                            f6 = rv$fig6,
                             f6_cap = input$inv1_cap,
-                            f7 = fig7(),
+                            f7 = rv$fig7,
                             f7_cap = input$inv2_cap,
-                            f8 = fig8(),
+                            f8 = rv$fig8,
                             f8_cap = input$inv3_cap,
-                            f6_1 = fig6_1(),
+                            f6_1 = rv$fig6_1,
                             f6_1cap = input$inv4_cap,
-                            f7_1 = fig7_1(),
+                            f7_1 = rv$fig7_1,
                             f7_1cap = input$inv5_cap,
-                            f8_1 = fig8_1(),
+                            f8_1 = rv$fig8_1,
                             f8_cap = input$inv6_cap,
                             notes_aquainv = input$notes_totalAbundance,
 
@@ -2245,17 +2376,17 @@ server <- function(input, output, session) {
                                 input$user_hydrophyte < 5 ~ as.character(input$user_hydrophyte),
                                 T ~ "Greater than or equal to 5"
                             ),
-                            f24 = fig24(),
+                            f24 = rv$fig24,
                             f24_cap = input$hydro1_cap,
-                            f25 = fig25(),
+                            f25 = rv$fig25,
                             f25_cap = input$hydro2_cap,
-                            f26 = fig26(),
+                            f26 = rv$fig26,
                             f26_cap = input$hydro3_cap,
-                            f27 = fig27(),
+                            f27 = rv$fig27,
                             f27_cap = input$hydro4_cap,
-                            f28 = fig28(),
+                            f28 = rv$fig28,
                             f28_cap = input$hydro5_cap,
-                            f29 = fig29(),
+                            f29 = rv$fig29,
                             f29_cap = input$hydro6_cap,
                             notes_hydro = input$notes_hydro,
 
@@ -2269,11 +2400,11 @@ server <- function(input, output, session) {
                                 input$user_upland_rooted == 2.5 ~ "2.5",
                                 input$user_upland_rooted == 3 ~ "3 (Strong) Rooted upland plants are absent from the streambed/thalweg."
                             ),
-                            f45 = fig45(),
+                            f45 = rv$fig45,
                             f45_cap = input$ur1_cap,
-                            f46 = fig46(),
+                            f46 = rv$fig46,
                             f46_cap = input$ur2_cap,
-                            f47 = fig47(),
+                            f47 = rv$fig47,
                             f47_cap = input$ur3_cap,
                             notes_rooted = input$notes_rooted,
 
@@ -2286,11 +2417,11 @@ server <- function(input, output, session) {
                                 input$user_algal_cover == 3 ~ "10-40",
                                 input$user_algal_cover == 4 ~ ">40"
                             ),
-                            f36 = fig36(),
+                            f36 = rv$fig36,
                             f36_cap = input$algal1_cap,
-                            f37 = fig37(),
+                            f37 = rv$fig37,
                             f37_cap = input$algal2_cap,
-                            f38 = fig38(),
+                            f38 = rv$fig38,
                             f38_cap = input$algal3_cap,
                             notes_algal = input$notes_algal,
 
@@ -2304,21 +2435,21 @@ server <- function(input, output, session) {
                                 input$user_diff_veg == 2.5 ~ "2.5",
                                 input$user_diff_veg == 3 ~ "3 (Strong) Dramatic compositional differences in vegetation are present between the banks and the adjacent uplands. A distinct riparian vegetation corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach. "
                             ),
-                            f15 = fig15(),
+                            f15 = rv$fig15,
                             f15_cap = input$veg1_cap,
-                            f16 = fig16(),
+                            f16 = rv$fig16,
                             f16_cap = input$veg2_cap,
-                            f17 = fig17(),
+                            f17 = rv$fig17,
                             f17_cap = input$veg3_cap,
                             notes_vegetation = input$notes_veg,
 
                             # Slope
                             slope = input$user_slope,
-                            f21 = fig21(),
+                            f21 = rv$fig21,
                             f21_cap = input$slope1_cap,
-                            f22 = fig22(),
+                            f22 = rv$fig22,
                             f22_cap = input$slope2_cap,
-                            f23 = fig23(),
+                            f23 = rv$fig23,
                             f23_cap = input$slope3_cap,
                             notes_slope = input$notes_slope,
 
@@ -2332,11 +2463,11 @@ server <- function(input, output, session) {
                                 input$user_riff_pool == 2.5 ~ "2.5",
                                 input$user_riff_pool == 3 ~ "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools. "
                             ),
-                            f42 = fig42(),
+                            f42 = rv$fig42,
                             f42_cap = input$riff1_cap,
-                            f43 = fig43(),
+                            f43 = rv$fig43,
                             f43_cap = input$riff2_cap,
-                            f44 = fig44(),
+                            f44 = rv$fig44,
                             f44_cap = input$riff3_cap,
                             notes_riff = input$notes_riff,
 
@@ -2355,6 +2486,11 @@ server <- function(input, output, session) {
                         )
 
                         file.copy("aw_report.pdf", file, overwrite = TRUE)
+
+                        # reset all inputs
+                        for (x in AllInputs()){
+                            shinyjs::reset(x)
+                        }
 
                         removeModal()
                     },
@@ -2396,11 +2532,11 @@ server <- function(input, output, session) {
 
                             # Entrenchment
                             entrenchment = input$user_er,
-                            f59 = fig59(),
+                            f59 = rv$fig59,
                             f59_cap = input$er1_cap,
-                            f60 = fig60(),
+                            f60 = rv$fig60,
                             f60_cap = input$er2_cap,
-                            f61 = fig61(),
+                            f61 = rv$fig61,
                             f61_cap = input$er3_cap,
                             notes_entrenchment = input$notes_entrenchment,
 
@@ -2412,50 +2548,50 @@ server <- function(input, output, session) {
                                 input$user_bmi == 2 ~ "2 (Moderate) Total abundance ≥4",
                                 input$user_bmi == 3 ~ "3 (Strong) Total abundance ≥10 and richness ≥3 OR Total abundance < 10 and richness ≥5"
                             ),
-                            f6 = fig6(),
+                            f6 = rv$fig6,
                             f6_cap = input$inv1_cap,
-                            f7 = fig7(),
+                            f7 = rv$fig7,
                             f7_cap = input$inv2_cap,
-                            f8 = fig8(),
+                            f8 = rv$fig8,
                             f8_cap = input$inv3_cap,
-                            f6_1 = fig6_1(),
+                            f6_1 = rv$fig6_1,
                             f6_1cap = input$inv4_cap,
-                            f7_1 = fig7_1(),
+                            f7_1 = rv$fig7_1,
                             f7_1cap = input$inv5_cap,
-                            f8_1 = fig8_1(),
+                            f8_1 = rv$fig8_1,
                             f8_cap = input$inv6_cap,
                             notes_aquainv = input$notes_totalAbundance,
 
                             # Slope
                             slope = input$user_slope,
-                            f21 = fig21(),
+                            f21 = rv$fig21,
                             f21_cap = input$slope1_cap,
-                            f22 = fig22(),
+                            f22 = rv$fig22,
                             f22_cap = input$slope2_cap,
-                            f23 = fig23(),
+                            f23 = rv$fig23,
                             f23_cap = input$slope3_cap,
                             notes_slope = input$notes_slope,
 
                             # Shading
                             shade = input$user_shade,
-                            f55 = fig55(),
+                            f55 = rv$fig55,
                             f55_cap = input$shade1_cap,
-                            f56 = fig56(),
+                            f56 = rv$fig56,
                             f56_cap = input$shade2_cap,
-                            f57 = fig57(),
+                            f57 = rv$fig57,
                             f57_cap = input$shade3_cap,
-                            f58 = fig58(),
+                            f58 = rv$fig58,
                             f58_cap = input$shade4_cap,
                             notes_shade = input$notes_shade,
 
                             
                             # Drainage
                             drainage = input$user_drainage,
-                            f65 = fig65(),
+                            f65 = rv$fig65,
                             f65_cap = input$drainage1_cap,
-                            f66 = fig66(),
+                            f66 = rv$fig66,
                             f66_cap = input$drainage2_cap,
-                            f67 = fig67(),
+                            f67 = rv$fig67,
                             f67_cap = input$drainage3_cap,
                             notes_drainage = input$notes_drainage,
 
@@ -2476,8 +2612,14 @@ server <- function(input, output, session) {
                         )
 
                         file.copy("ne_report.pdf", file, overwrite = TRUE)
-
+                        
+                        # reset all inputs
+                        for (x in AllInputs()){
+                            shinyjs::reset(x)
+                        }
+                        
                         removeModal()
+                        # session$sendCustomMessage("scrollToTop", list())
                     },
                     warning = function(cond) {
                         showModal(
@@ -2528,29 +2670,29 @@ server <- function(input, output, session) {
                                 input$user_total_abundance == 2 ~ "Total abundance is 3 to 40",
                                 input$user_total_abundance == 3 ~ "Total abundance is 41 or more"
                             ),
-                            f6 = fig6(),
+                            f6 = rv$fig6,
                             f6_cap = input$inv1_cap,
-                            f7 = fig7(),
+                            f7 = rv$fig7,
                             f7_cap = input$inv2_cap,
-                            f8 = fig8(),
+                            f8 = rv$fig8,
                             f8_cap = input$inv3_cap,
-                            f6_1 = fig6_1(),
+                            f6_1 = rv$fig6_1,
                             f6_1cap = input$inv4_cap,
-                            f7_1 = fig7_1(),
+                            f7_1 = rv$fig7_1,
                             f7_1cap = input$inv5_cap,
-                            f8_1 = fig8_1(),
+                            f8_1 = rv$fig8_1,
                             f8_cap = input$inv6_cap,
                             notes_aquainv = input$notes_totalAbundance,
 
                             # Shading
                             shade = input$user_shade,
-                            f55 = fig55(),
+                            f55 = rv$fig55,
                             f55_cap = input$shade1_cap,
-                            f56 = fig56(),
+                            f56 = rv$fig56,
                             f56_cap = input$shade2_cap,
-                            f57 = fig57(),
+                            f57 = rv$fig57,
                             f57_cap = input$shade3_cap,
-                            f58 = fig58(),
+                            f58 = rv$fig58,
                             f58_cap = input$shade4_cap,
                             notes_shade = input$notes_shade,
 
@@ -2562,11 +2704,11 @@ server <- function(input, output, session) {
                                 input$user_upland_rooted == 2 ~ r"(2 (Moderate) There are a few rooted upland plants present within the streambed/thalweg (<20\%).)",
                                 input$user_upland_rooted == 3 ~ r"(3 (Strong) Rooted upland plants are absent from the streambed/thalweg.)"
                             ),
-                            f45 = fig45(),
+                            f45 = rv$fig45,
                             f45_cap = input$ur1_cap,
-                            f46 = fig46(),
+                            f46 = rv$fig46,
                             f46_cap = input$ur2_cap,
-                            f47 = fig47(),
+                            f47 = rv$fig47,
                             f47_cap = input$ur3_cap,
                             notes_rooted = input$notes_rooted,
 
@@ -2580,11 +2722,11 @@ server <- function(input, output, session) {
                                 input$user_substrate == 2.5 ~ "2.5",
                                 input$user_substrate == 3 ~ "3 (Strong) The channel is well-developed through the soil profile with relatively coarse streambed sediments compared to the riparian zone soils: coarse sand, gravel, or cobbles in the piedmont; cobbles or boulders in the mountains, and medium or coarse sand in the coastal plain. Particle size differs greatly between the stream substrate and adjacent land."
                             ),
-                            f12 = fig12(),
+                            f12 = rv$fig12,
                             f12_cap = input$sub1_cap,
-                            f13 = fig13(),
+                            f13 = rv$fig13,
                             f13_cap = input$sub2_cap,
-                            f14 = fig14(),
+                            f14 = rv$fig14,
                             f14_cap = input$sub3_cap,
                             notes_sub = input$notes_sub,
 
@@ -2599,21 +2741,21 @@ server <- function(input, output, session) {
                                 input$user_roots == 2.5 ~ "2.5",
                                 input$user_roots == 3 ~ "3 (Strong) No fibrous roots are present."
                             ),
-                            f62 = fig62(),
+                            f62 = rv$fig62,
                             f62_cap = input$fib1_cap,
-                            f63 = fig63(),
+                            f63 = rv$fig63,
                             f63_cap = input$fib2_cap,
-                            f64 = fig64(),
+                            f64 = rv$fig64,
                             f64_cap = input$fib3_cap,
                             notes_fibrous = input$notes_fibrous,
 
                             # Drainage
                             drainage = input$user_drainage,
-                            f65 = fig65(),
+                            f65 = rv$fig65,
                             f65_cap = input$drainage1_cap,
-                            f66 = fig66(),
+                            f66 = rv$fig66,
                             f66_cap = input$drainage2_cap,
-                            f67 = fig67(),
+                            f67 = rv$fig67,
                             f67_cap = input$drainage3_cap,
                             notes_drainage = input$notes_drainage,
 
@@ -2637,6 +2779,11 @@ server <- function(input, output, session) {
                         )
 
                         file.copy("se_report.pdf", file, overwrite = TRUE)
+
+                        # reset all inputs
+                        for (x in AllInputs()){
+                            shinyjs::reset(x)
+                        }
 
                         removeModal()
                     },
@@ -2668,17 +2815,17 @@ server <- function(input, output, session) {
                                 input$user_total_abundance == 1 ~ "Total abundance is 1 to 9 individuals.",
                                 input$user_total_abundance == 2 ~ "Total abundance is 10 or more individuals. "
                             ),
-                            f6 = fig6(),
+                            f6 = rv$fig6,
                             f6_cap = input$inv1_cap,
-                            f7 = fig7(),
+                            f7 = rv$fig7,
                             f7_cap = input$inv2_cap,
-                            f8 = fig8(),
+                            f8 = rv$fig8,
                             f8_cap = input$inv3_cap,
-                            f6_1 = fig6_1(),
+                            f6_1 = rv$fig6_1,
                             f6_1cap = input$inv4_cap,
-                            f7_1 = fig7_1(),
+                            f7_1 = rv$fig7_1,
                             f7_1cap = input$inv5_cap,
-                            f8_1 = fig8_1(),
+                            f8_1 = rv$fig8_1,
                             f8_cap = input$inv6_cap,
                             notes_aquainv = input$notes_totalAbundance,
 
@@ -2688,17 +2835,17 @@ server <- function(input, output, session) {
                                 input$user_hydrophyte == 0 ~ "Less than 2",
                                 T ~ "Greater than or equal to 2"
                             ),
-                            f24 = fig24(),
+                            f24 = rv$fig24,
                             f24_cap = input$hydro1_cap,
-                            f25 = fig25(),
+                            f25 = rv$fig25,
                             f25_cap = input$hydro2_cap,
-                            f26 = fig26(),
+                            f26 = rv$fig26,
                             f26_cap = input$hydro3_cap,
-                            f27 = fig27(),
+                            f27 = rv$fig27,
                             f27_cap = input$hydro4_cap,
-                            f28 = fig28(),
+                            f28 = rv$fig28,
                             f28_cap = input$hydro5_cap,
-                            f29 = fig29(),
+                            f29 = rv$fig29,
                             f29_cap = input$hydro6_cap,
                             notes_hydro = input$notes_hydro,
 
@@ -2707,11 +2854,11 @@ server <- function(input, output, session) {
                                 input$user_upland_rooted == 0 ~ "Present - rooted upland plant individuals are present in the streambed.",
                                 input$user_upland_rooted == 1 ~ "Absent - rooted upland plant individuals are absent in the streambed."
                             ),
-                            f45 = fig45(),
+                            f45 = rv$fig45,
                             f45_cap = input$ur1_cap,
-                            f46 = fig46(),
+                            f46 = rv$fig46,
                             f46_cap = input$ur2_cap,
-                            f47 = fig47(),
+                            f47 = rv$fig47,
                             f47_cap = input$ur3_cap,
                             notes_rooted = input$notes_rooted,
 
@@ -2723,11 +2870,11 @@ server <- function(input, output, session) {
                                 input$user_substrate == 2.25 ~ "2.25",
                                 input$user_substrate == 3 ~ "3 (Strong) Particle sizes in the channel are noticeably different from particle sizes in areas close to but not in the channel. There is a clear distribution of various sized substrates in the channel with finer particles accumulating in the pools, and larger particles accumulating in the riffles/runs."
                             ),
-                            f12 = fig12(),
+                            f12 = rv$fig12,
                             f12_cap = input$sub1_cap,
-                            f13 = fig13(),
+                            f13 = rv$fig13,
                             f13_cap = input$sub2_cap,
-                            f14 = fig14(),
+                            f14 = rv$fig14,
                             f14_cap = input$sub3_cap,
                             notes_sub = input$notes_sub,
 
@@ -2741,11 +2888,11 @@ server <- function(input, output, session) {
                                 input$user_diff_veg == 2.5 ~ "2.5",
                                 input$user_diff_veg == 3 ~ "3 (Strong) Dramatic compositional differences in vegetation are present between the stream banks and adjacent uplands. A distinct riparian corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach."
                             ),
-                            f15 = fig15(),
+                            f15 = rv$fig15,
                             f15_cap = input$veg1_cap,
-                            f16 = fig16(),
+                            f16 = rv$fig16,
                             f16_cap = input$veg2_cap,
-                            f17 = fig17(),
+                            f17 = rv$fig17,
                             f17_cap = input$veg3_cap,
                             notes_vegetation = input$notes_veg,
 
@@ -2759,11 +2906,11 @@ server <- function(input, output, session) {
                                 input$user_sediment_plants == 1.25 ~ "1.25",
                                 input$user_sediment_plants == 1.5 ~ "1.5 (Strong) Fine sediment found readily on plants and debris within the stream channel, on the streambank, and within the floodplain throughout the length of the stream."
                             ),
-                            f18 = fig18(),
+                            f18 = rv$fig18,
                             f18_cap = input$sed1_cap,
-                            f19 = fig19(),
+                            f19 = rv$fig19,
                             f19_cap = input$sed2_cap,
-                            f20 = fig20(),
+                            f20 = rv$fig20,
                             f20_cap = input$sed3_cap,
                             notes_sed = input$notes_sed,
 
@@ -2777,11 +2924,11 @@ server <- function(input, output, session) {
                                 input$user_riff_pool == 2.5 ~ "2.5",
                                 input$user_riff_pool == 3 ~ "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools."
                             ),
-                            f42 = fig42(),
+                            f42 = rv$fig42,
                             f42_cap = input$riff1_cap,
-                            f43 = fig43(),
+                            f43 = rv$fig43,
                             f43_cap = input$riff2_cap,
-                            f44 = fig44(),
+                            f44 = rv$fig44,
                             f44_cap = input$riff3_cap,
                             notes_riff = input$notes_riff,
 
@@ -2800,6 +2947,11 @@ server <- function(input, output, session) {
                         )
 
                         file.copy("gp_report.pdf", file, overwrite = TRUE)
+
+                        # reset all inputs
+                        for (x in AllInputs()){
+                            shinyjs::reset(x)
+                        }
 
                         removeModal()
                     },
@@ -2841,73 +2993,73 @@ server <- function(input, output, session) {
                             # EPT Taxa
                             aqua_inv = input$user_aquatic_presence,
                             ephem = input$user_ephemeroptera,
-                            f6 = fig6(),
+                            f6 = rv$fig6,
                             f6_cap = input$inv1_cap,
-                            f7 = fig7(),
+                            f7 = rv$fig7,
                             f7_cap = input$inv2_cap,
-                            f8 = fig8(),
+                            f8 = rv$fig8,
                             f8_cap = input$inv3_cap,
-                            f6_1 = fig6_1(),
+                            f6_1 = rv$fig6_1,
                             f6_1cap = input$inv4_cap,
-                            f7_1 = fig7_1(),
+                            f7_1 = rv$fig7_1,
                             f7_1cap = input$inv5_cap,
-                            f8_1 = fig8_1(),
+                            f8_1 = rv$fig8_1,
                             f8_cap = input$inv6_cap,
                             notes_aquainv = input$notes_totalAbundance,
 
                             # Hydrophytes
                             hydro = input$user_plants,
-                            f24 = fig24(),
+                            f24 = rv$fig24,
                             f24_cap = input$hydro1_cap,
-                            f25 = fig25(),
+                            f25 = rv$fig25,
                             f25_cap = input$hydro2_cap,
-                            f26 = fig26(),
+                            f26 = rv$fig26,
                             f26_cap = input$hydro3_cap,
-                            f27 = fig27(),
+                            f27 = rv$fig27,
                             f27_cap = input$hydro4_cap,
-                            f28 = fig28(),
+                            f28 = rv$fig28,
                             f28_cap = input$hydro5_cap,
-                            f29 = fig29(),
+                            f29 = rv$fig29,
                             f29_cap = input$hydro6_cap,
                             notes_hydro = input$notes_hydro,
 
                             # Perennial Taxa
                             per_taxa = input$user_per_taxa,
-                            f33 = fig33(),
+                            f33 = rv$fig33,
                             f33_cap = input$per1_cap,
-                            f34 = fig34(),
+                            f34 = rv$fig34,
                             f34_cap = input$per2_cap,
-                            f35 = fig35(),
+                            f35 = rv$fig35,
                             f35_cap = input$per3_cap,
                             notes_per = input$notes_per,
 
                             # Fish
                             fish = input$user_fish,
-                            f30 = fig30(),
+                            f30 = rv$fig30,
                             f30_cap = input$fish1_cap,
-                            f31 = fig31(),
+                            f31 = rv$fig31,
                             f31_cap = input$fish2_cap,
-                            f32 = fig32(),
+                            f32 = rv$fig32,
                             f32_cap = input$fish3_cap,
                             notes_fish = input$notes_fish,
 
                             # Amphibians
                             amphibians = input$user_amphibians,
-                            f39 = fig39(),
+                            f39 = rv$fig39,
                             f39_cap = input$amph1_cap,
-                            f40 = fig40(),
+                            f40 = rv$fig40,
                             f40_cap = input$amph2_cap,
-                            f41 = fig41(),
+                            f41 = rv$fig41,
                             f41_cap = input$amph3_cap,
                             notes_amph = input$notes_amph,
 
                             # Slope
                             slope = input$user_slope,
-                            f21 = fig21(),
+                            f21 = rv$fig21,
                             f21_cap = input$slope1_cap,
-                            f22 = fig22(),
+                            f22 = rv$fig22,
                             f22_cap = input$slope2_cap,
-                            f23 = fig23(),
+                            f23 = rv$fig23,
                             f23_cap = input$slope3_cap,
                             notes_slope = input$notes_slope
                         )
@@ -2923,6 +3075,11 @@ server <- function(input, output, session) {
                         )
 
                         file.copy("pnw_report.pdf", file, overwrite = TRUE)
+
+                        # reset all inputs
+                        for (x in AllInputs()){
+                            shinyjs::reset(x)
+                        }
 
                         removeModal()
                     },
@@ -2957,17 +3114,17 @@ server <- function(input, output, session) {
                                 input$user_total_abundance == 3 ~ "10 to 19 EPT individuals",
                                 input$user_total_abundance == 4 ~ "20 or more EPT individuals"
                             ),
-                            f6 = fig6(),
+                            f6 = rv$fig6,
                             f6_cap = input$inv1_cap,
-                            f7 = fig7(),
+                            f7 = rv$fig7,
                             f7_cap = input$inv2_cap,
-                            f8 = fig8(),
+                            f8 = rv$fig8,
                             f8_cap = input$inv3_cap,
-                            f6_1 = fig6_1(),
+                            f6_1 = rv$fig6_1,
                             f6_1cap = input$inv4_cap,
-                            f7_1 = fig7_1(),
+                            f7_1 = rv$fig7_1,
                             f7_1cap = input$inv5_cap,
-                            f8_1 = fig8_1(),
+                            f8_1 = rv$fig8_1,
                             f8_cap = input$inv6_cap,
                             notes_aquainv = input$notes_totalAbundance,
                             eph_isa = case_when(
@@ -2984,17 +3141,17 @@ server <- function(input, output, session) {
                                 input$user_hydrophyte < 5 ~ as.character(input$user_hydrophyte),
                                 T ~ "Greater than or equal to 5"
                             ),
-                            f24 = fig24(),
+                            f24 = rv$fig24,
                             f24_cap = input$hydro1_cap,
-                            f25 = fig25(),
+                            f25 = rv$fig25,
                             f25_cap = input$hydro2_cap,
-                            f26 = fig26(),
+                            f26 = rv$fig26,
                             f26_cap = input$hydro3_cap,
-                            f27 = fig27(),
+                            f27 = rv$fig27,
                             f27_cap = input$hydro4_cap,
-                            f28 = fig28(),
+                            f28 = rv$fig28,
                             f28_cap = input$hydro5_cap,
-                            f29 = fig29(),
+                            f29 = rv$fig29,
                             f29_cap = input$hydro6_cap,
                             notes_hydro = input$notes_hydro,
 
@@ -3008,11 +3165,11 @@ server <- function(input, output, session) {
                                 input$user_upland_rooted == 2.5 ~ "2.5",
                                 input$user_upland_rooted == 3 ~ "3 (Strong) Rooted upland plants are absent from the streambed/thalweg. "
                             ),
-                            f45 = fig45(),
+                            f45 = rv$fig45,
                             f45_cap = input$ur1_cap,
-                            f46 = fig46(),
+                            f46 = rv$fig46,
                             f46_cap = input$ur2_cap,
-                            f47 = fig47(),
+                            f47 = rv$fig47,
                             f47_cap = input$ur3_cap,
                             notes_rooted = input$notes_rooted,
 
@@ -3024,11 +3181,11 @@ server <- function(input, output, session) {
                                 input$user_substrate == 2.25 ~ "2.25",
                                 input$user_substrate == 3 ~ "3 (Strong) Particle sizes in the channel are noticeably different from particle sizes in areas close to but not in the channel. There is a clear distribution of various sized substrates in the channel with finer particles accumulating in the pools, and larger particles accumulating in the riffles/runs."
                             ),
-                            f12 = fig12(),
+                            f12 = rv$fig12,
                             f12_cap = input$sub1_cap,
-                            f13 = fig13(),
+                            f13 = rv$fig13,
                             f13_cap = input$sub2_cap,
-                            f14 = fig14(),
+                            f14 = rv$fig14,
                             f14_cap = input$sub3_cap,
                             notes_sub = input$notes_sub,
 
@@ -3042,33 +3199,33 @@ server <- function(input, output, session) {
                                 input$user_diff_veg == 2.5 ~ "2.5",
                                 input$user_diff_veg == 3 ~ "3 (Strong) Dramatic compositional differences in vegetation are present between the banks and the adjacent uplands. A distinct riparian vegetation corridor exists along the entire reach. Riparian, aquatic, or wetland species dominate the length of the reach. "
                             ),
-                            f15 = fig15(),
+                            f15 = rv$fig15,
                             f15_cap = input$veg1_cap,
-                            f16 = fig16(),
+                            f16 = rv$fig16,
                             f16_cap = input$veg2_cap,
-                            f17 = fig17(),
+                            f17 = rv$fig17,
                             f17_cap = input$veg3_cap,
                             notes_vegetation = input$notes_veg,
 
                             # Slope
                             slope = input$user_slope,
-                            f21 = fig21(),
+                            f21 = rv$fig21,
                             f21_cap = input$slope1_cap,
-                            f22 = fig22(),
+                            f22 = rv$fig22,
                             f22_cap = input$slope2_cap,
-                            f23 = fig23(),
+                            f23 = rv$fig23,
                             f23_cap = input$slope3_cap,
                             notes_slope = input$notes_slope,
 
                             # Shading
                             shade = input$user_shade,
-                            f55 = fig55(),
+                            f55 = rv$fig55,
                             f55_cap = input$shade1_cap,
-                            f56 = fig56(),
+                            f56 = rv$fig56,
                             f56_cap = input$shade2_cap,
-                            f57 = fig57(),
+                            f57 = rv$fig57,
                             f57_cap = input$shade3_cap,
-                            f58 = fig58(),
+                            f58 = rv$fig58,
                             f58_cap = input$shade4_cap,
                             notes_shade = input$notes_shade,
 
@@ -3082,11 +3239,11 @@ server <- function(input, output, session) {
                                 input$user_riff_pool == 2.5 ~ "2.5",
                                 input$user_riff_pool == 3 ~ "3 (Strong) Demonstrated by a frequent number of structural transitions (e.g., riffles followed by pools) along the entire reach. There is an obvious transition between riffles and pools. "
                             ),
-                            f42 = fig42(),
+                            f42 = rv$fig42,
                             f42_cap = input$riff1_cap,
-                            f43 = fig43(),
+                            f43 = rv$fig43,
                             f43_cap = input$riff2_cap,
-                            f44 = fig44(),
+                            f44 = rv$fig44,
                             f44_cap = input$riff3_cap,
                             notes_riff = input$notes_riff,
 
@@ -3105,6 +3262,11 @@ server <- function(input, output, session) {
                         )
 
                         file.copy("wm_report.pdf", file, overwrite = TRUE)
+
+                        # reset all inputs
+                        for (x in AllInputs()){
+                            shinyjs::reset(x)
+                        }
 
                         removeModal()
                     },

@@ -688,8 +688,20 @@ ne_report <- function() {
                 ) %>% tagAppendAttributes(class = "question_box"),
                 br(),
                 div(
-                    downloadButton("report", "Generate report"),
+                    
+                    div(
+                        style = "display: flex; justify-content: center; align-items: center; min-height: 80px;",
+                        
+                        actionButton(
+                            "download_trigger",
+                            label = tagList(
+                                icon = icon("download"),
+                                "Generate report"
+                            )
+                        )
+                    )
                 ) %>% tagAppendAttributes(class = "question_box"),
+                downloadButton("report", "Generate report", style="visibility: hidden;"),
                 br(),
                 br(),
                 br(),
