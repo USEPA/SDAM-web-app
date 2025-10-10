@@ -175,7 +175,7 @@ ne_panel <- function(){
                     div(
                         div(
                             id = "coords",
-                            HTML("<b><i>Enter coordinates in decimal degrees to retrieve the Elevation and Average Monthly Precipitation for May, June and July.</i></b>"),
+                            HTML("<b><i>Enter coordinates in decimal degrees to retrieve the Elevation.</i></b>"),
                             fluidRow(
                                 column(
                                     4,

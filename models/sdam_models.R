@@ -163,6 +163,7 @@ run_sdam <- function(df = NA,
                     ),
                     type = "default"
                 )
+                "Other"
             } else {
                 if (df$aqua_presence == "Yes") {
                     if (df$ephemeroptera == "Yes") {
@@ -192,13 +193,14 @@ run_sdam <- function(df = NA,
 
                 if (df$Class == "ephemeral") {
                     if (df$fish == "Yes") {
-                        df$Class == "at least intermittent"
+                        df$Class <- "at least intermittent"
                     } else if (df$amphibians == "Yes") {
-                        df$Class == "at least intermittent"
+                        df$Class <- "at least intermittent"
                     }
                 }
 
-                output_df$Class
+
+                df$Class
             }
         }
 
@@ -345,42 +347,42 @@ run_sdam <- function(df = NA,
             )
             "Other"
         } else {
-            if (df$aqua_presence == "Yes") {
-                if (df$ephemeroptera == "Yes") {
-                    if (df$peren_taxa == "Yes") {
-                        df$Class <- "perennial"
-                    } else if (df$peren_taxa == "No") {
-                        if (df$slope < 16) {
-                            df$Class <- "intermittent"
-                        } else if (df$slope >= 16) {
+                if (df$aqua_presence == "Yes") {
+                    if (df$ephemeroptera == "Yes") {
+                        if (df$peren_taxa == "Yes") {
                             df$Class <- "perennial"
+                        } else if (df$peren_taxa == "No") {
+                            if (df$slope < 16) {
+                                df$Class <- "intermittent"
+                            } else if (df$slope >= 16) {
+                                df$Class <- "perennial"
+                            }
                         }
-                    }
-                } else if (df$ephemeroptera == "No") {
-                    df$Class <- "intermittent"
-                }
-            } else if (df$aqua_presence == "No") {
-                if (df$plants == "Yes") {
-                    if (df$slope < 10.5) {
+                    } else if (df$ephemeroptera == "No") {
                         df$Class <- "intermittent"
-                    } else if (df$slope >= 10.5) {
+                    }
+                } else if (df$aqua_presence == "No") {
+                    if (df$plants == "Yes") {
+                        if (df$slope < 10.5) {
+                            df$Class <- "intermittent"
+                        } else if (df$slope >= 10.5) {
+                            df$Class <- "ephemeral"
+                        }
+                    } else if (df$plants == "No") {
                         df$Class <- "ephemeral"
                     }
-                } else if (df$plants == "No") {
-                    df$Class <- "ephemeral"
                 }
-            }
 
-            if (df$Class == "ephemeral") {
-                if (df$fish == "Yes") {
-                    df$Class <- "at least intermittent"
-                } else if (df$amphibians == "Yes") {
-                    df$Class <- "at least intermittent"
+                if (df$Class == "ephemeral") {
+                    if (df$fish == "Yes") {
+                        df$Class <- "at least intermittent"
+                    } else if (df$amphibians == "Yes") {
+                        df$Class <- "at least intermittent"
+                    }
                 }
-            }
 
 
-            df$Class
+                df$Class
         }
     }
 }

@@ -75,7 +75,7 @@ source('./report/report_se.R')
 source('./spatial/region_check.R')
 
 # Load shapefile with regions
-regions_leaflet <- read_sf("./spatial/regions_simp_noPRVI.shp")
+regions_leaflet <- read_sf("./spatial/simplified_regions.shp")
 
 # pre-load random forest models for each region
 load("./models/rf_models/all_refined_rf_mods.Rdata")

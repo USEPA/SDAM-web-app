@@ -1026,6 +1026,7 @@ server <- function(input, output, session) {
         fig7_1(),
         fig8_1()),{ })
         
+        
 
     # region -----
 
@@ -1035,9 +1036,32 @@ server <- function(input, output, session) {
         } else if (input$vol_region == "Select region" && input$user_region != "No Region") {
             x <- input$user_region
         } else {
-            x <- point_region(user_lat = input$lat, user_lon = input$lon)
+            if (is.na(input$lat) | is.na(input$lon)){
+                show_alert(
+                        title = "",
+                        text = tagList(
+                            tags$p(HTML(paste0("The location of your site is outside of any SDAM region. Please check your latitude and longitude coordinates to ensure they are entered in the correct format (decimal degrees and WGS84 datum)")))
+                        ),
+                        type = "default"
+                    ) 
+                x <- "Invalid coordinates"
+            } else {
+                x <- point_region(user_lat = req(input$lat), user_lon = req(input$lon))
+            }
         }
         x
+    })
+
+    observeEvent(input$indicator_button, {
+        if (is.null(map_coords()) && input$vol_region == "Select location on map") {
+            show_alert(
+                        title = "",
+                        text = tagList(
+                            tags$p(HTML(paste0("No SDAM region selected. Please select location in map or use the alternative methods for selecting SDAM region.")))
+                        ),
+                        type = "default"
+                    ) 
+        } 
     })
 
     region_east <- eventReactive(c(input$vol_region, input$user_region, input$lat, input$lon), {
@@ -1059,7 +1083,7 @@ server <- function(input, output, session) {
             alt_regions <- alt_regions[alt_regions != "East"]
             alt_regions_str <- str_c(alt_regions, collapse = ", ")
         } else if (input$vol_region != "Select region" && input$vol_region != "Select location on map") {
-            alt_regions <- region_checker(input$lat, input$lon)
+            alt_regions <- region_checker(req(input$lat), req(input$lon))
             alt_regions <- alt_regions[alt_regions != "East"]
             alt_regions_str <- str_c(alt_regions, collapse = ", ")
         } else if (input$vol_region == "Select region") {
@@ -1094,7 +1118,7 @@ server <- function(input, output, session) {
                 )
             }
         } else if (input$vol_region != "Select region" && input$vol_region != "Select location on map") {
-            alt_regions <- region_checker(input$lat, input$lon)
+            alt_regions <- region_checker(req(input$lat), req(input$lon))
             alt_regions <- alt_regions[alt_regions != "East"]
             alt_regions_str <- str_c(alt_regions, collapse = ", ")
             if (length(alt_regions) > 0) {
@@ -1128,6 +1152,7 @@ server <- function(input, output, session) {
     observeEvent(panel_render(),{
         output$regionPanel <- renderUI({
             if (panel_render() == "render") {
+                req(region_class())
                 if (is.atomic(region_class())) {
                     if (region_class() == "Northeast") {
                         ne_panel()
@@ -1238,18 +1263,21 @@ server <- function(input, output, session) {
                             type = "default"
                         )
                     } else {
+                        msg <- if (region_class()$region == "PR & VI"){
+                            paste0(
+                                " U.S. Caribbean (Puerto Rico islands and U.S. Virgin Islands) - A Regional SDAM has not been developed for the U.S. Caribbean. A literature review for the U.S. Caribbean has been completed."
+                            )
+                        } else {
+                            paste0(
+                                region_class()$region, " - A Regional SDAM has not been developed for ", region_class()$region, ".  ",
+                                "A literature review for ", region_class()$region, " has been completed."
+                            )
+                        }
                         show_alert(
                             title = "",
                             text = tagList(
                                 tags$p(HTML(
-                                    paste0(
-                                        region_class()$region, " - A Regional SDAM has not been developed for ", region_class()$region, ".  ",
-                                        "A literature review for ", region_class()$region, " has been completed."
-                                    )
-                                    # paste0("This site is located outside of the Final SDAM study areas.  The site is located in the <b>",
-                                    #                region_class()$region, "</b> SDAM region.  The ",
-                                    #                region_class()$region, " is in the <b>",
-                                    #                region_class()$URL, "</b> stage.")
+                                    msg
                                 ))
                             ),
                             type = "default"
@@ -1271,6 +1299,7 @@ server <- function(input, output, session) {
     })
 
     # leaflet map render-----
+    
     output$map <- renderLeaflet({
         factPal <- colorFactor(
             pal = rainbow(9),
@@ -1307,7 +1336,7 @@ server <- function(input, output, session) {
                 group = "Imagery"
             ) %>%
             addLayersControl(
-                baseGroups = c("NatGeo World (Default)", "Imagery"),
+                baseGroups = c("USGS National Map", "Imagery"),
                 overlayGroups = "SDAM Regions",
                 options = layersControlOptions(collapsed = FALSE)
             ) %>%
@@ -1349,7 +1378,7 @@ server <- function(input, output, session) {
             if (is.atomic(region_class()) && (region_class() == "Northeast" | region_class() == "Southeast")){
                 latitude <- input$man_lat
             } else {
-                latitude <- input$lat
+                latitude <- req(input$lat)
             }
         } else if (!is.null(map_coords())) {
             latitude <- map_coords()[1]
@@ -1361,7 +1390,7 @@ server <- function(input, output, session) {
             if (is.atomic(region_class()) && (region_class() == "Northeast" | region_class() == "Southeast")){
                 longitude <- input$man_lon
             } else {
-                longitude <- input$lon
+                longitude <- req(input$lon)
             }
         } else if (!is.null(map_coords())) {
             longitude <- map_coords()[2]
@@ -1397,6 +1426,16 @@ server <- function(input, output, session) {
                 round(latitude(), 4), 
                 text,
                 layerId = "sdam_popup")
+    })
+
+    # reset map to initial view after report generation
+    observeEvent(input$download_trigger, {
+        map_proxy <- leafletProxy("map") %>%
+            setView(
+                lng = -100.5,
+                lat = 35.5,
+                zoom = 5
+            ) 
     })
 
 
@@ -1651,13 +1690,13 @@ server <- function(input, output, session) {
                 pnw_df(
                     user_lat = latitude(),
                     user_lon = longitude(),
-                    user_aquatic_presence = input$user_aquatic_presence,
-                    user_ephemeroptera = input$user_ephemeroptera,
-                    user_per_taxa = input$user_per_taxa,
-                    user_plants = input$user_plants,
-                    user_slope = input$user_slope,
-                    user_fish = input$user_fish,
-                    user_amphibians = input$user_amphibians
+                    user_aquatic_presence = ifelse(nchar(input$user_aquatic_presence) == 0, NA, input$user_aquatic_presence),
+                    user_ephemeroptera = ifelse(nchar(input$user_ephemeroptera) == 0, NA, input$user_ephemeroptera),
+                    user_per_taxa = ifelse(nchar(input$user_per_taxa) == 0, NA, input$user_per_taxa),
+                    user_plants = ifelse(nchar(input$user_plants) == 0, NA, input$user_plants),
+                    user_slope = ifelse(nchar(input$user_slope) == 0, NA, input$user_slope),
+                    user_fish = ifelse(nchar(input$user_fish) == 0, NA, input$user_fish),
+                    user_amphibians = ifelse(nchar(input$user_amphibians) == 0, NA, input$user_amphibians)
                 )
             } else if (region_class() == 'Northeast'){
                 ne_df(
@@ -1733,13 +1772,13 @@ server <- function(input, output, session) {
                 pnw_df(
                     user_lat = latitude(),
                     user_lon = longitude(),
-                    user_aquatic_presence = input$user_aquatic_presence,
-                    user_ephemeroptera = input$user_ephemeroptera,
-                    user_per_taxa = input$user_per_taxa,
-                    user_plants = input$user_plants,
-                    user_slope = input$user_slope,
-                    user_fish = input$user_fish,
-                    user_amphibians = input$user_amphibians
+                    user_aquatic_presence = ifelse(nchar(input$user_aquatic_presence) == 0, NA, input$user_aquatic_presence),
+                    user_ephemeroptera = ifelse(nchar(input$user_ephemeroptera) == 0, NA, input$user_ephemeroptera),
+                    user_per_taxa = ifelse(nchar(input$user_per_taxa) == 0, NA, input$user_per_taxa),
+                    user_plants = ifelse(nchar(input$user_plants) == 0, NA, input$user_plants),
+                    user_slope = ifelse(nchar(input$user_slope) == 0, NA, input$user_slope),
+                    user_fish = ifelse(nchar(input$user_fish) == 0, NA, input$user_fish),
+                    user_amphibians = ifelse(nchar(input$user_amphibians) == 0, NA, input$user_amphibians)
                 )
             } else if (region_class()$region == "Northeast") {
                 ne_df(
@@ -1771,6 +1810,8 @@ server <- function(input, output, session) {
             return(NULL)
         }
     })
+
+
 
     # run rf model and output stream classification----
     classification <- eventReactive(input$runmodel, {

@@ -430,7 +430,7 @@ Notes on observed hydrology: `r params$r`
 \begin{minipage}{16cm}
 Top of reach looking downstream:
 ```
-```{r, out.width='72%', out.height= '50%', out.extra='angle=0', fig.align='center'}
+```{r, out.width='72%', fig.align='center'}
 if (!length(params$v)==0){ 
   knitr::include_graphics(params[["v"]])
 }

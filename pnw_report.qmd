@@ -387,7 +387,7 @@ Notes on observed hydrology: `r params$r`
 \begin{minipage}{16cm}
 Top of reach looking downstream:
 ```
-```{r, out.width='72%', out.height= '50%', out.extra='angle=0', fig.align='center'}
+```{r, out.width='72%', fig.align='center'}
 if (!length(params$v)==0){ 
   knitr::include_graphics(params[["v"]])
 }
@@ -993,11 +993,11 @@ if (!length(params$f41)==0){
 \textbf{\underline{\LARGE{Ancillary information}}}
 \end{center}
 
-\textbf{Riparian corridor: `r ifelse(params$anc_rip == TRUE,'Yes','No')`}
+\textbf{Riparian corridor: `r ifelse(params$anc_rip == TRUE,'Yes','')`}
 
-\textbf{Erosion and deposition: `r ifelse(params$anc_erosion == TRUE,'Yes','No')`}
+\textbf{Erosion and deposition: `r ifelse(params$anc_erosion == TRUE,'Yes','')`}
 
-\textbf{Floodplain connectivity: `r ifelse(params$anc_fp == TRUE,'Yes','No')`}
+\textbf{Floodplain connectivity: `r ifelse(params$anc_fp == TRUE,'Yes','')`}
 
 Notes about observed ancillary information: `r params$notes_anc`
 
