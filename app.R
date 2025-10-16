@@ -955,7 +955,8 @@ server <- function(input, output, session) {
             hide("reportPanel")
         }
     })
-        
+
+
 
     # added to force server to recognize changes in reactive value file input data paths
     observeEvent(c(fig1(),
@@ -1920,6 +1921,25 @@ server <- function(input, output, session) {
                 updateNumericInput(
                     session,
                     "user_slope",
+                    value = 0
+                )
+            }
+        }
+    })
+
+    observeEvent(input$user_shade, {
+        if (!is.na(input$user_shade)) {
+            if (input$user_shade < 0 | input$user_shade > 100) {
+                showModal(
+                    modalDialog(
+                        "Percent shade must be between 0 and 100",
+                        footer = modalButton("OK"),
+                        easyClose = FALSE
+                    )
+                )
+                updateNumericInput(
+                    session,
+                    "user_shade",
                     value = 0
                 )
             }

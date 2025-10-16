@@ -552,7 +552,7 @@ if (!length(params$f54)==0){
 
 \textbf{Perennial indicator taxa: `r if (!is.null(params$aqua_inv)) {params$aqua_inv}`}
 
-Aquatic macroinvertebrates in assessment area: `r ifelse(params$macro_check == TRUE, 'Aquatic macroinvertebrates absent', 'Aquatic macroinvertebrates present')`
+Aquatic macroinvertebrates in assessment area: `r ifelse(params$macro_check == TRUE, 'Aquatic macroinvertebrates absent', '')`
 
 Notes on aquatic macroinvertebrates:
 
@@ -780,7 +780,7 @@ if (!length(params$f23)==0){
 
 \textbf{Number of hydrophytic plant species: `r if (!is.null(params$hydro)) {params$hydro}`}
 
-Vegetation in assessment area: `r ifelse(params$hydro_check == TRUE, 'vegetation absent', 'vegetation present')`
+Vegetation in assessment area: `r ifelse(params$hydro_check == TRUE, 'vegetation absent', '')`
 
 Notes on hydrophytic plants:
 

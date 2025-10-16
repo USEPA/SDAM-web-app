@@ -112,8 +112,8 @@ ne_panel <- function(){
                             HTML("<b><i>Slope (to the nearest half-percent)</b></i>"),
                             numericInputIcon("user_slope",
                                 label = NULL,
-                                min = 0,
-                                max = 500,
+                                min = -900,
+                                max = 900,
                                 value = NULL,
                                 step = 0.01,
                                 icon = icon("percent")
@@ -130,8 +130,8 @@ ne_panel <- function(){
                             HTML("<b><i>Percent shading</b></i>"),
                             numericInputIcon("user_shade",
                                 label = NULL,
-                                min = 0,
-                                max = 100,
+                                min = -900,
+                                max = 900,
                                 value = NULL,
                                 step = 0.01,
                                 icon = icon("percent")

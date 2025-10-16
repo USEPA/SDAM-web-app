@@ -186,7 +186,6 @@ ne_df <- function(
 se_df <- function(
     user_lat = 0,
     user_lon = 0,
-    #   user_total_abundance = NA,
     user_bank_mean = NA,
     user_bmi = NA,
     user_total_abundance = NA,
@@ -218,21 +217,23 @@ se_df <- function(
                     FibrousRootedPlants_score = as.numeric(user_roots),
                     PctShading = as.numeric(user_shading),
                     SubstrateSorting_score = as.numeric(user_substrate),
+                    TotalAbundance_0_3_40_bin = as.numeric(user_total_abundance),
                     Elev_m = as.numeric(user_elev),
                     DRNAREA_mi2 = as.numeric(user_drainage),
                     ppt.567 = as.numeric(user_precip)
             )
 
-    df_input <- df_input %>% 
-        mutate(
-            # binning handled in input question
-            # TotalAbundance_0_3_40_bin= case_when(
-            #     TotalAbundance == 0 ~0, 
-            #     ((TotalAbundance > 0) & (TotalAbundance<3) ~1), 
-            #     ((TotalAbundance >=3) & (TotalAbundance <= 40) ~ 2),
-            #     TotalAbundance> 40 ~ 3)
-            TotalAbundance_0_3_40_bin = as.numeric(user_total_abundance)
-        ) 
+    # binning handled in input question
+    # df_input <- df_input %>% 
+    #     mutate(
+    #         
+    #         # TotalAbundance_0_3_40_bin= case_when(
+    #         #     TotalAbundance == 0 ~0, 
+    #         #     ((TotalAbundance > 0) & (TotalAbundance<3) ~1), 
+    #         #     ((TotalAbundance >=3) & (TotalAbundance <= 40) ~ 2),
+    #         #     TotalAbundance> 40 ~ 3)
+    #         TotalAbundance_0_3_40_bin = as.numeric(user_total_abundance)
+    #     ) 
 
     df_input
 }  

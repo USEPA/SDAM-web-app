@@ -697,7 +697,7 @@ if (!length(params$f8_1)==0){
 
 \textbf{Hydrophytic plants: `r if (!is.null(params$hydro)) {params$hydro}`}
 
-Vegetation in assessment area: `r ifelse(params$hydro_check == TRUE, 'vegetation absent', 'vegetation present')`
+Vegetation in assessment area: `r ifelse(params$hydro_check == TRUE, 'vegetation absent', '')`
 
 Notes about hydrophytic vegetation:
 
