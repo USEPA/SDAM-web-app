@@ -1,3 +1,12 @@
+# rsconnect::deployApp(
+#   appDir = getwd(),
+#   appName = "SDAM",
+#   appTitle = "SDAM Test",
+#   launch.browser = TRUE,
+#   forceUpdate = TRUE,
+#   appId = 1436
+# )
+
 source("./global/global.R")
 
 print(paste0("phantom: ", webshot:::find_phantom()))
