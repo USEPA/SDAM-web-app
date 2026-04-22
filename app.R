@@ -1,4 +1,4 @@
-# # Test Deployment
+# # Deploy app to staging
 # rsconnect::deployApp(
 #   appDir = getwd(),
 #   appName = "SDAM",
