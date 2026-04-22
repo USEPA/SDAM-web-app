@@ -3,9 +3,6 @@ library(tidyverse)
 library(randomForest)
 library(bslib)
 library(sf)
-# remotes::install_github("cran/rgdal", ref = "master", dependencies = TRUE, force = TRUE)
-# https://github.com/cran/rgdal
-# library(rgdal) # no longer maintained, unable to install from GitHub as of 4/22/26
 library(shiny)
 library(shinycssloaders)
 library(shinycustomloader)

@@ -2,7 +2,7 @@
 # rsconnect::deployApp(
 #   appDir = getwd(),
 #   appName = "SDAM",
-#   appTitle = "SDAM Test",
+#   appTitle = "Streamflow Duration Assessment Methods (SDAMs) Web App",
 #   launch.browser = TRUE,
 #   forceUpdate = TRUE,
 #   appId = 1436
