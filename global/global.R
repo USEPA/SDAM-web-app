@@ -3,7 +3,9 @@ library(tidyverse)
 library(randomForest)
 library(bslib)
 library(sf)
-# library(rgdal) # no longer supported, not sure where it is used cm 4/22/26
+# remotes::install_github("cran/rgdal", ref = "master", dependencies = TRUE, force = TRUE)
+# https://github.com/cran/rgdal
+# library(rgdal) # no longer maintained, unable to install from GitHub as of 4/22/26
 library(shiny)
 library(shinycssloaders)
 library(shinycustomloader)
@@ -11,7 +13,9 @@ library(shinyWidgets)
 library(formatR)
 library(shinyjs)
 library(magrittr)
-# library(rslates) # no longer supported, not sure where it is used cm 4/22/26
+# remotes::install_github("amar00k/rslates", ref = "master", dependencies = TRUE, force = TRUE)
+# https://github.com/amar00k/rslates/
+library(rslates) # no longer maintained, able to install from GitHub on 4/22/26 
 library(leaflet)
 library(leaflet.extras)
 library(dataRetrieval)
