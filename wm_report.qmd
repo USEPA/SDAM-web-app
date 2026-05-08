@@ -7,8 +7,6 @@ revision: "SDAM revision date: October, 2025"
 date: "Report generated on: `r format(Sys.time(), '%B %d, %Y')`"
 embed-resources: false
 filters: [remove_title.lua]
-mainfont: Roboto
-monofont: Roboto
 format: 
   pdf:
     include-in-header:
@@ -1388,8 +1386,8 @@ if (!length(params$f51)==0){
 \end{center}
  
 \vfill
-\noindent\rule{16cm}{3pt}\
+\noindent\rule{\linewidth}{3pt}
 \begin{center}
-\textbf{\LARGE{End of Report}}
+{\LARGE\bfseries End of Report}
 \end{center}
 
