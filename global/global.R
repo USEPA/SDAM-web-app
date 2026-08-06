@@ -22,6 +22,8 @@ library(gotop)
 library(elevatr)
 library(prism)
 library(raster)
+library(tinytex)
+
 
 # check for webshot and phantom
 # list of packages required
