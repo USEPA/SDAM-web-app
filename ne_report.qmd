@@ -1,5 +1,5 @@
 ---
-title: \vspace{-2cm} \begin{huge} Streamflow Duration Assessment Methods \end{huge}
+title: "Streamflow Duration Assessment Methods"
 title-block-banner: false
 title-block-banner-color: "#03fcfc"
 subtitle: "SDAM Version 3.0.1 Release Date: October 2025"
@@ -9,6 +9,7 @@ embed-resources: false
 filters: [remove_title.lua]
 format: 
   pdf:
+    pdf-engine: pdflatex
     include-in-header:
       - text: |
           \usepackage[bottom=1.0in]{geometry}
