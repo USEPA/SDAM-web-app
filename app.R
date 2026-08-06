@@ -1,6 +1,6 @@
 source("./global/global.R")
 
-print(paste0("phantom: ", webshot:::find_phantom()))
+# print(paste0("phantom: ", webshot:::find_phantom()))
 
 ui <- fluidPage(
     shinyjs::useShinyjs(),

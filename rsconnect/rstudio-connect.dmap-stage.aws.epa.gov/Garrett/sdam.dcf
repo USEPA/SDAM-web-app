@@ -1,0 +1,12 @@
+name: sdam
+title: SDAM
+username: Garrett
+account: Garrett
+server: rstudio-connect.dmap-stage.aws.epa.gov
+hostUrl: https://rstudio-connect.dmap-stage.aws.epa.gov/__api__
+appId: 1435
+bundleId: 12965
+url: https://rstudio-connect.dmap-stage.aws.epa.gov/content/df968018-89c2-4855-b83e-f5cb05efa420/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
