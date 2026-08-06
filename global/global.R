@@ -3,7 +3,6 @@ library(tidyverse)
 library(randomForest)
 library(bslib)
 library(sf)
-# library(rgdal)
 library(shiny)
 library(shinycssloaders)
 library(shinycustomloader)
@@ -11,7 +10,9 @@ library(shinyWidgets)
 library(formatR)
 library(shinyjs)
 library(magrittr)
-library(rslates)
+# remotes::install_github("amar00k/rslates", ref = "master", dependencies = TRUE, force = TRUE)
+# https://github.com/amar00k/rslates/
+library(rslates) # no longer maintained, able to install from GitHub on 4/22/26 
 library(leaflet)
 library(leaflet.extras)
 library(dataRetrieval)
@@ -25,13 +26,13 @@ library(tinytex)
 
 
 # check for webshot and phantom
-#list of packages required
+# list of packages required
 list.of.packages <- c("webshot")
 
-#checking missing packages from list
+# checking missing packages from list
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 
-#install missing ones
+# install missing ones
 if(length(new.packages)) install.packages(new.packages, dependencies = TRUE)
 
 # check for phantom.js

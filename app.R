@@ -1,3 +1,13 @@
+# # Deploy app to staging
+# rsconnect::deployApp(
+#   appDir = getwd(),
+#   appName = "SDAM",
+#   appTitle = "Streamflow Duration Assessment Methods (SDAMs) Web App",
+#   launch.browser = TRUE,
+#   forceUpdate = TRUE,
+#   appId = 1436
+# )
+
 source("./global/global.R")
 
 # print(paste0("phantom: ", webshot:::find_phantom()))
